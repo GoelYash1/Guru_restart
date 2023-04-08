@@ -23,13 +23,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axyz.upasthithguru.*
 import com.axyz.upasthithguru.Realm.ClassAttendanceManager
-import com.axyz.upasthithguru.Realm.CourseRepository
 import com.axyz.upasthithguru.Realm.StudentRecord
 import com.axyz.upasthithguru.adapters.studentAttendanceListAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.json.JSONException
 import org.json.JSONObject
+import org.mongodb.kbson.ObjectId
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,12 +49,15 @@ class StartAttendance : AppCompatActivity() {
     val rollList = mutableListOf<String>()
     lateinit var adapter: studentAttendanceListAdapter
     lateinit var courseId: String
+    lateinit var classAttendanceId :ObjectId
     @SuppressLint("MissingPermission")
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scan_for_attendence)
         courseId = intent.getStringExtra("Course Id").toString()
+        Log.d("Object Id ","$courseId")
+        classAttendanceId = ClassAttendanceManager().createAttendanceRecord( courseId )
         // pinTextView
         val generatedPin: String? = intent.getStringExtra("Pin")
         val pin = findViewById<TextView>(R.id.pinTextView)
@@ -283,7 +289,9 @@ class StartAttendance : AppCompatActivity() {
                             val RollNo = addTimeToString(jsonObject.get("RollNo") as String)
 
                             // mark the attendance or store it in the record
-                            storeRecord(RollNo)
+                            CoroutineScope(Dispatchers.Main).launch {
+                                storeRecord(RollNo)
+                            }
 
 //                            deviceSet.remove(device as BluetoothDevice)
 //                            deviceSet.remove(device)
@@ -379,10 +387,23 @@ class StartAttendance : AppCompatActivity() {
         }
     }
 
-    fun storeRecord(studentRollNo: String) {
+    suspend fun storeRecord(studentRollNo: String) {
+//        if(classAttendanceId == null){
+//            classAttendanceId = ClassAttendanceManager().createAttendanceRecord(courseId).toString()
+//        }
+
         rollList.add(studentRollNo)
         val emailid =
             getSharedPreferences("upasthithGuru", Context.MODE_PRIVATE).getString("email", "") ?: ""
+
+        ClassAttendanceManager().addStudentRecord(
+//            StudentRecord(
+                classAttendanceId,
+                emailid,
+                "success",
+//            )
+        )
+
 //        classAttendanceManager.addStudentRecord(StudentRecord(emailid, true, "success", Date()))
         Log.d(TAG,"------> Added Record to the Database")
     }

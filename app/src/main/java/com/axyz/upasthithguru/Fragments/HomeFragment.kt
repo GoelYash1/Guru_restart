@@ -17,6 +17,7 @@ import com.axyz.upasthithguru.activity.Profile
 import com.axyz.upasthithguru.Realm.CourseRepository
 import com.axyz.upasthithguru.adapters.CourseListAdapter
 import com.axyz.upasthithguru.app
+import com.axyz.upasthithguru.courses.AddNewCourse
 import com.axyz.upasthithguru.courses.CourseInfo
 import com.axyz.upasthithguru.data.RealmSyncRepository
 import com.axyz.upasthithguru.data.realmModule
@@ -26,6 +27,7 @@ import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.mongodb.User
 import io.realm.kotlin.mongodb.subscriptions
 import io.realm.kotlin.query.RealmResults
+import io.realm.kotlin.types.ObjectId
 import io.realm.kotlin.types.RealmList
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -50,19 +52,22 @@ class Home : Fragment() {
         realmModule.isSynced.observe(viewLifecycleOwner){ isSynced ->
             if (isSynced) {
                 Log.d("Sync Update :: ","------- Sync COMPLETED ------- ")
-//                courseList.addAll(CourseRepository().getAllCourse())
-
-                for (course in courseList) {
-                    println("Course -- ${course._id}")
-                    println("Course -- ${course.name}")
+                val fetchedCourses = CourseRepository().getAllCourse()
+                for (course in fetchedCourses) {
+                    var alreadyExists = false
+                    for (existingCourse in courseList) {
+                        if (course._id == existingCourse._id) {
+                            alreadyExists = true
+                            break
+                        }
+                    }
+                    if (!alreadyExists) {
+                        courseList.add(course)
+                    }
                 }
-//                for (course in CourseRepository().getAllCourse()) {
-//                    println("Course i -- ${course._id}")
-//                    println("Course i -- ${course.name}")
-//                }
-//                Log.d("Course ::: ","Course list hai bhai ----> $courseList")
-//                Log.d("Course ::: ","Course hai course hai ----> ${CourseRepository().getAllCourse()}")
-                // Do something when the Realm data is synced
+                Log.d("Course ::: ","Course list hai bhai ----> $courseList")
+                Log.d("Course ::: ","Course hai course hai ----> ${CourseRepository().getAllCourse()}")
+//                 Do something when the Realm data is synced
             } else {
                 // Do something when the Realm data is not synced yet
                 Log.d("Sync Update :: ","------- Sync NOT-COMPLETED ------- ")
@@ -111,8 +116,6 @@ class Home : Fragment() {
 //            }
 //        }
 
-
-
         val courseListAdapter = CourseListAdapter(courseList)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = courseListAdapter
@@ -131,23 +134,10 @@ class Home : Fragment() {
             startActivity(intent)
         }
         view.findViewById<FloatingActionButton>(R.id.addNewCourseFAB).setOnClickListener {
-
-//            val currentUser: User = app.currentUser!!
-//            Log.d("User Login ::","Login User -- ${currentUser}")
-//            Log.d("User Login ::","Login User -- ${currentUser.state}")
-
-//            if (realmModule != null && realmModule.isReady) {
-//                realmModule.getStatus()
-//                Log.d("get Signup Btn ::","hello ${realmModule.isReady}")
-//            } else {
-//                Log.d("You should Wait :: Duffer","---------")
-//            }
-//        val intent = Intent(this@Home.requireContext(), AddNewCourse::class.java)
-//        startActivity(intent)
-
-//            val courseList = CourseRepository.getAllCourse()
-//            Log.d("Course","Course list -> $courseList")
+            val intent = Intent(this@Home.requireContext(), AddNewCourse::class.java)
+            startActivity(intent)
         }
         return view
     }
+
 }

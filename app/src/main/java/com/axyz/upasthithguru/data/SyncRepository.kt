@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.axyz.upasthithguru.Realm.ClassAttendance
 import com.axyz.upasthithguru.Realm.Course
+import com.axyz.upasthithguru.Realm.StudentRecord
 import com.axyz.upasthithguru.app
 import com.axyz.upasthithguru.domain.Item
 import dagger.Module
@@ -102,7 +103,7 @@ object realmModule{
         currentUser = app.currentUser!!
         Log.d("INIT REALM ----- ","----------------------- YES ---------------- $currentUser")
         val config: SyncConfiguration
-        config = SyncConfiguration.Builder(currentUser, setOf(Item::class,Course::class, ClassAttendance::class))
+        config = SyncConfiguration.Builder(currentUser, setOf(Item::class,Course::class, ClassAttendance::class,StudentRecord::class))
             .initialSubscriptions { realm ->
                 // Subscribe to the active subscriptionType - first time defaults to MINE
 //                val activeSubscriptionType = getActiveSubscriptionType(realm)
@@ -110,7 +111,7 @@ object realmModule{
                 add(realm.query<Course>())
                 add(realm.query<ClassAttendance>())
                 add(realm.query<Item>())
-
+                add(realm.query<StudentRecord>())
             }
             .errorHandler { session: SyncSession, error: SyncException ->
 //                onSyncError.invoke(session, error)
@@ -127,6 +128,9 @@ object realmModule{
             }
             realm.subscriptions.update {
                 add(realm.query<ClassAttendance>())
+            }
+            realm.subscriptions.update {
+                add(realm.query<StudentRecord>())
             }
             realm.subscriptions.waitForSynchronization()
             _isSynced.postValue(true)

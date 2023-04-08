@@ -84,7 +84,7 @@ class AddNewCourse : AppCompatActivity() {
 
             // Save the course data to the database or perform any necessary actions
 //            CourseRepository.insertCourse(Course("1", name,code,description,credits,department,year,semester,"lkjhlkjh"))
-//            CourseRepository.insertCourse(Course(name,code))
+            CourseRepository().insertCourse(Course(name,code))
             Toast.makeText(this, "Course Added.....",Toast.LENGTH_SHORT).show()
             finish()
         }

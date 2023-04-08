@@ -10,10 +10,11 @@ import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.query.RealmQuery
 import io.realm.kotlin.query.RealmResults
 import io.realm.kotlin.types.EmbeddedRealmObject
-import io.realm.kotlin.types.ObjectId
+//import io.realm.kotlin.types.ObjectId
 import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
+import org.mongodb.kbson.ObjectId
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -27,7 +28,7 @@ class Address() : EmbeddedRealmObject {
 
 class Course() : RealmObject {
     @PrimaryKey
-    var _id: ObjectId = ObjectId.create()
+    var _id: ObjectId = ObjectId()
     var name: String = ""
     var courseCode: String = ""
     var courseDescription: String = ""
@@ -39,7 +40,7 @@ class Course() : RealmObject {
 //    val instructors: MutableList<Instructor> = mutableListOf()
 //    var enrolledStudentsData: MutableList<EnrolledStudent> = mutableListOf()
 //    var courseAttendance: MutableList<ClassAttendance> = mutableListOf()
-//    var courseAttendances: RealmList<ClassAttendance> = realmListOf<ClassAttendance>()
+    var courseAttendances: RealmList<ClassAttendance> = realmListOf<ClassAttendance>()
 //    var addresses: RealmList<Address> = realmListOf()
 
     constructor(name:String,courseCode:String) : this() {
@@ -76,12 +77,12 @@ class CourseRepository (){
 //    }
 
 
-        fun getAllCourse(): Course {
-//    fun getAllCourse(): RealmResults<Course> {
+//        fun getAllCourse(): Course {
+    fun getAllCourse(): RealmResults<Course> {
 //        realmModule.getStatus();
-//        val realm = realmModule.getDefaultInstance()
-        return Course();
-//        return realm.query<Course>().find()
+        val realm = realmModule.realm
+//        return Course();
+        return realm.query<Course>().find()
 //        val realm = realmSyncRepository.realm
 //        realm.subscriptions.waitForSynchronization()
 //          if(realmSyncRepository.isInitialized) {
@@ -111,17 +112,17 @@ class CourseRepository (){
 //        }
     }
 
-//    fun insertCourse(course: Course) {
-//        try {
-////            val realm = realmModule.getDefaultInstance()
-////            realm.subscriptions.waitForSynchronization()
-//            realm.writeBlocking {
-//                this.copyToRealm(course)
-//            }
-//        } catch (e: Exception) {
-//            Log.d("Database Error :: ", "Inserting Course Failed - $e")
-//        }
-//    }
+    fun insertCourse(course: Course) {
+        try {
+            val realm = realmModule.realm
+//            realm.subscriptions.waitForSynchronization()
+            realm.writeBlocking {
+                this.copyToRealm(course)
+            }
+        } catch (e: Exception) {
+            Log.d("Database Error :: ", "Inserting Course Failed - $e")
+        }
+    }
 
 //    fun updateCourse(
 //        courseId: String,

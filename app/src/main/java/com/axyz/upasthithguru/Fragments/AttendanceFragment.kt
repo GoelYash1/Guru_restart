@@ -23,6 +23,8 @@ class Attendance : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         courseDropDownButton = view.findViewById(R.id.courseDropDownView)
         updateDropDownAdapter()
+
+
     }
 
     override fun onResume() {
@@ -32,9 +34,10 @@ class Attendance : Fragment() {
 
     private fun updateDropDownAdapter() {
         courseList.clear()
-//        for (course in allCourse) {
-//            courseList.add(course.id to course.name)
-//        }
+        val fetchedCourse = CourseRepository().getAllCourse()
+        for (course in fetchedCourse){
+            courseList.add(course._id.toString() to course.name)
+        }
         val courseNames = courseList.map { it.second }
         courseDropDownButton.setAdapter(
             ArrayAdapter(
