@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Home">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="Home"
+            android:textAlignment="center"
+            android:textColor="@color/custom_primary_color_chosen"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/loginImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView6"
+            android:layout_alignBottom="@+id/textView6"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="1dp"
+            android:src="@drawable/ic_person"
+            android:background="@color/black"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView6"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="5dp"
+            android:text="Courses"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeRecView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView5"
+            android:layout_marginStart="15dp"
+            android:background="@color/custom_color_text_secondary"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            tools:listitem="@layout/item_courses" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addNewCourseFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/homeRecView"
+            android:layout_alignParentBottom="true"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/custom_primary_color_chosen"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add" />
+
+    </RelativeLayout>
+
+</FrameLayout>

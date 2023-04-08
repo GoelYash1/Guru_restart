@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="realm_app_id">application-0-xhimo</string>
+    <string name="realm_app_url">https://realm.mongodb.com/groups/64248a118a81ec330c5f1e50/apps/64248c66cdb171ee7cf8130d</string>
+    <string name="realm_base_url">https://realm.mongodb.com</string>
+    <string name="realm_data_source_name">mongodb-atlas</string>
+</resources>
