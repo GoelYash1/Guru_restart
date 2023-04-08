@@ -105,10 +105,12 @@ object realmModule{
         config = SyncConfiguration.Builder(currentUser, setOf(Item::class,Course::class, ClassAttendance::class))
             .initialSubscriptions { realm ->
                 // Subscribe to the active subscriptionType - first time defaults to MINE
-                val activeSubscriptionType = getActiveSubscriptionType(realm)
-                add(getQuery(realm, activeSubscriptionType), activeSubscriptionType.name)
-//                add(realm.query<Course>())
-//                add(realm.query<CAttendance>())
+//                val activeSubscriptionType = getActiveSubscriptionType(realm)
+//                add(getQuery(realm, activeSubscriptionType), activeSubscriptionType.name)
+                add(realm.query<Course>())
+                add(realm.query<ClassAttendance>())
+                add(realm.query<Item>())
+
             }
             .errorHandler { session: SyncSession, error: SyncException ->
 //                onSyncError.invoke(session, error)
@@ -120,6 +122,12 @@ object realmModule{
         // Mutable states must be updated on the UI thread
         CoroutineScope(Dispatchers.Main).launch {
             // Create a subscription for the Course class
+            realm.subscriptions.update {
+                add(realm.query<Course>())
+            }
+            realm.subscriptions.update {
+                add(realm.query<ClassAttendance>())
+            }
             realm.subscriptions.waitForSynchronization()
             _isSynced.postValue(true)
         }
@@ -132,7 +140,7 @@ object realmModule{
             null,
             SubscriptionType.MINE.name -> SubscriptionType.MINE
             SubscriptionType.ALL.name -> SubscriptionType.ALL
-//            SubscriptionType.COURSE.name -> SubscriptionType.COURSE
+            SubscriptionType.COURSE.name -> SubscriptionType.COURSE
             else -> throw IllegalArgumentException("Invalid Realm Sync subscription: '$name'")
         }
     }
@@ -141,7 +149,7 @@ object realmModule{
         when (subscriptionType) {
             SubscriptionType.MINE -> realm.query("owner_id == $0", currentUser.id)
             SubscriptionType.ALL -> realm.query()
-//            SubscriptionType.COURSE -> realm.query<Course>()
+            SubscriptionType.COURSE -> realm.query<Course>()
         }
     fun getDefaultInstance():Realm {
         Log.d("get Default Instance ::","hello ${realm.subscriptions.state}")
@@ -237,7 +245,7 @@ class RealmSyncRepository @Inject constructor(
             val query = when (subscriptionType) {
                 SubscriptionType.MINE -> getQuery(realm, SubscriptionType.MINE)
                 SubscriptionType.ALL -> getQuery(realm, SubscriptionType.ALL)
-//                SubscriptionType.COURSE -> getQuery(realm, SubscriptionType.COURSE)
+                SubscriptionType.COURSE -> getQuery(realm, SubscriptionType.COURSE)
             }
             add(query, subscriptionType.name)
         }
@@ -281,7 +289,7 @@ class RealmSyncRepository @Inject constructor(
         when (subscriptionType) {
             SubscriptionType.MINE -> realm.query("owner_id == $0", currentUser.id)
             SubscriptionType.ALL -> realm.query()
-//            SubscriptionType.COURSE -> realm.query<Course>()
+            SubscriptionType.COURSE -> realm.query<Course>()
         }
 
 }
@@ -292,7 +300,7 @@ class RealmSyncRepository @Inject constructor(
 enum class SubscriptionType {
     MINE,
     ALL ,
-//    COURSE
+    COURSE
 }
 
 /**

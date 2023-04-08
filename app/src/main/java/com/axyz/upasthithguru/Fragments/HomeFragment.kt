@@ -43,31 +43,31 @@ class Home : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.homeRecView)
 
 //        var course = CourseRepository();
-            var realmSyncRepository = RealmSyncRepository(onSyncError = { session, error ->
-                // error handling code
-                Log.d("Error Realm ONSYNC --- ","NOOOOOOOO   $error")
-            })
-//        realmModule.isSynced.observe(viewLifecycleOwner){ isSynced ->
-//            if (isSynced) {
-//                Log.d("Sync Update :: ","------- Sync COMPLETED ------- ")
+//            var realmSyncRepository = RealmSyncRepository(onSyncError = { session, error ->
+//                // error handling code
+//                Log.d("Error Realm ONSYNC --- ","NOOOOOOOO   $error")
+//            })
+        realmModule.isSynced.observe(viewLifecycleOwner){ isSynced ->
+            if (isSynced) {
+                Log.d("Sync Update :: ","------- Sync COMPLETED ------- ")
 //                courseList.addAll(CourseRepository().getAllCourse())
-//
-//                for (course in courseList) {
-//                    println("Course -- ${course._id}")
-//                    println("Course -- ${course.name}")
-//                }
+
+                for (course in courseList) {
+                    println("Course -- ${course._id}")
+                    println("Course -- ${course.name}")
+                }
 //                for (course in CourseRepository().getAllCourse()) {
 //                    println("Course i -- ${course._id}")
 //                    println("Course i -- ${course.name}")
 //                }
 //                Log.d("Course ::: ","Course list hai bhai ----> $courseList")
 //                Log.d("Course ::: ","Course hai course hai ----> ${CourseRepository().getAllCourse()}")
-//                // Do something when the Realm data is synced
-//            } else {
-//                // Do something when the Realm data is not synced yet
-//                Log.d("Sync Update :: ","------- Sync NOT-COMPLETED ------- ")
-//            }
-//        }
+                // Do something when the Realm data is synced
+            } else {
+                // Do something when the Realm data is not synced yet
+                Log.d("Sync Update :: ","------- Sync NOT-COMPLETED ------- ")
+            }
+        }
 
 
 //        realmSyncRepository.isReady.observe(viewLifecycleOwner, Observer { isReady ->
