@@ -17,7 +17,7 @@ class StudentRecord : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
     var emailId: String =""
-    var isPresent: Boolean=false
+    var isPresent: Boolean = false
     var logStatus: String=""
     var timeOfAttendance: String=""
     val classAttendance: RealmResults<ClassAttendance> by backlinks (ClassAttendance::attendanceRecord)
@@ -55,12 +55,12 @@ class ClassAttendanceManager {
 //            }
 //        }
 //    }
-    fun createAttendanceRecord(_id: String):ObjectId {
+    fun createAttendanceRecord(_id: ObjectId):ObjectId {
         val realm = realmModule.realm
         var classAttendance = ClassAttendance()
         realm.writeBlocking {
-            val objectId = ObjectId(_id.encodeToByteArray()) // or ObjectId("5f1f3c7e7c8d2d2a60e9b4f3")
-            val course = this.query<Course>("_id == $0", objectId ).first().find()
+//            val objectId = ObjectId(_id.encodeToByteArray()) // or ObjectId("5f1f3c7e7c8d2d2a60e9b4f3")
+            val course = this.query<Course>("_id == $0", _id ).first().find()
             classAttendance = ClassAttendance().apply {
                 date = Date().toString()
             }
@@ -70,16 +70,16 @@ class ClassAttendanceManager {
         return classAttendance._id
     }
 
-    fun addStudentRecord(_id:ObjectId,emailId: String,logStatus:String) {
+    suspend fun addStudentRecord(_id:ObjectId, emailid: String, llogStatus:String) {
         val realm = realmModule.realm
-        realm.writeBlocking {
+        realm.write{
 //            val course = this.query<Course>("_id == $0",_id).first().find()
             val classAttendance = this.query<ClassAttendance>("_id == $0",_id).first().find()
             val studentRecord = StudentRecord().apply {
-                this.emailId = emailId
-                this.isPresent = true
-                this.logStatus = logStatus
-                this.timeOfAttendance = Date().toString()
+                emailId = emailid
+                isPresent = true
+                logStatus = llogStatus
+                timeOfAttendance = Date().toString()
             }
             classAttendance?.attendanceRecord?.add(studentRecord)
         }

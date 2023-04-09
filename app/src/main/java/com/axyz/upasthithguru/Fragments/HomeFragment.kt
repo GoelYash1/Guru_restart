@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axyz.upasthithguru.R
+import com.axyz.upasthithguru.Realm.ClassAttendanceManager
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.activity.Profile
 import com.axyz.upasthithguru.Realm.CourseRepository
@@ -19,7 +20,7 @@ import com.axyz.upasthithguru.adapters.CourseListAdapter
 import com.axyz.upasthithguru.app
 import com.axyz.upasthithguru.courses.AddNewCourse
 import com.axyz.upasthithguru.courses.CourseInfo
-import com.axyz.upasthithguru.data.RealmSyncRepository
+//import com.axyz.upasthithguru.data.RealmSyncRepository
 import com.axyz.upasthithguru.data.realmModule
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +28,6 @@ import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.mongodb.User
 import io.realm.kotlin.mongodb.subscriptions
 import io.realm.kotlin.query.RealmResults
-import io.realm.kotlin.types.ObjectId
 import io.realm.kotlin.types.RealmList
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -49,30 +49,35 @@ class Home : Fragment() {
 //                // error handling code
 //                Log.d("Error Realm ONSYNC --- ","NOOOOOOOO   $error")
 //            })
-        realmModule.isSynced.observe(viewLifecycleOwner){ isSynced ->
-            if (isSynced) {
-                Log.d("Sync Update :: ","------- Sync COMPLETED ------- ")
-                val fetchedCourses = CourseRepository().getAllCourse()
-                for (course in fetchedCourses) {
-                    var alreadyExists = false
-                    for (existingCourse in courseList) {
-                        if (course._id == existingCourse._id) {
-                            alreadyExists = true
-                            break
+            CoroutineScope(Dispatchers.Main).launch {
+                    realmModule.isSynced.observe(viewLifecycleOwner) { isSynced ->
+                        if (isSynced) {
+                            Log.d("Sync Update :: ", "------- Sync COMPLETED ------- ")
+                            val fetchedCourses = CourseRepository().getAllCourse()
+                            for (course in fetchedCourses) {
+                                var alreadyExists = false
+                                for (existingCourse in courseList) {
+                                    if (course._id == existingCourse._id) {
+                                        alreadyExists = true
+                                        break
+                                    }
+                                }
+                                if (!alreadyExists) {
+                                    courseList.add(course)
+                                }
+                            }
+                            Log.d("Course ::: ", "Course list hai bhai ----> $courseList")
+                            Log.d(
+                                "Course ::: ",
+                                "Course hai course hai ----> ${CourseRepository().getAllCourse()}"
+                            )
+//                 Do something when the Realm data is synced
+                        } else {
+                            // Do something when the Realm data is not synced yet
+                            Log.d("Sync Update :: ", "------- Sync NOT-COMPLETED ------- ")
                         }
                     }
-                    if (!alreadyExists) {
-                        courseList.add(course)
-                    }
                 }
-                Log.d("Course ::: ","Course list hai bhai ----> $courseList")
-                Log.d("Course ::: ","Course hai course hai ----> ${CourseRepository().getAllCourse()}")
-//                 Do something when the Realm data is synced
-            } else {
-                // Do something when the Realm data is not synced yet
-                Log.d("Sync Update :: ","------- Sync NOT-COMPLETED ------- ")
-            }
-        }
 
 
 //        realmSyncRepository.isReady.observe(viewLifecycleOwner, Observer { isReady ->
@@ -136,6 +141,14 @@ class Home : Fragment() {
         view.findViewById<FloatingActionButton>(R.id.addNewCourseFAB).setOnClickListener {
             val intent = Intent(this@Home.requireContext(), AddNewCourse::class.java)
             startActivity(intent)
+//            var classAttendanceId = ClassAttendanceManager().createAttendanceRecord(courseList.first()._id)
+//            CoroutineScope(Dispatchers.Main).launch {
+//                ClassAttendanceManager().addStudentRecord(
+//                    classAttendanceId,
+//                    "yashsahu@gmail.com",
+//                    "success",
+//                )
+//            }
         }
         return view
     }

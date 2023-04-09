@@ -25,6 +25,7 @@ import com.axyz.upasthithguru.*
 import com.axyz.upasthithguru.Realm.ClassAttendanceManager
 import com.axyz.upasthithguru.Realm.StudentRecord
 import com.axyz.upasthithguru.adapters.studentAttendanceListAdapter
+import com.axyz.upasthithguru.fragments.selectedCoursePassed
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,8 +57,9 @@ class StartAttendance : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scan_for_attendence)
         courseId = intent.getStringExtra("Course Id").toString()
-        Log.d("Object Id ","$courseId")
-        classAttendanceId = ClassAttendanceManager().createAttendanceRecord( courseId )
+        Log.d("Object Id ", courseId)
+        var passedId = selectedCoursePassed?._id
+        classAttendanceId = passedId?.let { ClassAttendanceManager().createAttendanceRecord(it) }!!
         // pinTextView
         val generatedPin: String? = intent.getStringExtra("Pin")
         val pin = findViewById<TextView>(R.id.pinTextView)
@@ -399,7 +401,7 @@ class StartAttendance : AppCompatActivity() {
         ClassAttendanceManager().addStudentRecord(
 //            StudentRecord(
                 classAttendanceId,
-                emailid,
+                "yashsahu@gmail.com",
                 "success",
 //            )
         )

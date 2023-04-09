@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.CourseRepository
 import com.axyz.upasthithguru.api.APIInterface
-import com.axyz.upasthithguru.data.RealmSyncRepository
+//import com.axyz.upasthithguru.data.RealmSyncRepository
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -47,11 +47,11 @@ object AppModule {
     fun providesSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
         context.getSharedPreferences("upasthithGuru", Context.MODE_PRIVATE)
 
-    @Singleton
-    @Provides
-    fun provideRealmSyncRepository(@Named("syncRepo") onSyncError: (session: SyncSession, error: SyncException) -> Unit): RealmSyncRepository {
-        return RealmSyncRepository(onSyncError)
-    }
+//    @Singleton
+//    @Provides
+//    fun provideRealmSyncRepository(@Named("syncRepo") onSyncError: (session: SyncSession, error: SyncException) -> Unit): RealmSyncRepository {
+//        return RealmSyncRepository(onSyncError)
+//    }
 
 //    @Provides
 //    fun provideCourseRepository(): CourseRepository {

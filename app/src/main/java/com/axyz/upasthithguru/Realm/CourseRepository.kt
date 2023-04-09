@@ -1,7 +1,7 @@
 package com.axyz.upasthithguru.Realm
 
 import android.util.Log
-import com.axyz.upasthithguru.data.RealmSyncRepository
+//import com.axyz.upasthithguru.data.RealmSyncRepository
 import com.axyz.upasthithguru.data.realmModule
 //import com.axyz.upasthithguru.data.RealmModule
 import io.realm.kotlin.Realm
@@ -18,13 +18,6 @@ import org.mongodb.kbson.ObjectId
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
-
-class Address() : EmbeddedRealmObject {
-    var street: String? = null
-    var city: String? = null
-    var state: String? = null
-    var postalCode: String? = null
-}
 
 class Course() : RealmObject {
     @PrimaryKey
@@ -66,8 +59,8 @@ class Course() : RealmObject {
 
 @Singleton
 class CourseRepository (){
-    @Inject
-    lateinit var realmSyncRepository: RealmSyncRepository
+//    @Inject
+//    lateinit var realmSyncRepository: RealmSyncRepository
 
 //    val realm = realmModule.getDefaultInstance()
 

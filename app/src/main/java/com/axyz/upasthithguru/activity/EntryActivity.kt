@@ -24,27 +24,12 @@ class EntryActivity : AppCompatActivity() {
 //        setContentView(binding.root)
         val btn_register = findViewById<Button>(R.id.btn_register)
         btn_register.setOnClickListener {
-//            startActivity(Intent(applicationContext, RegisterActivity::class.java))
-//            if (realmModule.isReady != null && realmModule.isReady) {
-//                // do something
-//                Log.d("get Signup Btn ::","hello ${realmModule.isReady}")
-//            } else {
-//                Log.d("You should Wait :: Duffer","---------")
-//            }
-
+            startActivity(Intent(applicationContext, RegisterActivity::class.java))
         }
-
 
         val btn_login = findViewById<Button>(R.id.btn_login)
         btn_login.setOnClickListener {
             startActivity(Intent(applicationContext, LoginActivity::class.java))
-//            val currentUser: User = app.currentUser!!
-//            Log.d("User Login ::","Login User -- $currentUser")
-////            val currentUser: User = app.currentUser!!
-//            Log.d("User Info", "User ID: ${currentUser.id}, " +
-//                    "Email: ${currentUser.state}, " +
-//                    "Logged in state: ${currentUser.loggedIn}"+
-//                    " Fuction user ${currentUser.functions.user.identities}")
         }
     }
 }

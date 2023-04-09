@@ -110,6 +110,9 @@ class RegisterActivity : AppCompatActivity() {
     private fun subscribeToObservers() {
         signupViewModel.signupStatus.observe(this, EventObserver(
             onError = {
+                if(it.contains("Email already in use Loggin you In")){
+                    startActivity(Intent(applicationContext, HomeActivity::class.java))
+                }else{
 //                binding.name.isVisible = false
 //                binding.email.isVisible = false
 //                binding.password.isVisible = false
@@ -118,6 +121,7 @@ class RegisterActivity : AppCompatActivity() {
 //                binding.progressBar2.isVisible = false
 //                binding.error.isVisible = true
                 Log.d("LoginActivity", "Error: $it")
+                }
             },
             onLoading = {
 
@@ -137,7 +141,7 @@ class RegisterActivity : AppCompatActivity() {
 //            binding.signupButton.isVisible = false
 //            binding.progressBar2.isVisible = false
             Log.d("LoginActivity", "Success: $user")
-            Intent(this, MainActivity::class.java).also {
+            Intent(this, HomeActivity::class.java).also {
                 startActivity(it)
                 finish()
             }
