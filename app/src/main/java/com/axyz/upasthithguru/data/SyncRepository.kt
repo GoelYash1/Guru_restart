@@ -93,7 +93,7 @@ import kotlin.time.Duration.Companion.seconds
 //    fun close()
 //}
 
-//@Singleton
+@Singleton
 object realmModule{
     val realm: Realm
     var currentUser: User
@@ -107,19 +107,17 @@ object realmModule{
         config = SyncConfiguration.Builder(currentUser, setOf(UserRole::class,Course::class, ClassAttendance::class,StudentRecord::class))
             .initialSubscriptions { realm ->
                 // Subscribe to the active subscriptionType - first time defaults to MINE
-                if(isJustSignedUp){
-                    add(realm.query<Course>())
-                    add(realm.query<ClassAttendance>())
-                    add(realm.query<StudentRecord>())
-                    add(realm.query<UserRole>())
-                    isJustSignedUp = false
-                }else{
-                    val activeSubscriptionType = getActiveSubscriptionType(realm)
-                    add(getQuery(realm, activeSubscriptionType), activeSubscriptionType.name)
-                    Log.d("INIT REALM Subs ","Active Subs $activeSubscriptionType")
-                }
-                Log.d("INIT REALM Subs ","Active Subs ")
-                Log.d("INIT REALM Subs ","Active Subs tight ${realm.subscriptions}")
+//                if(isJustUp){
+                    add(realm.query<Course>(),"Course")
+                    add(realm.query<ClassAttendance>(),"ClassAttendance")
+                    add(realm.query<StudentRecord>(), "StudentRecord")
+                    add(realm.query<UserRole>(), "UserRole")
+//                    isJustUp=false
+//                }
+
+                val activeSubscriptionType = getActiveSubscriptionType(realm)
+                add(getQuery(realm, activeSubscriptionType), activeSubscriptionType.name)
+                Log.d("INIT REALM Subs ","Active Subs ${realm.subscriptions.state}")
             }
             .errorHandler { session: SyncSession, error: SyncException ->
 //                onSyncError.invoke(session, error)
@@ -150,7 +148,7 @@ object realmModule{
     fun getActiveSubscriptionType(realm: Realm?): SubscriptionType {
         val realmInstance = realm ?: this.realm
         val subscriptions = realmInstance.subscriptions
-        Log.d("INIT REALM Subs ","Active Subs ${subscriptions}")
+
         val firstOrNull = subscriptions.firstOrNull()
         return when (val name = firstOrNull?.name) {
             null,

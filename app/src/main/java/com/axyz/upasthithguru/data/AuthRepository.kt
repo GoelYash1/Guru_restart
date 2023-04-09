@@ -44,7 +44,7 @@ interface AuthRepository {
  * [AuthRepository] for authenticating with MongoDB.
  */
 
-var isJustSignedUp = false
+var isJustUp = false
 
 class RealmAuthRepository @Inject constructor(): AuthRepository {
 
@@ -54,7 +54,7 @@ class RealmAuthRepository @Inject constructor(): AuthRepository {
             val res = app.emailPasswordAuth.registerUser(email, password)
 
             Log.d("Create Account EmailPass :: ","Result -- $res")
-            isJustSignedUp = true
+            isJustUp = true
             Resource.Success(ResponseObj("true","Successfull","asdfasdflkaj"))
         } catch (e: IOException) {
             Log.e("LoginActivity", "IOEException, no internet?", e)
@@ -69,9 +69,7 @@ class RealmAuthRepository @Inject constructor(): AuthRepository {
         return try {
             val res = app.login(Credentials.emailPassword(email, password))
             Log.d("Create Account EmailPass :: ","Result -- $res")
-
-
-
+            isJustUp = true
             Resource.Success(ResponseObj("true","Successfull","asdfasdflkaj"))
         } catch (e: IOException) {
             Log.e("LoginActivity", "IOEException, no internet?", e)

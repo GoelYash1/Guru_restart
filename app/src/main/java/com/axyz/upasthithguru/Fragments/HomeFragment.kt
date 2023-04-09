@@ -49,36 +49,6 @@ class Home : Fragment() {
 //                // error handling code
 //                Log.d("Error Realm ONSYNC --- ","NOOOOOOOO   $error")
 //            })
-            CoroutineScope(Dispatchers.Main).launch {
-                    realmModule.isSynced.observe(viewLifecycleOwner) { isSynced ->
-                        if (isSynced) {
-                            Log.d("Sync Update :: ", "------- Sync COMPLETED ------- ")
-                            val fetchedCourses = CourseRepository().getAllCourse()
-                            for (course in fetchedCourses) {
-                                var alreadyExists = false
-                                for (existingCourse in courseList) {
-                                    if (course._id == existingCourse._id) {
-                                        alreadyExists = true
-                                        break
-                                    }
-                                }
-                                if (!alreadyExists) {
-                                    courseList.add(course)
-                                }
-                            }
-                            Log.d("Course ::: ", "Course list hai bhai ----> $courseList")
-                            Log.d(
-                                "Course ::: ",
-                                "Course hai course hai ----> ${CourseRepository().getAllCourse()}"
-                            )
-//                 Do something when the Realm data is synced
-                        } else {
-                            // Do something when the Realm data is not synced yet
-                            Log.d("Sync Update :: ", "------- Sync NOT-COMPLETED ------- ")
-                        }
-                    }
-                }
-
 
 //        realmSyncRepository.isReady.observe(viewLifecycleOwner, Observer { isReady ->
 //            if (isReady) {
@@ -151,6 +121,44 @@ class Home : Fragment() {
 //            }
         }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        CoroutineScope(Dispatchers.Main).launch {
+            realmModule.isSynced.observe(viewLifecycleOwner) { isSynced ->
+                if (isSynced) {
+                    Log.d("Sync Update :: ", "------- Sync COMPLETED ------- ")
+                    val fetchedCourses = CourseRepository().getAllCourse()
+                    for (course in fetchedCourses) {
+                        var alreadyExists = false
+                        for (existingCourse in courseList) {
+                            if (course._id == existingCourse._id) {
+                                alreadyExists = true
+                                break
+                            }
+                        }
+                        if (!alreadyExists) {
+                            courseList.add(course)
+                        }
+                    }
+                    Log.d("Course ::: ", "Course list hai bhai ----> $courseList")
+                    Log.d(
+                        "Course ::: ",
+                        "Course hai course hai ----> ${CourseRepository().getAllCourse()}"
+                    )
+//                 Do something when the Realm data is synced
+                } else {
+                    // Do something when the Realm data is not synced yet
+                    Log.d("Sync Update :: ", "------- Sync NOT-COMPLETED ------- ")
+                }
+            }
+        }
+
+        Log.d(
+            "Course ::: ",
+            "Course hai course hai ----> ${CourseRepository().getAllCourse()}"
+        )
     }
 
 }
