@@ -4,151 +4,192 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.TakeAttendance">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/startAttendanceBackButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="Take Attendance"
-        android:textAlignment="center"
-        android:textColor="@color/custom_primary_color_chosen"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_left"
+        android:drawableTint="@color/custom_colorPrimaryDark"
+        android:text="Back"
+        android:textColor="@color/custom_colorPrimaryDark"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Course Details"
+        app:layout_constraintStart_toStartOf="@+id/startAttendanceBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/startAttendanceBackButton" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:padding="3dp"
-        android:text="Bluetooth"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView1"
-        app:layout_constraintStart_toStartOf="@+id/textView1"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        android:backgroundTint="@color/custom_color_card"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="@id/textView6"
+        app:layout_constraintStart_toStartOf="@id/textView6"
+        app:layout_constraintTop_toBottomOf="@id/textView6">
 
-    <ImageView
-        android:id="@+id/bluetoothPermissionTextView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/startAttendanceCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:text="Course: SDN"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/startAttendanceInstructor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:text="Instructor: Dr Abhishek Verma"
+                app:layout_constraintEnd_toEndOf="@id/startAttendanceCourse"
+                app:layout_constraintStart_toStartOf="@id/startAttendanceCourse"
+                app:layout_constraintTop_toBottomOf="@id/startAttendanceCourse" />
+
+            <TextView
+                android:id="@+id/startAttendanceRStudentsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:text="Registered Students: 80"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/startAttendanceInstructor"
+                app:layout_constraintStart_toStartOf="@id/startAttendanceInstructor"
+                app:layout_constraintTop_toBottomOf="@id/startAttendanceInstructor" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_right_tick"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toTopOf="@+id/textView12" />
+        android:layout_margin="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/card_view"
+        app:layout_constraintStart_toStartOf="@+id/card_view"
+        app:layout_constraintTop_toBottomOf="@+id/card_view">
 
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="2dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="@+id/textView12"
-        app:layout_constraintStart_toStartOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        <TextView
+            android:id="@+id/takeAttendanceeCurrentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="09:24 PM"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="32sp" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="8dp"
-        android:padding="3dp"
-        android:text="Location"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/divider2"
-        app:layout_constraintStart_toStartOf="@+id/divider2"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+        <TextView
+            android:id="@+id/takeAttendanceCurrentDayAndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Wednesday, Dec 12"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="16sp" />
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/locationPermissionTextView"
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_right_tick"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="2dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        <ProgressBar
+            android:id="@+id/attendanceTimeProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="#365B3B"
+            android:max="100"
+            android:progress="100" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/generatePinButton"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/custom_color_bg"
+            android:clickable="true"
+            android:tooltipText="generatePin"
+            android:outlineAmbientShadowColor="@color/custom_color_card"
+            app:fabCustomSize="200dp"
+            app:maxImageSize="100dp"
+            app:srcCompat="@drawable/hand_cursor" />
+
+        <TextView
+            android:id="@+id/generatedPinTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:elevation="20dp"
+            android:text="Generate Pin"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
 
     <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="8dp"
-        android:padding="3dp"
-        android:text="Pin"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-    <TextView
-        android:id="@+id/generatedPinTextView"
+        android:id="@+id/takeAttendanceState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="####"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9" />
+        android:layout_margin="20dp"
+        android:text="Fetching Device State"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
     <Button
-        android:id="@+id/takeAttendanceButton"
-        android:layout_width="match_parent"
+        android:id="@+id/takeAttendanceStartAttendanceButton"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/custom_primary_color_chosen"
-        android:text="Take Attendance"
+        android:layout_margin="30dp"
+        android:padding="15dp"
+        android:backgroundTint="@color/custom_color_bg"
+        android:text="Start Attendance"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/pinThatIsGeneratedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginTop="28dp"
-        android:padding="14.5dp"
-        android:text="####"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:flow_horizontalAlign="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/generatePinFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:rotationY="180"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
-        app:layout_constraintBottom_toBottomOf="@+id/pinThatIsGeneratedTextView"
-        app:layout_constraintStart_toEndOf="@+id/pinThatIsGeneratedTextView"
-        app:layout_constraintTop_toTopOf="@+id/pinThatIsGeneratedTextView"
-        app:srcCompat="@drawable/ic_refresh" />
+        app:layout_constraintTop_toBottomOf="@+id/takeAttendanceState" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

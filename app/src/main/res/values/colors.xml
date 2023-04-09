@@ -10,6 +10,9 @@
     <color name="Res">#C11515</color>
 
     <!--Custom Colors-->
+    <color name="custom_color_card">#D8E1D9</color>
+    <color name="custom_color_bg">#416D47</color>
+    <color name="custom_color_bg_shadow">#D9E2DA</color>
     <color name="custom_color_primary">#643AE7</color>
     <color name="custom_color_secondary">#FF8F00</color>
     <color name="custom_color_secondary_light">#FFD299</color>
