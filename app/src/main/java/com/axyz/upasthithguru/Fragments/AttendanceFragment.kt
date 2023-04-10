@@ -56,11 +56,11 @@ class Attendance : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_attendance, container, false)
 
-        view.findViewById<ImageView>(R.id.loginInAttendanceImageView).setOnClickListener {
-            startActivity(Intent(requireContext(), Profile::class.java))
-        }
+//        view.findViewById<ImageView>(R.id.loginInAttendanceImageView).setOnClickListener {
+//            startActivity(Intent(requireContext(), Profile::class.java))
+//        }
 
-        view.findViewById<Button>(R.id.startAttendanceButton).setOnClickListener {
+        view.findViewById<Button>(R.id.attendanceFragmentStartAttendance).setOnClickListener {
             val selectedCourse = courseDropDownButton.text.toString().trim()
             Log.d("adsf","$selectedCourse")
             if (selectedCourse.isNotEmpty()) {

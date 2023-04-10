@@ -4,38 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/custom_color_bg"
     tools:context=".activity.EntryActivity">
-
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
-        android:text="Continue your Great Journey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text="Start New Journey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New and Robust           Attendance System "
+        android:layout_marginBottom="380dp"
+        android:text="New and Robust Attendance System "
         android:textAlignment="center"
-        android:textColor="@color/custom_color_primary"
-        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,4 +23,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.181" />
+
+    <Button
+        android:id="@+id/btn_continue_journey"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/click_btn_bg"
+        android:textColor="@color/custom_color_bg"
+        android:backgroundTint="@color/custom_color_bg_shadow"
+        android:textSize="20dp"
+        android:text="Continue your Great Journey"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_new_journey"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/click_btn_bg"
+        android:textColor="@color/custom_color_bg"
+        android:backgroundTint="@color/custom_color_bg_shadow"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:text="Start New Journey"
+        app:layout_constraintEnd_toEndOf="@+id/btn_continue_journey"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/btn_continue_journey"
+        app:layout_constraintTop_toBottomOf="@+id/btn_continue_journey" />
+
+    <ImageView
+        android:id="@+id/image_launch"
+        android:layout_width="877dp"
+        android:layout_height="545dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/launch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_new_journey"
+        app:layout_constraintVertical_bias="0.168" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

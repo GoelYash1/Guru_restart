@@ -4,63 +4,277 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Attendance">
+    tools:context=".activity.HomeActivity">
+
+    <!-- TODO: Update blank fragment layout -->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        android:background="@color/custom_color_bg">
+        <!-- TODO: Update blank fragment layout -->
+
+        <ImageView
+            android:id="@+id/upastithLogoImageView"
+            android:layout_width="180dp"
+            android:layout_height="90dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/upastith_logo" />
+
+        <ImageView
+            android:id="@+id/settingProfileImageView"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/upastithLogoImageView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/profile" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textView3_attendance"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/upastithLogoImageView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="-3dp"
+
+            android:background="@drawable/curved_textview"
+            android:backgroundTint="@color/white" />
+
+        <TextView
+            android:id="@+id/text_attendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:layout_alignTop="@+id/textView3_attendance"
             android:layout_alignParentEnd="true"
-            android:layout_margin="20dp"
             android:text="Attendance"
-            android:textAlignment="center"
-            android:textColor="@color/custom_primary_color_chosen"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/loginInAttendanceImageView"
-            android:layout_width="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/custom_color_bg"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="36dp"
+            />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card1_attendance"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/textView10"
-            android:layout_alignBottom="@+id/textView10"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="1dp"
-            android:src="@drawable/ic_person"
-            android:background="@color/black"/>
+            android:layout_below="@+id/text_attendance"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            app:cardBackgroundColor="@color/custom_color_card"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <ImageView
+                    android:id="@+id/image_bluetooth"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/bluetooth"
+                    />
+                <TextView
+                    android:id="@+id/text_bluetooth"
+                    android:layout_toRightOf="@id/image_bluetooth"
+                    android:layout_marginLeft="21dp"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/custom_color_bg"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Bluetooth"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/bluetooth_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/custom_color_bg" />
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card2_attendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card1_attendance"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            app:cardBackgroundColor="@color/custom_color_card"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <ImageView
+                    android:id="@+id/image_location"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/location"
+                    />
+                <TextView
+                    android:id="@+id/text_location"
+                    android:layout_toRightOf="@id/image_location"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Location"
+                    android:textColor="@color/custom_color_bg"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/location_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/custom_color_bg" />
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card3_attendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card2_attendance"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            app:cardBackgroundColor="@color/custom_color_card"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <ImageView
+                    android:id="@+id/image_camera"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/camera"
+                    />
+                <TextView
+                    android:id="@+id/text_camera"
+                    android:layout_toRightOf="@id/image_camera"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/custom_color_bg"
+                    android:text="Camera"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/camera_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/custom_color_bg" />
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card4_attendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card3_attendance"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            app:cardBackgroundColor="@color/custom_color_card"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+                <ImageView
+                    android:id="@+id/image_book"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:src="@drawable/book"
+                    />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:id="@+id/courseDropdownLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/image_book"
+                    android:layout_marginLeft="15dp"
+                    app:boxStrokeWidth="2dp"
+                    app:boxStrokeColor="@color/custom_color_bg"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="0dp"
+                    app:boxCornerRadiusTopStart="0dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/courseDropDownView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Select Course"
+                        android:inputType="none"
+                        android:maxLines="1"
+                        android:padding="16dp"
+                        android:textColorHint="@color/custom_color_bg"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
 
         <Button
-            android:id="@+id/startAttendanceButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/attendanceFragmentStartAttendance"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:padding="15dp"
+            android:backgroundTint="@color/custom_color_bg"
             android:text="Start Attendance"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/custom_primary_color_chosen"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView10"
-            android:layout_centerHorizontal="true">
-
-            <AutoCompleteTextView
-                android:id="@+id/courseDropDownView"
-                android:layout_width="match_parent"
-                android:inputType="none"
-                android:padding="16dp"
-                android:layout_height="match_parent"
-                android:text="Select Course" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="22dp" />
     </RelativeLayout>
 
 

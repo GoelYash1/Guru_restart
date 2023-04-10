@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.axyz.upasthithguru.*
 import com.axyz.upasthithguru.apidata.LoginRequest
+import com.axyz.upasthithguru.databinding.ActivityLoginBinding
 import com.axyz.upasthithguru.other.CheckLogin
 import com.axyz.upasthithguru.other.EventObserver
 import com.axyz.upasthithguru.viewModels.LoginViewModel
@@ -19,24 +20,27 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+    private lateinit var binding:ActivityLoginBinding
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        emailEditText = findViewById(R.id.input_email)
-        passwordEditText = findViewById(R.id.input_password)
-        val signup = findViewById<TextView>(R.id.text_signup)
+        val view = binding.root
+        setContentView(view)
+        emailEditText = binding.inputUsername
+        passwordEditText = binding.inputPassword
+        val signup : TextView = binding.textSignup
         signup.setOnClickListener {
             navigateToRegisterActivity()
         }
-        val click_login = findViewById<Button>(R.id.click_login)
+        val click_login: Button = binding.clickLogin
         click_login.setOnClickListener {
-            handleSignupFormSubmission()
+            startActivity(Intent(this, HomeActivity::class.java))
         }
-        val forgot_pass = findViewById<TextView>(R.id.forgot_pass)
+        val forgot_pass: TextView =binding.forgotPass
         forgot_pass.setOnClickListener {
             navigateToUpdatePasswordActivity()
         }

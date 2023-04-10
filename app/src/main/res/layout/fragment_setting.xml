@@ -1,20 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Setting">
 
+    <!-- TODO: Update blank fragment layout -->
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:background="@color/custom_color_bg">
         <!-- TODO: Update blank fragment layout -->
+
+        <ImageView
+            android:id="@+id/upastithLogoImageView"
+            android:layout_width="180dp"
+            android:layout_height="90dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/upastith_logo" />
+
+        <ImageView
+            android:id="@+id/settingProfileImageView"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/upastithLogoImageView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/profile" />
+
         <TextView
+            android:id="@+id/textView3_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/upastithLogoImageView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="-3dp"
+            android:background="@drawable/curved_textview"
+            android:backgroundTint="@color/white" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card1_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView3_setting"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="25dp"
+            app:cardBackgroundColor="#D8E1D9"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/settingsRegisterNewCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Register New Course"
+                    android:layout_marginBottom="2dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/custom_color_bg"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/settingsAppearance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/custom_color_bg"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Appearance"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider" />
+                <TextView
+                    android:id="@+id/settingsNotifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:textColor="@color/custom_color_bg"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:text="Notifications"/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card2_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card1_setting"
+            android:layout_alignStart="@id/card1_setting"
+            android:layout_alignEnd="@id/card1_setting"
+            app:cardBackgroundColor="#D8E1D9"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/settingsAboutUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:paddingBottom="3dp"
+                    android:textColor="@color/custom_color_bg"
+                    android:text="About Us"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/settingsTermsOfService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/custom_color_bg"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:textSize="16sp"
+                    android:text="Terms Of Service"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="?android:attr/listDivider" />
+
+                <TextView
+                    android:id="@+id/settingsPrivacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:textColor="@color/custom_color_bg"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="16sp"
+                    android:text="Privacy Policy"/>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/signOutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Setting" />
+            android:layout_alignStart="@+id/card2_setting"
+            android:layout_alignEnd="@+id/card2_setting"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:background="@drawable/circled_button"
+            android:backgroundTint="@color/custom_color_bg"
+            android:text="Sign Out"
+            android:textColor="@color/white" />
     </RelativeLayout>
+
 
 </FrameLayout>
