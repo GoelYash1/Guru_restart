@@ -1,18 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Profile">
+    tools:context=".activity.HomeActivity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@color/custom_color_bg">
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/space_profile"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            />
+
+        <TextView
+            android:id="@+id/textUpasthithLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/space_profile"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="-3dp"
+
+            android:background="@drawable/curved_textview"
+            android:backgroundTint="@color/white" />
+        <ImageView
+            android:id="@+id/settingProfileImageView"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+
+            android:src="@drawable/profile" />
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/settingProfileImageView"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:text="Dr. Abhishek Verma"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            />
+        <TextView
+            android:id="@+id/designation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/username"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:text="CSE Professor"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            />
+        <TextView
+            android:id="@+id/bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/designation"
+            android:textSize="20sp"
+            android:text="Best Professor"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            />
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/bio"
+            android:textSize="18sp"
+            android:text="abhishek123@gmail.com"
+            android:textColor="@color/custom_color_bg"
+            android:textAllCaps="false"
+            />
+        <TextView
+            android:id="@+id/edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/email"
+            android:textSize="18sp"
+            android:text="Edit Profile"
+            android:textColor="@color/custom_color_bg"
+            android:textAllCaps="false"
+            />
+        <TextView
+            android:id="@+id/text_your_courses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/edit_profile"
+            android:layout_alignParentEnd="true"
+            android:text="Your Courses"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/custom_color_bg"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="36dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeRecView"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:isScrollContainer="true"
+            android:layout_below="@+id/text_your_courses"
+            android:layout_marginStart="25dp"
+            android:background="@color/custom_color_text_secondary"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/white"
+            tools:listitem="@layout/item_courses" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addNewCousreCard"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/homeRecView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:cardBackgroundColor="@color/custom_color_bg"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+                <ImageView
+                    android:id="@+id/image_addcourse"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/addsquare"
+                    />
+                <TextView
+                    android:id="@+id/text_addnewcourse"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/image_addcourse"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:text="Add a new course"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+
+</FrameLayout>

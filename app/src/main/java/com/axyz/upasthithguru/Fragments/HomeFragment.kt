@@ -1,5 +1,6 @@
 package com.axyz.upasthithguru.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axyz.upasthithguru.R
@@ -94,6 +98,7 @@ class Home : Fragment() {
         val courseListAdapter = CourseListAdapter(courseList)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = courseListAdapter
+
         courseListAdapter.setOnItemClickListener(object : CourseListAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
                 val id = courseList[position]._id.toString()
@@ -104,11 +109,11 @@ class Home : Fragment() {
             }
         })
 
-        view.findViewById<ImageView>(R.id.loginImageView).setOnClickListener{
+        view.findViewById<ImageView>(R.id.settingProfileImageView).setOnClickListener{
             val intent = Intent(this@Home.requireContext(), Profile::class.java)
             startActivity(intent)
         }
-        view.findViewById<FloatingActionButton>(R.id.addNewCourseFAB).setOnClickListener {
+        view.findViewById<CardView>(R.id.addNewCousreCard).setOnClickListener {
             val intent = Intent(this@Home.requireContext(), AddNewCourse::class.java)
             startActivity(intent)
 //            var classAttendanceId = ClassAttendanceManager().createAttendanceRecord(courseList.first()._id)

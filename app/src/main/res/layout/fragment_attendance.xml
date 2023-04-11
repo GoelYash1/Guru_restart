@@ -55,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+
             android:layout_alignTop="@+id/textView3_attendance"
             android:layout_alignParentEnd="true"
             android:text="Attendance"
@@ -67,7 +68,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card1_attendance"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_below="@+id/text_attendance"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -81,21 +82,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:layout_marginTop="6dp"
+                android:paddingLeft="8dp">
                 <ImageView
                     android:id="@+id/image_bluetooth"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
+                    android:layout_marginLeft="8dp"
                     android:src="@drawable/bluetooth"
                     />
                 <TextView
                     android:id="@+id/text_bluetooth"
                     android:layout_toRightOf="@id/image_bluetooth"
                     android:layout_marginLeft="21dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:textColor="@color/custom_color_bg"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:layout_marginBottom="2dp"
                     android:text="Bluetooth"
                     android:textSize="20sp" />
@@ -114,7 +119,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card2_attendance"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_below="@+id/card1_attendance"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -128,11 +133,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:layout_marginTop="6dp"
+                android:paddingLeft="8dp">
                 <ImageView
                     android:id="@+id/image_location"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:layout_height="20dp"
                     android:src="@drawable/location"
                     />
@@ -140,9 +147,10 @@
                     android:id="@+id/text_location"
                     android:layout_toRightOf="@id/image_location"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
+                    android:textStyle="bold"
                     android:text="Location"
                     android:textColor="@color/custom_color_bg"
                     android:textSize="20sp" />
@@ -161,7 +169,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card3_attendance"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_below="@+id/card2_attendance"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -175,11 +183,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:layout_marginTop="6dp"
+                android:paddingLeft="8dp">
                 <ImageView
                     android:id="@+id/image_camera"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:layout_height="20dp"
                     android:src="@drawable/camera"
                     />
@@ -187,11 +197,13 @@
                     android:id="@+id/text_camera"
                     android:layout_toRightOf="@id/image_camera"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:textColor="@color/custom_color_bg"
                     android:text="Camera"
+                    android:textStyle="bold"
                     android:textSize="20sp" />
 
                 <CheckBox
@@ -205,14 +217,14 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/card4_attendance"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             android:layout_below="@+id/card3_attendance"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="21dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="21dp"
             app:cardBackgroundColor="@color/custom_color_card"
             app:cardCornerRadius="8dp"
             app:cardElevation="0dp"
@@ -221,12 +233,14 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp">
+                android:layout_marginTop="12dp"
+                android:paddingLeft="4dp"
+                >
                 <ImageView
                     android:id="@+id/image_book"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/book"
                     />
 
@@ -234,31 +248,33 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:id="@+id/courseDropdownLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="65dp"
                     android:layout_toEndOf="@+id/image_book"
-                    android:layout_marginLeft="15dp"
                     app:boxStrokeWidth="2dp"
                     app:boxStrokeColor="@color/custom_color_bg"
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="0dp"
                     app:boxCornerRadiusTopStart="0dp">
-
                     <AutoCompleteTextView
                         android:id="@+id/courseDropDownView"
                         android:layout_width="match_parent"
+                        android:background="@drawable/drop_down_bg"
                         android:layout_height="wrap_content"
+                        android:isScrollContainer="true"
                         android:hint="Select Course"
+                        android:textStyle="bold"
+                        tools:ignore="TouchTargetSizeCheck"
+                        android:paddingTop="0dp"
                         android:inputType="none"
                         android:maxLines="1"
-                        android:padding="16dp"
                         android:textColorHint="@color/custom_color_bg"
-                        android:textSize="18sp" />
+                        android:textSize="20sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </RelativeLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
 
 
