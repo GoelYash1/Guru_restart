@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="32dp"
-    android:padding="2dp">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_right"
-        android:contentDescription="more Info"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/courseNameRecView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="VLSI"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/horizontalDivider"
+    android:layout_height="48dp"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginVertical="7dp"
+    app:cardElevation="4dp"
+    android:backgroundTint="@color/custom_color_bg_shadow"
+    app:cardCornerRadius="10dp"
+    android:padding="15dp">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/courseNameRecView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="11dp"
+        android:background="@color/custom_color_bg_shadow"
+        >
+        <TextView
+            android:id="@+id/courseNameRecView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="VLSI"
+            android:textSize="18sp"
+            android:textColor="@color/custom_color_bg"
+            android:textStyle="bold"
+            />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_right"
+            android:contentDescription="more Info"
+            android:layout_alignParentEnd="true"
+            tools:ignore="TouchTargetSizeCheck" />
+    </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
