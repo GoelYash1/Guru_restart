@@ -1,5 +1,6 @@
 package com.axyz.upasthithguru.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -25,12 +26,14 @@ import java.util.*
 class TakeAttendance : AppCompatActivity() {
     private var currentPin: Int = 0
     private lateinit var binding: ActivityTakeAttendanceBinding
+    private lateinit var courseId:String
     private var isPinGenerated: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTakeAttendanceBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val time: TextView = binding.takeAttendanceeCurrentTime
+        courseId = intent.getStringExtra("Course Id").toString()
+        val time: TextView = binding.takeAttendanceCurrentTime
 
         // Create a Date object with the current time
         val currentTime = Calendar.getInstance().time
@@ -50,20 +53,21 @@ class TakeAttendance : AppCompatActivity() {
         val date: TextView = binding.takeAttendanceCurrentDayAndDate
         date.text = formattedDate
 
-        val backButton: Button = binding.startAttendanceBackButton
+        val backButton: Button = binding.takeAttendanceBackButton
         backButton.setOnClickListener {
             finish()
         }
         val generatedPinText:TextView = binding.generatedPinTextView
         val generatePinFAB: FloatingActionButton = binding.generatePinButton
         val attendanceState: TextView = binding.takeAttendanceState
+        var generatedPin : String = String()
         attendanceState.text = "Fetching Records State"
         generatePinFAB.setOnClickListener{
             if (isPinGenerated) {
                 Log.d("MY_APP_TAG", "Pin already generated")
                 return@setOnClickListener
             }
-            val generatedPin : String = generateNewPin()
+            generatedPin = generateNewPin()
             Log.d("MY_APP_TAG", "generatedText: $generatedPin")
 
             generatePinFAB.setImageDrawable(null)
@@ -77,8 +81,6 @@ class TakeAttendance : AppCompatActivity() {
             // Disable the button after it has been clicked once
             generatePinFAB.isEnabled = false
         }
-        val progressBar: ProgressBar = binding.attendanceTimeProgressBar
-        progressBar.visibility = View.INVISIBLE
 
         val startAttendance: Button = binding.takeAttendanceStartAttendanceButton
 
@@ -87,14 +89,19 @@ class TakeAttendance : AppCompatActivity() {
                 Log.d("MY_APP_TAG", "Pin not generated yet")
                 return@setOnClickListener
             }
-            val handler = Handler(Looper.getMainLooper())
-            progressBar.visibility = View.VISIBLE
-            handler.postDelayed({
-                progressBar.visibility = View.INVISIBLE
-                generatedPinText.visibility = View.GONE
-                generatePinFAB.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_right_tick))
-                attendanceState.text = "Attendance Taken"
-            }, 10*1000)
+            val intent = Intent(this, StartAttendance::class.java)
+            intent.putExtra("Generated Pin",generatedPin)
+            intent.putExtra("Course Id",courseId)
+            startActivity(intent)
+            finish()
+//            val handler = Handler(Looper.getMainLooper())
+//            progressBar.visibility = View.VISIBLE
+//            handler.postDelayed({
+//                progressBar.visibility = View.INVISIBLE
+//                generatedPinText.visibility = View.GONE
+//                generatePinFAB.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_right_tick))
+//                attendanceState.text = "Attendance Taken"
+//            }, 10*1000)
         }
     }
     private fun generateNewPin(): String {

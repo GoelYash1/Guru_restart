@@ -175,20 +175,38 @@
 
         </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/signOutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/card2_setting"
-            android:layout_alignEnd="@+id/card2_setting"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/settingsSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="30dp"
-            android:textAllCaps="false"
-            android:textSize="18dp"
-            android:background="@drawable/circled_button"
-            android:backgroundTint="@color/custom_color_bg"
-            android:text="Sign Out"
-            android:textColor="@color/white" />
+            android:layout_margin="30dp"
+            app:cardBackgroundColor="@color/custom_color_bg"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_horizontal"
+                    android:text="Sign Out"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
 

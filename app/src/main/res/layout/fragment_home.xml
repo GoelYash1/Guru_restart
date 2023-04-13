@@ -81,29 +81,29 @@
             android:inputType="text"
             android:paddingLeft="20dp"
             />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecView"
             android:layout_width="match_parent"
-            android:layout_height="310dp"
-            android:isScrollContainer="true"
+            android:layout_height="0dp"
+            android:layout_above="@+id/addNewCourseCard"
             android:layout_below="@+id/home_search"
             android:layout_marginStart="25dp"
-            android:background="@color/custom_color_text_secondary"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
-            android:layout_marginBottom="15dp"
+            android:background="@color/custom_color_text_secondary"
             android:backgroundTint="@color/white"
+            android:isScrollContainer="true"
             tools:listitem="@layout/item_courses" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/addNewCousreCard"
+            android:id="@+id/addNewCourseCard"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_below="@+id/homeRecView"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
             app:cardBackgroundColor="@color/custom_color_bg"
             app:cardCornerRadius="10dp">
 
@@ -112,23 +112,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="8dp">
+
                 <ImageView
                     android:id="@+id/image_addcourse"
-                    android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginLeft="8dp"
-                    android:src="@drawable/addsquare"
-                    />
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/addsquare" />
+
                 <TextView
                     android:id="@+id/text_addnewcourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@id/image_addcourse"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_height="wrap_content"
                     android:text="Add a new course"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
 
             </RelativeLayout>
