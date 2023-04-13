@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/upastith_logo" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/settingProfileImageView"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
