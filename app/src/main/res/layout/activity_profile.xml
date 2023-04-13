@@ -11,7 +11,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@color/white">
@@ -123,43 +122,41 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
+
         <TextView
             android:id="@+id/text_your_courses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_profile"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/edit_profile"
             android:layout_alignParentEnd="true"
-            android:text="Your Courses"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="@color/custom_color_bg"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="50dp"
-            />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/homeRecView"
-            android:layout_width="match_parent"
-            android:layout_height="185dp"
-            android:isScrollContainer="true"
-            android:layout_below="@+id/text_your_courses"
-
-            android:background="@color/custom_color_text_secondary"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
+            android:text="Your Courses"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profileRecView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@+id/addNewCousreCard"
+            android:layout_below="@+id/text_your_courses"
+            android:layout_marginTop="15dp"
+            android:background="@color/custom_color_text_secondary"
             android:backgroundTint="@color/white"
+            android:isScrollContainer="true"
             tools:listitem="@layout/item_courses" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/addNewCousreCard"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_below="@+id/homeRecView"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
             app:cardBackgroundColor="@color/custom_color_bg"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
             app:cardCornerRadius="10dp">
 
             <RelativeLayout
@@ -167,23 +164,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="8dp">
+
                 <ImageView
                     android:id="@+id/image_addcourse"
-                    android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginLeft="8dp"
-                    android:src="@drawable/addsquare"
-                    />
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/addsquare" />
+
                 <TextView
                     android:id="@+id/text_addnewcourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@id/image_addcourse"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/white"
-                    android:layout_height="wrap_content"
                     android:text="Add a new course"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
 
             </RelativeLayout>

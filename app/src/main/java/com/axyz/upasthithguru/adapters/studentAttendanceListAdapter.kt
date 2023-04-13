@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.axyz.upasthithguru.R
+import com.axyz.upasthithguru.Realm.ClassAttendance
 
-class studentAttendanceListAdapter(private val strings: List<String>) :
+class studentAttendanceListAdapter(private val classAttendance: ClassAttendance) :
     RecyclerView.Adapter<studentAttendanceListAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -21,10 +22,10 @@ class studentAttendanceListAdapter(private val strings: List<String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = strings[position]
+        holder.textView.text = classAttendance.attendanceRecord[position].emailId
     }
 
     override fun getItemCount(): Int {
-        return strings.size
+        return classAttendance.attendanceRecord.size
     }
 }

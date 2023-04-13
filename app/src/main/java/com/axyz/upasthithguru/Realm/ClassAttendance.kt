@@ -84,6 +84,14 @@ class ClassAttendanceManager {
             classAttendance?.attendanceRecord?.add(studentRecord)
         }
     }
+
+    suspend fun getClassAttendanceRecord(_id: ObjectId): ClassAttendance? {
+        val realm = realmModule.realm
+        var classAttendance=realm.query<ClassAttendance>("_id == $0",_id).first().find()
+        return classAttendance
+    }
+
+
 //
 //    fun removeStudentRecord(StudentRecord: StudentRecord) {
 //        attendances.attendanceRecord.remove(StudentRecord)

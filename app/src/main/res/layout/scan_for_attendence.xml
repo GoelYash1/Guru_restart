@@ -3,110 +3,201 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/pinTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:text="Pin = ####"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="20dp" />
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
-        android:indeterminate="true"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
-        app:layout_constraintBottom_toBottomOf="@+id/scanForAttendanceTextView"
-        app:layout_constraintEnd_toStartOf="@+id/scanForAttendanceTextView"
-        app:layout_constraintTop_toTopOf="@id/scanForAttendanceTextView"/>
-
-    <TextView
-        android:id="@+id/scanForAttendanceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:padding="13.5dp"
-        android:text="Scanning For Attendance.... "
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pinTextView" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:text="Roll Numbers Of Students Present"
-        android:textAlignment="center"
-        android:textColor="@color/custom_primary_color_chosen"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scanForAttendanceTextView" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/students_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp"
-        android:textAlignment="center"
-        android:background="@color/custom_color_text_secondary"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Students Present"
-        android:layout_margin="20dp"
-        android:textColor="@color/custom_primary_color_chosen"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/students_recycler_view"
-        app:layout_constraintStart_toStartOf="@+id/students_recycler_view"
-        app:layout_constraintBottom_toTopOf="@id/stopAttendanceButton" />
-
-    <TextView
-        android:id="@+id/totalStudentsPresentTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="40/120"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintEnd_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.StartAttendance">
 
     <Button
-        android:id="@+id/stopAttendanceButton"
+        android:id="@+id/startAttendanceBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/ic_left"
+        android:drawableTint="@color/custom_colorPrimaryDark"
+        android:text="Back"
+        android:textColor="@color/custom_colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/textView13"
-        app:layout_constraintEnd_toEndOf="@id/textView13"
+        android:layout_margin="15dp"
+        android:text="Course Details"
+        app:layout_constraintStart_toStartOf="@+id/startAttendanceBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/startAttendanceBackButton" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/custom_color_card"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="@id/textView6"
+        app:layout_constraintStart_toStartOf="@id/textView6"
+        app:layout_constraintTop_toBottomOf="@id/textView6">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/startAttendanceCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:text="Course: SDN"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/startAttendanceInstructor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:text="Instructor: Dr Abhishek Verma"
+                app:layout_constraintEnd_toEndOf="@id/startAttendanceCourse"
+                app:layout_constraintStart_toStartOf="@id/startAttendanceCourse"
+                app:layout_constraintTop_toBottomOf="@id/startAttendanceCourse" />
+
+            <TextView
+                android:id="@+id/startAttendanceRStudentsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:text="Registered Students: 80"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/startAttendanceInstructor"
+                app:layout_constraintStart_toStartOf="@id/startAttendanceInstructor"
+                app:layout_constraintTop_toBottomOf="@id/startAttendanceInstructor" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/card_view"
+        app:layout_constraintStart_toStartOf="@+id/card_view"
+        app:layout_constraintTop_toBottomOf="@+id/card_view">
+
+        <TextView
+            android:id="@+id/startAttendanceeCurrentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="09:24 PM"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/startAttendanceCurrentDayAndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Wednesday, Dec 12"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ProgressBar
+            android:id="@+id/attendanceTimeProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="#365B3B"
+            android:max="100"
+            android:progress="100" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/generatedPinButton"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/custom_color_bg"
+            android:clickable="false"
+            android:tooltipText="generatePin"
+            android:outlineAmbientShadowColor="@color/custom_color_card"
+            app:fabCustomSize="200dp"
+            app:maxImageSize="100dp" />
+
+        <TextView
+            android:id="@+id/generatedPinTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:elevation="20dp"
+            android:text="Generated Pin"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/startAttendanceState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Fetching Device State"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+    <TextView
+        android:id="@+id/startAttendancePresentStudents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Present Students - 60/80"
+        app:layout_constraintTop_toBottomOf="@id/startAttendanceState"
+        app:layout_constraintEnd_toEndOf="@id/startAttendanceState"
+        app:layout_constraintStart_toStartOf="@id/startAttendanceState"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startAttendanceStopAttendanceButton"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background = "@drawable/circled_button"
+        android:backgroundTint="@color/custom_color_bg"
         android:text="Stop Attendance"
-        android:backgroundTint="@color/custom_primary_color_chosen"
-        android:layout_margin="20dp" />
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startAttendancePresentStudents" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

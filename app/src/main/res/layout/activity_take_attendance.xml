@@ -8,7 +8,7 @@
     tools:context=".activity.TakeAttendance">
 
     <Button
-        android:id="@+id/startAttendanceBackButton"
+        android:id="@+id/takeAttendanceBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -27,8 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="Course Details"
-        app:layout_constraintStart_toStartOf="@+id/startAttendanceBackButton"
-        app:layout_constraintTop_toBottomOf="@+id/startAttendanceBackButton" />
+        app:layout_constraintStart_toStartOf="@+id/takeAttendanceBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/takeAttendanceBackButton" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -48,7 +48,7 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/startAttendanceCourse"
+                android:id="@+id/takeAttendanceCourse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/startAttendanceInstructor"
+                android:id="@+id/takeAttendanceInstructor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
@@ -70,9 +70,9 @@
                 android:padding="5dp"
                 android:textColor="@color/black"
                 android:text="Instructor: Dr Abhishek Verma"
-                app:layout_constraintEnd_toEndOf="@id/startAttendanceCourse"
-                app:layout_constraintStart_toStartOf="@id/startAttendanceCourse"
-                app:layout_constraintTop_toBottomOf="@id/startAttendanceCourse" />
+                app:layout_constraintEnd_toEndOf="@id/takeAttendanceCourse"
+                app:layout_constraintStart_toStartOf="@id/takeAttendanceCourse"
+                app:layout_constraintTop_toBottomOf="@id/takeAttendanceCourse" />
 
             <TextView
                 android:id="@+id/startAttendanceRStudentsTextView"
@@ -84,9 +84,9 @@
                 android:text="Registered Students: 80"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/startAttendanceInstructor"
-                app:layout_constraintStart_toStartOf="@id/startAttendanceInstructor"
-                app:layout_constraintTop_toBottomOf="@id/startAttendanceInstructor" />
+                app:layout_constraintEnd_toEndOf="@id/takeAttendanceInstructor"
+                app:layout_constraintStart_toStartOf="@id/takeAttendanceInstructor"
+                app:layout_constraintTop_toBottomOf="@id/takeAttendanceInstructor" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -103,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/card_view">
 
         <TextView
-            android:id="@+id/takeAttendanceeCurrentTime"
+            android:id="@+id/takeAttendanceCurrentTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -128,16 +128,6 @@
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <ProgressBar
-            android:id="@+id/attendanceTimeProgressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="260dp"
-            android:layout_height="260dp"
-            android:layout_gravity="center"
-            android:indeterminateTint="#365B3B"
-            android:max="100"
-            android:progress="100" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/generatePinButton"
@@ -178,12 +168,12 @@
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/takeAttendanceStartAttendanceButton"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:padding="15dp"
+        android:background = "@drawable/circled_button"
         android:backgroundTint="@color/custom_color_bg"
         android:text="Start Attendance"
         android:textColor="@color/white"

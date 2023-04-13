@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.Course
@@ -60,7 +61,7 @@ class Attendance : Fragment() {
 //            startActivity(Intent(requireContext(), Profile::class.java))
 //        }
 
-        view.findViewById<Button>(R.id.attendanceFragmentStartAttendance).setOnClickListener {
+        view.findViewById<CardView>(R.id.attendanceFragmentStartAttendance).setOnClickListener {
             val selectedCourse = courseDropDownButton.text.toString().trim()
             Log.d("adsf","$selectedCourse")
             if (selectedCourse.isNotEmpty()) {

@@ -16,6 +16,13 @@ class CourseListAdapter (var courseList: List<Course>):RecyclerView.Adapter<Cour
         fun onItemClick(position: Int)
     }
 
+    init {
+        // Initialize mListener in the constructor
+        mListener = object : onItemClickListener {
+            override fun onItemClick(position: Int) {}
+        }
+    }
+
     fun setOnItemClickListener(listener: onItemClickListener){
         mListener = listener
     }
@@ -33,11 +40,12 @@ class CourseListAdapter (var courseList: List<Course>):RecyclerView.Adapter<Cour
     override fun getItemCount(): Int {
         return courseList.size
     }
+
     inner class CourseListViewHolder(itemView: View, listener: onItemClickListener): RecyclerView.ViewHolder(itemView){
         val courseName:TextView = itemView.findViewById(R.id.courseNameRecView)
         init {
             itemView.setOnClickListener {
-                listener.onItemClick(adapterPosition)
+                mListener.onItemClick(adapterPosition)
             }
         }
     }
