@@ -46,7 +46,6 @@ class StartAttendance : AppCompatActivity() {
     val classAttendanceManager = ClassAttendanceManager()
     val deviceSet = mutableListOf<DiscoveredBluetoothDevice>()
     val rollList = mutableListOf<String>()
-    lateinit var courseId: String
     lateinit var classAttendanceId :ObjectId
     lateinit var studentsPresent: TextView
     @SuppressLint("MissingPermission")
@@ -55,10 +54,9 @@ class StartAttendance : AppCompatActivity() {
         binding = ScanForAttendenceBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        courseId = intent.getStringExtra("Course Id").toString()
-        Log.d("Object Id ", courseId)
-        var passedId = selectedCoursePassed?._id
-        classAttendanceId = passedId?.let { ClassAttendanceManager().createAttendanceRecord(it) }!!
+        val passedId = intent.getByteArrayExtra("Class Attendance Id")?.let { ObjectId(it) }!!
+        classAttendanceId = passedId?.let { ClassAttendanceManager().createAttendanceRecord(it)}!!
+        Log.d(TAG,"Class Attendance Id -----------------> $classAttendanceId")
         val time: TextView = binding.startAttendanceeCurrentTime
 
         // Create a Date object with the current time
@@ -100,8 +98,14 @@ class StartAttendance : AppCompatActivity() {
             scanForAttendanceText.text = "Attendance Taken"
             stopAttendance()
         }, 5*60*1000)
-
-        // students Present
+        // FOR TEST TODO() This is just for testing part
+        val addAttendanceButton = binding.addAttendance
+        addAttendanceButton.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                storeRecord("Yash")
+            }
+        }
+            // students Present
 //        var totalStudentsPresent = findViewById<TextView>(R.id.totalStudentsPresentTextView)
         val stopAttendanceButton = binding.startAttendanceStopAttendanceButton
         stopAttendanceButton.isEnabled = true
@@ -114,6 +118,7 @@ class StartAttendance : AppCompatActivity() {
 
             // Redirect to another activity
             val intent = Intent(this, ViewStudentAttendance::class.java)
+            intent.putExtra("Student Course Attendance Id", classAttendanceId.toByteArray())
             startActivity(intent)
             finish()
         }
@@ -416,7 +421,7 @@ class StartAttendance : AppCompatActivity() {
         )
 
 //        classAttendanceManager.addStudentRecord(StudentRecord(emailid, true, "success", Date()))
-        Log.d(TAG,"------> Added Record to the Database")
+        Log.d(TAG,"${ClassAttendanceManager().getClassAttendanceRecord(classAttendanceId)?.attendanceRecord?.get(rollList.count()-1)?.emailId}------> Added Record to the Database")
     }
 
     fun addTimeToString(s: String): String {
