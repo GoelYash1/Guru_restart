@@ -113,7 +113,7 @@ class Home : Fragment() {
             val intent = Intent(this@Home.requireContext(), Profile::class.java)
             startActivity(intent)
         }
-        view.findViewById<CardView>(R.id.addNewCousreCard).setOnClickListener {
+        view.findViewById<CardView>(R.id.addNewCourseCard).setOnClickListener {
             val intent = Intent(this@Home.requireContext(), AddNewCourse::class.java)
             startActivity(intent)
 //            var classAttendanceId = ClassAttendanceManager().createAttendanceRecord(courseList.first()._id)

@@ -12,20 +12,18 @@ import android.content.pm.PackageManager
 import android.os.*
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.content.ContextCompat
 import com.axyz.upasthithguru.*
 import com.axyz.upasthithguru.Realm.ClassAttendanceManager
-import com.axyz.upasthithguru.Realm.StudentRecord
 import com.axyz.upasthithguru.adapters.studentAttendanceListAdapter
+import com.axyz.upasthithguru.databinding.ScanForAttendenceBinding
 import com.axyz.upasthithguru.fragments.selectedCoursePassed
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,48 +39,71 @@ import java.util.*
 class StartAttendance : AppCompatActivity() {
 
     class DiscoveredBluetoothDevice(val device: BluetoothDevice, val serviceUuids: List<ParcelUuid>)
-
+    lateinit var binding: ScanForAttendenceBinding
     private var isScanning: Boolean = false
     private var bluetoothLeScanner: BluetoothLeScanner? = null
     private var scanCallback: ScanCallback? = null
     val classAttendanceManager = ClassAttendanceManager()
     val deviceSet = mutableListOf<DiscoveredBluetoothDevice>()
     val rollList = mutableListOf<String>()
-    lateinit var adapter: studentAttendanceListAdapter
     lateinit var courseId: String
     lateinit var classAttendanceId :ObjectId
+    lateinit var studentsPresent: TextView
     @SuppressLint("MissingPermission")
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ScanForAttendenceBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.scan_for_attendence)
+        setContentView(binding.root)
         courseId = intent.getStringExtra("Course Id").toString()
         Log.d("Object Id ", courseId)
         var passedId = selectedCoursePassed?._id
         classAttendanceId = passedId?.let { ClassAttendanceManager().createAttendanceRecord(it) }!!
+        val time: TextView = binding.startAttendanceeCurrentTime
+
+        // Create a Date object with the current time
+        val currentTime = Calendar.getInstance().time
+
+        // Create a date formatter with the desired time format
+        val timeFormatter = SimpleDateFormat("h:mm a", Locale.getDefault())
+
+        // Format the current time with the formatter and set it to the TextView
+        val formattedTime = timeFormatter.format(currentTime)
+        time.text = formattedTime
+
+        // Create a date formatter with the desired date format
+        val dateFormatter = SimpleDateFormat("EEEE, MMM d", Locale.getDefault())
+
+        // Format the current date with the formatter and set it to the TextView
+        val formattedDate = dateFormatter.format(currentTime)
+        val date: TextView = binding.startAttendanceCurrentDayAndDate
+        date.text = formattedDate
         // pinTextView
-        val generatedPin: String? = intent.getStringExtra("Pin")
-        val pin = findViewById<TextView>(R.id.pinTextView)
-        pin.text = "Pin = " + generatedPin.toString()
+        val generatePinFAB: FloatingActionButton = binding.generatedPinButton
+        val generatedPin: String? = intent.getStringExtra("Generated Pin")
+        val pin:TextView = binding.generatedPinTextView
+        pin.text = generatedPin.toString()
 
         // progressBar
-        val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
+        val progressBar:ProgressBar = binding.attendanceTimeProgressBar
         progressBar.visibility = View.VISIBLE
 
-        val scanForAttendanceText = findViewById<TextView>(R.id.scanForAttendanceTextView)
+        val scanForAttendanceText = binding.startAttendanceState
 
         // progressBar will run for 2 minutes
         val handler = Handler(Looper.getMainLooper())
 
-//        handler.postDelayed({
-//            stopAttendance()
-//            progressBar.visibility = View.GONE
-//            scanForAttendanceText.text = "Scanning Complete!!!"
-//        }, 5*60*1000)
+        handler.postDelayed({
+            progressBar.visibility = View.INVISIBLE
+            pin.visibility = View.GONE
+            generatePinFAB.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_right_tick))
+            scanForAttendanceText.text = "Attendance Taken"
+            stopAttendance()
+        }, 5*60*1000)
 
         // students Present
-        var totalStudentsPresent = findViewById<TextView>(R.id.totalStudentsPresentTextView)
-        val stopAttendanceButton = findViewById<Button>(R.id.stopAttendanceButton)
+//        var totalStudentsPresent = findViewById<TextView>(R.id.totalStudentsPresentTextView)
+        val stopAttendanceButton = binding.startAttendanceStopAttendanceButton
         stopAttendanceButton.isEnabled = true
         stopAttendanceButton.setOnClickListener {
             stopAttendance()
@@ -93,19 +114,9 @@ class StartAttendance : AppCompatActivity() {
 
             // Redirect to another activity
             val intent = Intent(this, ViewStudentAttendance::class.java)
-            Toast.makeText(this,"CourseId$courseId",Toast.LENGTH_SHORT).show()
-            intent.putExtra("Course Id",courseId)
             startActivity(intent)
             finish()
         }
-
-        // studentRecyclerView
-        val studentRecyclerView = findViewById<RecyclerView>(R.id.students_recycler_view)
-        val layoutManager = LinearLayoutManager(this)
-        studentRecyclerView.layoutManager = layoutManager
-        adapter = studentAttendanceListAdapter(rollList)
-        studentRecyclerView.adapter = adapter
-        totalStudentsPresent.text = adapter.itemCount.toString()
 
         // Check if Bluetooth is supported on the device
         val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
@@ -298,11 +309,6 @@ class StartAttendance : AppCompatActivity() {
 //                            deviceSet.remove(device as BluetoothDevice)
 //                            deviceSet.remove(device)
 
-                            val handler = Handler(Looper.getMainLooper())
-                            handler.post {
-                                adapter.notifyDataSetChanged()
-                            }
-
                             // send request to write characteristic
                             // make data to be written
                             val characteristicData = CharacteristicDataClass(true)
@@ -395,6 +401,9 @@ class StartAttendance : AppCompatActivity() {
 //        }
 
         rollList.add(studentRollNo)
+        studentsPresent = binding.startAttendancePresentStudents
+        studentsPresent.text = "Present Students: " + rollList.count().toString() + "/ 80"
+        Log.d("Roll Count ", rollList.count().toString())
         val emailid =
             getSharedPreferences("upasthithGuru", Context.MODE_PRIVATE).getString("email", "") ?: ""
 

@@ -2,24 +2,116 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ViewStudentAttendance">
+
+    <TextView
+        android:id="@+id/viewAttendanceCourseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:text="SDN"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@color/custom_color_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/viewStudentPresentStudents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Present Students"
+        android:textSize="18sp"
+        android:padding="6dp"
+        android:textColor="#5CC04C"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceCourseName" />
+
+    <LinearLayout
+        android:id="@+id/viewStudentAbsentStudents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/circled_button"
+        android:backgroundTint="#FED7D7"
+        app:layout_constraintEnd_toStartOf="@+id/viewStudentAddStudents"
+        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceCourseName" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="1dp"
+            android:src="@drawable/ic_absent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Absent"
+            android:textSize="18sp"
+            android:padding="2dp"
+            android:textColor="#B91010" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/viewStudentAddStudents"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/circled_button"
+        android:backgroundTint="@color/custom_color_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceCourseName" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="1dp"
+            android:src="@drawable/addsquare" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:padding="2dp"/>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAttendance"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/circled_button"
+        android:backgroundTint="@color/custom_color_card"
+        android:isScrollContainer="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewStudentAbsentStudents"
+        app:layout_constraintBottom_toTopOf="@id/viewStudentNumberOfStudents"
+        tools:listitem="@layout/item_device" />
 
-    <Button
-        android:id="@+id/button3"
+    <TextView
+        android:id="@+id/viewStudentNumberOfStudents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:text="67/80"
+        android:textColor="@color/custom_color_bg"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rvAttendance"
-        app:layout_constraintVertical_bias="0.916" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
