@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/VerifyForgotPassViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/verify_forgot_pass_bg"
+        />
+    <TextView
+        android:id="@+id/text_verification"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:text="Verification"
+        android:textAlignment="center"
+        android:textColor="@color/custom_color_bg"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/text_enter_verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/text_verification"
+        android:text="Enter the Verification Code"
+        android:textAlignment="center"
+        android:textColor="@color/custom_color_bg"
+        android:textSize="13sp"
+        />
+    <com.chaos.view.PinView
+        android:id="@+id/input_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:elevation="10dp"
+        style="@style/PinWidget.PinView"
+        android:layout_marginTop="20dp"
+        android:hint="0000"
+        android:layout_below="@id/text_enter_verification"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:itemBackground="@drawable/otp_forgot_pass_bg"
+        app:itemRadius="24dp"
+        app:itemSpacing="20dp"
+        app:lineColor="@color/custom_color_bg_shadow"
+        />
+    <Button
+        android:id="@+id/click_verify"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/click_btn_bg"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:text="Verify"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:layout_below="@id/input_otp" />
+    <TextView
+        android:id="@+id/text_resend_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/click_verify"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Resend Code"
+        android:textSize="13sp"
+        android:textColor="@color/Red"
+        />
+
+    <ImageView
+        android:id="@+id/image_forgot_pass"
+        android:layout_width="320dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="260dp"
+        android:src="@drawable/verify_forgot_pass_image"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        />
+</RelativeLayout>
