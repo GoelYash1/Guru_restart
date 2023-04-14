@@ -57,7 +57,7 @@ class Attendance : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_attendance, container, false)
-        view.findViewById<ImageView>(R.id.attendanceFragmentProfileImageView).setOnClickListener{
+        view.findViewById<ImageView>(R.id.attendanceFragmentProfile).setOnClickListener{
             startActivity(Intent(requireContext(),Profile::class.java))
         }
         view.findViewById<CardView>(R.id.attendanceFragmentStartAttendance).setOnClickListener {
