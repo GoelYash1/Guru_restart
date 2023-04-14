@@ -138,6 +138,7 @@
             android:clickable="true"
             android:tooltipText="generatePin"
             android:outlineAmbientShadowColor="@color/custom_color_card"
+            android:contentDescription="Pin Generation"
             app:fabCustomSize="200dp"
             app:maxImageSize="100dp"
             app:srcCompat="@drawable/hand_cursor" />

@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.Realm.CourseRepository
@@ -16,34 +17,42 @@ import com.axyz.upasthithguru.activity.StudentsEnrolled
 import com.axyz.upasthithguru.activity.ViewStudentAttendance
 
 class CourseInfo : AppCompatActivity() {
-    private lateinit var courseId:String
+    private lateinit var courseId:TextView
     private lateinit var courseName : TextView
-    private lateinit var courseHeading : TextView
+//    private lateinit var courseHeading : TextView
     private lateinit var courseCode : TextView
     private lateinit var department : TextView
+    private lateinit var credits : TextView
     private lateinit var semester : TextView
-    private lateinit var moreOnStudents :LinearLayout
-    private lateinit var studentAttendanceBtn :LinearLayout
-    private lateinit var editCourseInformation : Button
+    private lateinit var courseDesc : TextView
+    private lateinit var studentsEnrolled :LinearLayout
+    private lateinit var addNewStudent : CardView
+    private lateinit var strengthOfStudent : TextView
+//    private lateinit var studentAttendanceBtn :LinearLayout
+    private lateinit var editCourseInformation : CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_course_info)
         // intialize the code
-        courseId = intent.getStringExtra("Course Id").toString().trim()
 ////        val course = CourseRepository().getCourse(courseId)
 //        Log.d(TAG,"course -- > $course")
 //        Toast.makeText(this,"Course Id,${course?.id}",Toast.LENGTH_SHORT).show()
         // initialize all the View in activity
-        courseHeading = findViewById(R.id.courseHeadingTextView)
-        courseName = findViewById(R.id.courseNameTextView)
-        courseCode = findViewById(R.id.courseCodeTextView)
-        department = findViewById(R.id.departmentTextView)
-        semester = findViewById(R.id.semesterTextView)
+        courseName = findViewById(R.id.coursename)
+        courseCode = findViewById(R.id.coursecode)
+        department = findViewById(R.id.department_name)
+        credits =findViewById(R.id.credits_no)
+        semester=findViewById(R.id.sem_no)
+        editCourseInformation=findViewById(R.id.edit_course)
+        addNewStudent = findViewById(R.id.addNew)
+        strengthOfStudent = findViewById(R.id.number_of_student)
+
+
+//        semester = findViewById(R.id.courseDescDetail.and(R.id.sem_no))
 
         // Linear layout and buttons acting as button
-        moreOnStudents = findViewById(R.id.moreOnStudentsView)
-        studentAttendanceBtn = findViewById(R.id.studentAttendenceLinearLayout)
-        editCourseInformation = findViewById(R.id.editCourseButton)
+//        studentsEnrolled = findViewById(R.id.studentsincourse)
+//        editCourseInformation = findViewById(R.id.edit_course)
 
         // Setting their text values
 //        if (course!=null)

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/custom_color_bg_shadow"
+    android:padding="15dp"
+    app:cardElevation="4dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="11dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:background="@color/custom_color_bg_shadow"
+        >
+        <TextView
+            android:id="@+id/StudentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="Sahu Bhaiya"
+            android:textSize="18sp"
+            android:textColor="@color/custom_color_bg"
+            android:textStyle="bold"
+            />
+        <ImageView
+            android:id="@+id/editStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="6dp"
+            android:layout_toLeftOf="@id/deleteStudent"
+            android:contentDescription="more Info"
+            />
+        <ImageView
+            android:layout_marginTop="3dp"
+            android:id="@+id/deleteStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/delete"
+            android:contentDescription="more Info"
+            android:layout_alignParentEnd="true"
+
+            />
+        <View
+
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
