@@ -1,199 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".courses.AddNewCourse">
+    tools:context=".activity.HomeActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="Course Details"
-        android:textStyle="bold"
-        android:textColor="@color/custom_color_bg"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- TODO: Update blank fragment layout -->
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/createCourseButton"
-        app:layout_constraintEnd_toEndOf="@id/textView2"
-        app:layout_constraintStart_toStartOf="@id/textView2"
-        app:layout_constraintTop_toBottomOf="@id/textView2">
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            app:cardCornerRadius="15dp"
-            android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        >
+        <TextView
+            android:id="@+id/text_course_details"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/custom_color_bg_shadow"
-            android:elevation="5dp"
-            android:padding="16dp">
-
-            <LinearLayout
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:text="Course Details"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/custom_color_bg"
+            android:layout_marginTop="36dp"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:id="@+id/departmentDropdownLayout"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/text_course_details"
+            app:boxStrokeWidth="2dp"
+            app:endIconTint="@color/custom_color_bg"
+            android:textColorHint="@color/custom_color_bg"
+            app:boxStrokeColor="@color/custom_color_bg"
+            app:counterTextColor="@color/custom_color_bg"
+            app:hintTextColor="@color/custom_color_bg"
+            app:placeholderTextColor="@color/custom_color_bg"
+            app:counterOverflowTextColor="@color/custom_color_bg"
+            android:background="@drawable/rectangular_input_bg"
+            >
+            <AutoCompleteTextView
+                android:id="@+id/departmentDropDownView"
                 android:layout_width="match_parent"
+                android:background="@drawable/drop_down_bg"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="vertical">
+                android:isScrollContainer="true"
+                android:hint="Department"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck"
+                android:paddingTop="10dp"
+                android:inputType="none"
+                android:maxLines="1"
+                android:textColor="@color/custom_color_bg"
+                android:textColorHint="@color/custom_color_bg"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/courseName"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_below="@id/departmentDropdownLayout"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangular_input_bg"
+            android:hint="Course Name"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="16sp"
+            android:elegantTextHeight="true"
+            android:inputType="text"
+            android:paddingLeft="17dp"
+            tools:ignore="TouchTargetSizeCheck"
+            />
+        <EditText
+            android:id="@+id/courseCode"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_below="@id/courseName"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangular_input_bg"
+            android:hint="Course Code"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="16sp"
+            android:elegantTextHeight="true"
+            android:inputType="text"
+            android:paddingLeft="17dp"
+            tools:ignore="TouchTargetSizeCheck"
+            />
+        <EditText
+            android:id="@+id/courseYear"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_below="@id/courseCode"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangular_input_bg"
+            android:hint="Year"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="16sp"
+            android:elegantTextHeight="true"
+            android:inputType="text"
+            android:paddingLeft="17dp"
+            tools:ignore="TouchTargetSizeCheck"
+            />
+        <EditText
+            android:id="@+id/courseSemester"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_below="@id/courseYear"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangular_input_bg"
+            android:hint="Semester"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="16sp"
+            android:elegantTextHeight="true"
+            android:inputType="text"
+            android:paddingLeft="17dp"
+            tools:ignore="TouchTargetSizeCheck"
+            />
+        <EditText
+            android:id="@+id/courseCredits"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_below="@id/courseSemester"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangular_input_bg"
+            android:hint="Credits"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="16sp"
+            android:elegantTextHeight="true"
+            android:inputType="text"
+            android:paddingLeft="17dp"
+            tools:ignore="TouchTargetSizeCheck"
+            />
+        <EditText
+            android:id="@+id/courseDescription"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/courseCredits"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangular_input_bg"
+            android:hint="Descritpion"
+            android:textColor="@color/custom_color_bg"
+            android:textSize="16sp"
+            android:elegantTextHeight="true"
+            android:inputType="textMultiLine"
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:text="Name"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:hint="Enter course name"
-                    android:minHeight="48dp"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:text="Course Code"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:hint="Enter course code"
-                    android:minHeight="48dp"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:text="Credits"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_credit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:hint="Enter course credits"
-                    android:minHeight="48dp"
-                    android:textSize="16sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Department"
-                        android:layout_weight="1"
-                        android:gravity="start|center_vertical"
-                        android:textStyle="bold"
-                        android:textSize="18sp" />
-
-                    <Spinner
-                        android:id="@+id/sp_department"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_margin="1dp"
-                        android:dropDownVerticalOffset="48dp"
-                        android:entries="@array/department_options"
-                        android:minHeight="48dp"
-                        android:textSize="16sp"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#353535"
-                    android:layout_margin="1dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:text="Year"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_year"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter course year"
-                    android:minHeight="48dp"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:text="Semester"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_semester"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:hint="Enter course semester"
-                    android:minHeight="48dp"
-                    android:textSize="16sp" />
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:text="Description"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:hint="Enter course description"
-                    android:minHeight="48dp"
-                    android:textSize="16sp" />
+            android:paddingStart="17dp"
+            android:paddingEnd="17dp"
+            tools:ignore="TouchTargetSizeCheck"
+            />
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/courseDescription"
+            android:layout_marginTop="25dp"
+            android:text="Add"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/custom_color_bg"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            />
+    </RelativeLayout>
 
 
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/createCourseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/custom_primary_color_chosen"
-        android:text="Create Course"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

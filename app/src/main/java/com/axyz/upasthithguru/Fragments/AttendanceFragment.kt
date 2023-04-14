@@ -27,7 +27,6 @@ class Attendance : Fragment() {
         courseDropDownButton = view.findViewById(R.id.courseDropDownView)
         fetchedCourse = CourseRepository().getAllCourse()
         updateDropDownAdapter()
-
     }
 
     override fun onResume() {

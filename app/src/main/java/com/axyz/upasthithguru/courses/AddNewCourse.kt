@@ -15,7 +15,7 @@ class AddNewCourse : AppCompatActivity() {
     private lateinit var etName: EditText
     private lateinit var etCode: EditText
     private lateinit var etCredits: EditText
-    private lateinit var spDepartment: Spinner
+//    private lateinit var spDepartment: Spinner
     private lateinit var etDescription: EditText
     private lateinit var etYear: EditText
     private lateinit var etSemester: EditText
@@ -24,29 +24,29 @@ class AddNewCourse : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_course)
 
-        etName = findViewById(R.id.et_name)
-        etCode = findViewById(R.id.et_code)
-        etCredits = findViewById(R.id.et_credit)
-        spDepartment = findViewById(R.id.sp_department)
-        etDescription = findViewById(R.id.et_description)
-        etYear = findViewById(R.id.et_year)
-        etSemester = findViewById(R.id.et_semester)
-        btnSave = findViewById(R.id.createCourseButton)
+        etName = findViewById(R.id.courseName)
+        etCode = findViewById(R.id.courseCode)
+        etCredits = findViewById(R.id.courseCredits)
+//        spDepartment = findViewById(R.id.sp_department)
+        etDescription = findViewById(R.id.courseDescription)
+        etYear = findViewById(R.id.courseYear)
+        etSemester = findViewById(R.id.courseSemester)
+        btnSave = findViewById(R.id.btn_add)
 
 
-        etName.setText("Android")
-        etCode.setText("CS-101")
-        etCredits.setText("3")
-        etDescription.setText("Android Development")
-        etYear.setText("2021")
-        etSemester.setText("1")
+        etName.setText("SDN")
+        etCode.setText("CS-103")
+        etCredits.setText("2")
+        etDescription.setText("Software Defined Networking")
+        etYear.setText("2022")
+        etSemester.setText("2")
 
 
         btnSave.setOnClickListener {
             val name = etName.text.toString().trim()
             val code = etCode.text.toString().trim()
             val credits = etCredits.text.toString().trim()
-            val department = spDepartment.selectedItem.toString().trim()
+//            val department = spDepartment.selectedItem.toString().trim()
             val year = etYear.text.toString().trim()
             val semester = etSemester.text.toString().trim()
             val description = etDescription.text.toString().trim()
