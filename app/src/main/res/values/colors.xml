@@ -10,6 +10,7 @@
     <color name="Res">#C11515</color>
 
     <!--Custom Colors-->
+    <color name="Red">#FF7474</color>
     <color name="custom_color_card">#D8E1D9</color>
     <color name="custom_color_bg">#416D47</color>
     <color name="custom_color_bg_shadow">#D9E2DA</color>
