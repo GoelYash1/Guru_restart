@@ -15,11 +15,12 @@ import com.axyz.upasthithguru.Realm.CourseRepository
 import com.axyz.upasthithguru.activity.Profile
 import com.axyz.upasthithguru.activity.TakeAttendance
 import io.realm.kotlin.query.RealmResults
+import org.mongodb.kbson.ObjectId
 
 var selectedCoursePassed :Course? = null
 class Attendance : Fragment() {
     private lateinit var courseDropDownButton: AutoCompleteTextView
-    private val courseList: MutableList<Pair<String, String>> = mutableListOf()
+    private val courseList: MutableList<Pair<ObjectId, String>> = mutableListOf()
     private lateinit var fetchedCourse : RealmResults<Course>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,7 +39,7 @@ class Attendance : Fragment() {
         courseList.clear()
         fetchedCourse = CourseRepository().getAllCourse()
         for (course in fetchedCourse){
-            courseList.add(course._id.toString() to course.name)
+            courseList.add(course._id to course.name)
         }
         val courseNames = courseList.map { it.second }
         courseDropDownButton.setAdapter(
@@ -56,20 +57,17 @@ class Attendance : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_attendance, container, false)
-
-//        view.findViewById<ImageView>(R.id.loginInAttendanceImageView).setOnClickListener {
-//            startActivity(Intent(requireContext(), Profile::class.java))
-//        }
-
+        view.findViewById<ImageView>(R.id.attendanceFragmentProfileImageView).setOnClickListener{
+            startActivity(Intent(requireContext(),Profile::class.java))
+        }
         view.findViewById<CardView>(R.id.attendanceFragmentStartAttendance).setOnClickListener {
             val selectedCourse = courseDropDownButton.text.toString().trim()
             Log.d("adsf","$selectedCourse")
             if (selectedCourse.isNotEmpty()) {
                 val courseId = courseList.find { it.second == selectedCourse}?.first
                 val intent = Intent(requireContext(), TakeAttendance::class.java)
-                selectedCoursePassed = fetchedCourse.find { it._id.toString() == courseId }
-                Toast.makeText(requireContext(),"CourseId$courseId",Toast.LENGTH_SHORT).show()
-                intent.putExtra("Course Id", courseId.toString())
+                selectedCoursePassed = fetchedCourse.find { it._id == courseId }
+                intent.putExtra("Course Id", selectedCoursePassed?._id?.toByteArray())
                 startActivity(intent)
             } else {
                 Toast.makeText(

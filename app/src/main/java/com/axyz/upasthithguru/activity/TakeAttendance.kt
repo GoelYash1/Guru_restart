@@ -19,6 +19,7 @@ import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.databinding.ActivityTakeAttendanceBinding
 import com.axyz.upasthithguru.permissionDialogShown
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.mongodb.kbson.ObjectId
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,15 +27,14 @@ import java.util.*
 class TakeAttendance : AppCompatActivity() {
     private var currentPin: Int = 0
     private lateinit var binding: ActivityTakeAttendanceBinding
-    private lateinit var courseId:String
+    private lateinit var courseId:ObjectId
     private var isPinGenerated: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTakeAttendanceBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        courseId = intent.getStringExtra("Course Id").toString()
         val time: TextView = binding.takeAttendanceCurrentTime
-
+        courseId = intent.getByteArrayExtra("Course Id")?.let { ObjectId(it) }!!
         // Create a Date object with the current time
         val currentTime = Calendar.getInstance().time
 
@@ -91,7 +91,7 @@ class TakeAttendance : AppCompatActivity() {
             }
             val intent = Intent(this, StartAttendance::class.java)
             intent.putExtra("Generated Pin",generatedPin)
-            intent.putExtra("Course Id",courseId)
+            intent.putExtra("Class Attendance Id",courseId.toByteArray())
             startActivity(intent)
             finish()
 //            val handler = Handler(Looper.getMainLooper())
