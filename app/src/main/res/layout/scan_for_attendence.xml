@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="Course Details"
+        android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="@+id/startAttendanceBackButton"
         app:layout_constraintTop_toBottomOf="@+id/startAttendanceBackButton" />
 
@@ -155,6 +156,7 @@
             android:layout_gravity="center"
             android:backgroundTint="@color/custom_color_bg"
             android:clickable="false"
+            android:contentDescription="PinGenerate"
             android:tooltipText="generatePin"
             android:outlineAmbientShadowColor="@color/custom_color_card"
             app:fabCustomSize="200dp"
@@ -189,6 +191,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Present Students - 60/80"
+        android:textColor="@color/grey"
         app:layout_constraintTop_toBottomOf="@id/startAttendanceState"
         app:layout_constraintEnd_toEndOf="@id/startAttendanceState"
         app:layout_constraintStart_toStartOf="@id/startAttendanceState"
