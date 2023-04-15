@@ -118,6 +118,7 @@ class StartAttendance : AppCompatActivity() {
 
             // Redirect to another activity
             val intent = Intent(this, ViewStudentAttendance::class.java)
+            intent.putExtra("Attendance Date",formattedDate)
             intent.putExtra("Student Course Attendance Id", classAttendanceId.toByteArray())
             startActivity(intent)
             finish()

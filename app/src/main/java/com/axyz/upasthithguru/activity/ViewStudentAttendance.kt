@@ -1,9 +1,12 @@
 package com.axyz.upasthithguru.activity
 
+import android.app.Activity
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +23,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.mongodb.kbson.ObjectId
+import org.w3c.dom.Text
+
 //import com.axyz.upasthithguru.adapters.AttendanceAdapter
 
 // These Activity shows the dates of attendance record for the teacher
@@ -28,6 +33,8 @@ class ViewStudentAttendance : AppCompatActivity() {
     private lateinit var rvAttendance: RecyclerView
     private lateinit var courseId: ObjectId
     private lateinit var studentAttendanceListAdapter: studentAttendanceListAdapter
+    private lateinit var date: TextView
+    private lateinit var studentCount:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +42,9 @@ class ViewStudentAttendance : AppCompatActivity() {
         setContentView(binding.root)
 
         courseId = intent.getByteArrayExtra("Student Course Attendance Id")?.let { ObjectId(it) }!!
-
+        date = binding.viewAttendanceDate
+        date.text = intent.getStringExtra("Attendance Date").toString()
+        studentCount = binding.viewStudentNumberOfStudents
         setupRecyclerView()
         loadAttendanceData()
         setupAddAttendanceButton()
@@ -57,6 +66,7 @@ class ViewStudentAttendance : AppCompatActivity() {
                     withContext(Dispatchers.Main) {
                         rvAttendance.adapter = studentAttendanceListAdapter(attendanceRecords)
                         studentAttendanceListAdapter.notifyDataSetChanged()
+                        studentCount.text = attendanceRecords.attendanceRecord.size.toString() +"/80"
                     }
                 }
             } catch (e: Exception) {

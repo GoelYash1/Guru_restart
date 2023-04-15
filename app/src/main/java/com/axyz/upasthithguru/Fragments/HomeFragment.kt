@@ -101,10 +101,9 @@ class Home : Fragment() {
 
         courseListAdapter.setOnItemClickListener(object : CourseListAdapter.onItemClickListener {
             override fun onItemClick(position: Int) {
-                val id = courseList[position]._id.toString()
+                val id = courseList[position]._id.toByteArray()
                 val intent = Intent(this@Home.requireContext(), CourseInfo::class.java)
                 intent.putExtra("Course Id",id)
-                Toast.makeText(requireContext(),"Hello$id", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
             }
         })
