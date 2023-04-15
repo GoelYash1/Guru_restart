@@ -22,28 +22,54 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        android:text="Attendance Sheet"
+        android:textColor="@color/custom_color_bg"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceCourseName" />
+
+    <TextView
+        android:id="@+id/viewAttendanceDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:padding="6dp"
+        android:text="5 May 2023"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
         android:id="@+id/viewStudentPresentStudents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Present Students"
-        android:textSize="18sp"
-        android:padding="6dp"
-        android:textColor="#5CC04C"
         android:layout_margin="20dp"
+        android:padding="6dp"
+        android:text="Present Students"
+        android:textColor="#5CC04C"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceCourseName" />
+        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceDate" />
 
     <LinearLayout
         android:id="@+id/viewStudentAbsentStudents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:padding="5dp"
-        android:orientation="horizontal"
         android:background="@drawable/circled_button"
         android:backgroundTint="#FED7D7"
+        android:orientation="horizontal"
+        android:padding="5dp"
         app:layout_constraintEnd_toStartOf="@+id/viewStudentAddStudents"
-        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceCourseName" >
+        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceDate">
 
         <ImageView
             android:layout_width="match_parent"
@@ -54,10 +80,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Absent"
-            android:textSize="18sp"
             android:padding="2dp"
-            android:textColor="#B91010" />
+            android:text="Absent"
+            android:textColor="#B91010"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,12 +91,12 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_margin="20dp"
-        android:padding="5dp"
-        android:orientation="horizontal"
         android:background="@drawable/circled_button"
         android:backgroundTint="@color/custom_color_bg"
+        android:orientation="horizontal"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceCourseName" >
+        app:layout_constraintTop_toBottomOf="@+id/viewAttendanceDate">
 
         <ImageView
             android:layout_width="match_parent"
@@ -81,10 +107,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="2dp"
             android:text="Add"
-            android:textSize="18sp"
             android:textColor="@color/white"
-            android:padding="2dp"/>
+            android:textSize="18sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -95,10 +121,10 @@
         android:background="@drawable/circled_button"
         android:backgroundTint="@color/custom_color_card"
         android:isScrollContainer="true"
+        app:layout_constraintBottom_toTopOf="@id/viewStudentNumberOfStudents"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewStudentAbsentStudents"
-        app:layout_constraintBottom_toTopOf="@id/viewStudentNumberOfStudents"
         tools:listitem="@layout/item_device" />
 
     <TextView
@@ -113,5 +139,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
