@@ -34,6 +34,7 @@ class Course() : RealmObject {
 //    var enrolledStudentsData: MutableList<EnrolledStudent> = mutableListOf()
 //    var courseAttendance: MutableList<ClassAttendance> = mutableListOf()
     var courseAttendances: RealmList<ClassAttendance> = realmListOf<ClassAttendance>()
+    var enrolledStudents: RealmList<EnrolledStudent> = realmListOf<EnrolledStudent>()
 //    var addresses: RealmList<Address> = realmListOf()
 
     constructor(name:String,courseCode:String) : this() {
@@ -41,6 +42,8 @@ class Course() : RealmObject {
         this.courseCode = courseCode
     }
 }
+
+
 
 //fun RealmSyncRepository.insertCourse(course: Course) {
 //    try {

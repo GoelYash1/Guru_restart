@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.axyz.upasthithguru.Realm.ClassAttendance
 import com.axyz.upasthithguru.Realm.Course
+import com.axyz.upasthithguru.Realm.EnrolledStudent
 import com.axyz.upasthithguru.Realm.StudentRecord
 import com.axyz.upasthithguru.app
 import com.axyz.upasthithguru.domain.UserRole
@@ -104,7 +105,7 @@ object realmModule{
         currentUser = app.currentUser!!
         Log.d("INIT REALM ----- ","----------------------- YES ---------------- $currentUser")
         val config: SyncConfiguration
-        config = SyncConfiguration.Builder(currentUser, setOf(UserRole::class,Course::class, ClassAttendance::class,StudentRecord::class))
+        config = SyncConfiguration.Builder(currentUser, setOf(UserRole::class,EnrolledStudent::class,Course::class, ClassAttendance::class,StudentRecord::class))
             .initialSubscriptions { realm ->
                 // Subscribe to the active subscriptionType - first time defaults to MINE
 //                if(isJustUp){
@@ -112,6 +113,7 @@ object realmModule{
                     add(realm.query<ClassAttendance>(),"ClassAttendance")
                     add(realm.query<StudentRecord>(), "StudentRecord")
                     add(realm.query<UserRole>(), "UserRole")
+                    add(realm.query<EnrolledStudent>(), "EnrolledStudent")
 //                    isJustUp=false
 //                }
 
