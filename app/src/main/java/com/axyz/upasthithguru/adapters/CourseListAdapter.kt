@@ -26,7 +26,10 @@ class CourseListAdapter (var courseList: List<Course>):RecyclerView.Adapter<Cour
     fun setOnItemClickListener(listener: onItemClickListener){
         mListener = listener
     }
-
+    fun setFilteredList(courseList: List<Course>){
+        this.courseList=courseList
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_courses, parent, false)
         return CourseListViewHolder(view,mListener)

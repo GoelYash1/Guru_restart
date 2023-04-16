@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.res.ResourcesCompat
@@ -34,20 +35,22 @@ import io.realm.kotlin.mongodb.subscriptions
 import io.realm.kotlin.query.RealmResults
 import io.realm.kotlin.types.RealmList
 import kotlinx.coroutines.*
+import java.util.*
 import javax.inject.Inject
-
+import kotlin.collections.ArrayList
 
 
 class Home : Fragment() {
 //    @Inject
 //    lateinit var courseRepository: CourseRepository
     var courseList : RealmList<Course> = realmListOf<Course>()
+    val courseListAdapter = CourseListAdapter(courseList)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.homeRecView)
-
+        val searchView = view.findViewById<androidx.appcompat.widget.SearchView>(R.id.search_course)
 //        var course = CourseRepository();
 //            var realmSyncRepository = RealmSyncRepository(onSyncError = { session, error ->
 //                // error handling code
@@ -94,8 +97,8 @@ class Home : Fragment() {
 //                }
 //            }
 //        }
+        recyclerView.setHasFixedSize(true)
 
-        val courseListAdapter = CourseListAdapter(courseList)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = courseListAdapter
 
@@ -124,7 +127,31 @@ class Home : Fragment() {
 //                )
 //            }
         }
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+
+        })
         return view
+    }
+    private fun filterList(query : String?){
+        if(query!=null){
+            val filteredList = kotlin.collections.ArrayList<Course>()
+            val formattedQuery = query.replace("\\s".toRegex(), "") // Remove all spaces from the search query
+            for (course in courseList) {
+                val formattedCourseName = course.name.toString().replace("\\s".toRegex(), "") // Remove all spaces from the course name
+                if (formattedCourseName.lowercase().contains(formattedQuery.lowercase())) {
+                    filteredList.add(course)
+                }
+            }
+            courseListAdapter.setFilteredList(filteredList)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
