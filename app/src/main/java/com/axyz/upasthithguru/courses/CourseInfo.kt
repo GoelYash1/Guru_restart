@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.CalendarView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.Realm.CourseRepository
+import com.axyz.upasthithguru.activity.StudentsEnrolled
 import com.axyz.upasthithguru.databinding.ActivityCourseInfoBinding
 import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
@@ -48,7 +50,10 @@ class CourseInfo : AppCompatActivity() {
 
         // Calendar View
         attendanceCalendar = binding.courseInfoAttendanceCalendar
-
+        enrolledStudents.setOnClickListener {
+            val intent = Intent(this,StudentsEnrolled::class.java)
+            startActivity(intent)
+        }
         // Setting their text values
 //        if (course!=null)
 //        {

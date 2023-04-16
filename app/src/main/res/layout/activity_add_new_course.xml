@@ -152,18 +152,20 @@
             android:paddingEnd="17dp"
             tools:ignore="TouchTargetSizeCheck"
             />
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_below="@id/courseDescription"
             android:layout_marginTop="25dp"
             android:text="Add"
+            android:background="@drawable/circled_button"
             android:textColor="@color/white"
             android:backgroundTint="@color/custom_color_bg"
             android:layout_centerHorizontal="true"
             android:textAllCaps="false"
             android:textSize="20sp"
+            tools:ignore="TouchTargetSizeCheck"
             />
     </RelativeLayout>
 

@@ -184,8 +184,9 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:text="Enrolled Students"
+                    android:paddingStart="8dp"
                     android:textColor="@color/custom_color_bg"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -209,6 +210,7 @@
             android:layout_alignParentEnd="true"
             android:gravity="center_horizontal"
             android:text="Attendance"
+            android:textStyle="bold"
             android:textColor="@color/custom_color_bg"
             android:textSize="18sp" />
 
