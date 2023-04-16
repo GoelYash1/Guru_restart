@@ -64,8 +64,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="36dp"
             />
-        <EditText
-            android:id="@+id/home_search"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_course"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_below="@id/text_your_courses"
@@ -73,21 +73,20 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="25dp"
             android:background="@drawable/input_bg"
-            android:drawableLeft="@drawable/search"
-            android:drawablePadding="10dp"
-            android:ems="10"
-            android:hint="Search by Course Name"
-            android:elegantTextHeight="true"
+            app:queryHint="Search by Course Name"
+            app:iconifiedByDefault="false"
             android:inputType="text"
-            android:paddingLeft="20dp"
+            app:queryBackground="@android:color/transparent"
+            android:paddingStart="4dp"
             />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeRecView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_above="@+id/addNewCourseCard"
-            android:layout_below="@+id/home_search"
+            android:layout_below="@+id/search_course"
             android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
