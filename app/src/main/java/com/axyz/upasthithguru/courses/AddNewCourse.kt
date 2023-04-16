@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.Realm.CourseRepository
@@ -19,7 +20,7 @@ class AddNewCourse : AppCompatActivity() {
     private lateinit var etDescription: EditText
     private lateinit var etYear: EditText
     private lateinit var etSemester: EditText
-    private lateinit var btnSave: Button
+    private lateinit var btnSave: AppCompatButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_course)
