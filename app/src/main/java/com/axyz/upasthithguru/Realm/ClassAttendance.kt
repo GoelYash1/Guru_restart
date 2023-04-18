@@ -1,14 +1,18 @@
 package com.axyz.upasthithguru.Realm
 
 import android.util.Log
+import com.axyz.upasthithguru.app
 import com.axyz.upasthithguru.data.realmModule
 import io.realm.kotlin.ext.backlinks
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.ext.realmListOf
+import io.realm.kotlin.mongodb.ext.call
+import io.realm.kotlin.mongodb.ext.profileAsBsonDocument
 import io.realm.kotlin.query.RealmResults
 import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
+import org.mongodb.kbson.BsonDocument
 import org.mongodb.kbson.ObjectId
 import java.util.Date
 import javax.inject.Singleton
@@ -23,18 +27,16 @@ class StudentRecord : RealmObject {
     val classAttendance: RealmResults<ClassAttendance> by backlinks (ClassAttendance::attendanceRecord)
 }
 
-//data class ClassAttendance(
-//    var date: Date,
-//    var attendanceRecord: MutableList<StudentRecord> = mutableListOf()
-//)
-
 class ClassAttendance : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
     var date: String = ""
+    var courseIdCA : ObjectId? = null
     var attendanceRecord: RealmList<StudentRecord> = realmListOf()
-    val courseAttendance: RealmResults<Course> by backlinks(Course::courseAttendances)
+    val courseAttendances: RealmResults<Course> by backlinks(Course::courseAttendances)
 }
+
+
 
 @Singleton
 class ClassAttendanceManager {
@@ -63,9 +65,13 @@ class ClassAttendanceManager {
             val course = this.query<Course>("_id == $0", _id ).first().find()
             classAttendance = ClassAttendance().apply {
                 date = Date().toString()
+                courseIdCA = _id
             }
             course?.courseAttendances?.add(classAttendance)
+//            classAttendance?.courseAttendances?.add(course)
+
         }
+        classAttendance.backlinks(Course::courseAttendances)
         Log.d("Course Created ::","courese ${classAttendance._id}")
         return classAttendance._id
     }
@@ -74,14 +80,16 @@ class ClassAttendanceManager {
         val realm = realmModule.realm
         realm.write{
 //            val course = this.query<Course>("_id == $0",_id).first().find()
-            val classAttendance = this.query<ClassAttendance>("_id == $0",_id).first().find()
+            val classAttendanceFound = this.query<ClassAttendance>("_id == $0",_id).first().find()
             val studentRecord = StudentRecord().apply {
                 emailId = emailid
                 isPresent = true
                 logStatus = llogStatus
                 timeOfAttendance = Date().toString()
+                classAttendanceFound?.attendanceRecord?.add(this)
+//                this.backlink(classAttendance)
             }
-            classAttendance?.attendanceRecord?.add(studentRecord)
+            studentRecord.backlinks(ClassAttendance::attendanceRecord)
         }
     }
 
@@ -91,6 +99,26 @@ class ClassAttendanceManager {
         return classAttendance
     }
 
+    suspend fun getAllStudentRecords(){
+        val realm = realmModule.realm
+//        var enrolledStudents = realm.query<StudentRecord>().find()
+//        var users = realm.query<UserRole>().find()
+
+        var enrolledStudents = realm.query<ClassAttendance>().find()
+//        this.copyToRealm(course)
+//        val user = realm.query<UserRole>("user_id == $0",
+//            app.currentUser?.id?.let { ObjectId(it) }).first().find()
+        var courses = realm.query<Course>().find()
+//        val functionResponse = app.currentUser?.functions
+//            ?.call<BsonDocument>("addCourseToUser",ObjectId())
+//        Log.d("user", "user usha function :: ${functionResponse}")
+        Log.d("class attendande ---  ::","$enrolledStudents")
+//        Log.d(" Users ---  ::","$users")
+        Log.d(" Courses ---  ::","$courses")
+        Log.d(" Courses ---  ::","$courses")
+//        app.currentUser.functions
+        Log.d("Current User ---  ::","${app.currentUser?.profileAsBsonDocument()}")
+    }
 
 //
 //    fun removeStudentRecord(StudentRecord: StudentRecord) {

@@ -31,6 +31,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import io.realm.kotlin.ext.realmListOf
 import io.realm.kotlin.mongodb.User
+import io.realm.kotlin.mongodb.ext.customDataAsBsonDocument
+import io.realm.kotlin.mongodb.ext.profileAsBsonDocument
 import io.realm.kotlin.mongodb.subscriptions
 import io.realm.kotlin.query.RealmResults
 import io.realm.kotlin.types.RealmList
@@ -116,16 +118,21 @@ class Home : Fragment() {
             startActivity(intent)
         }
         view.findViewById<CardView>(R.id.addNewCourseCard).setOnClickListener {
+//            CoroutineScope(Dispatchers.Main).launch {
+//                ClassAttendanceManager().getAllStudentRecords()
+//                app.currentUser?.refreshCustomData()
+//                Log.d("Enrolled Students ::","${app.currentUser?.profileAsBsonDocument()}")
+//                Log.d("Enrolled Students Refresh ","${app.currentUser?.refreshCustomData()}")
+//                Log.d("Enrolled Students :: ---","${app.currentUser?.functions?.user?.customDataAsBsonDocument()}")
+//
+//            }
+            CoroutineScope(Dispatchers.Main).launch {
+                ClassAttendanceManager().getAllStudentRecords()
+            }
             val intent = Intent(this@Home.requireContext(), AddNewCourse::class.java)
             startActivity(intent)
 //            var classAttendanceId = ClassAttendanceManager().createAttendanceRecord(courseList.first()._id)
-//            CoroutineScope(Dispatchers.Main).launch {
-//                ClassAttendanceManager().addStudentRecord(
-//                    classAttendanceId,
-//                    "yashsahu@gmail.com",
-//                    "success",
-//                )
-//            }
+
         }
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -173,7 +180,7 @@ class Home : Fragment() {
                             courseList.add(course)
                         }
                     }
-                    Log.d("Course ::: ", "Course list hai bhai ----> $courseList")
+                    Log.d("Course ::: ", "Course user BSon ----> ${app.currentUser?.customDataAsBsonDocument()}")
                     Log.d(
                         "Course ::: ",
                         "Course hai course hai ----> ${CourseRepository().getAllCourse()}"
@@ -185,11 +192,11 @@ class Home : Fragment() {
                 }
             }
         }
-
-        Log.d(
-            "Course ::: ",
-            "Course hai course hai ----> ${CourseRepository().getAllCourse()}"
-        )
+//
+//        Log.d(
+//            "Course ::: ",
+//            "Course hai course hai ----> ${CourseRepository().getAllCourse()}"
+//        )
     }
 
 }

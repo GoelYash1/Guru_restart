@@ -8,7 +8,6 @@ import com.axyz.upasthithguru.apidata.LoginRequest
 import com.axyz.upasthithguru.apidata.ResponseObj
 import com.axyz.upasthithguru.apidata.SignupRequest
 import com.axyz.upasthithguru.app
-import com.axyz.upasthithguru.domain.UserRole
 import com.axyz.upasthithguru.other.Resource
 import dagger.Module
 import dagger.Provides

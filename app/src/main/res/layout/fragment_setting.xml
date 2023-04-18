@@ -187,6 +187,7 @@
             app:cardCornerRadius="10dp">
 
             <RelativeLayout
+                android:id="@+id/signout_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"

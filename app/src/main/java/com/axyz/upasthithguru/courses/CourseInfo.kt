@@ -52,6 +52,7 @@ class CourseInfo : AppCompatActivity() {
         attendanceCalendar = binding.courseInfoAttendanceCalendar
         enrolledStudents.setOnClickListener {
             val intent = Intent(this,StudentsEnrolled::class.java)
+            intent.putExtra("Course Id",courseId.toByteArray())
             startActivity(intent)
         }
         // Setting their text values

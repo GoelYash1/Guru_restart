@@ -1,12 +1,15 @@
 package com.axyz.upasthithguru.Realm
 
 import android.util.Log
+import com.axyz.upasthithguru.app
 //import com.axyz.upasthithguru.data.RealmSyncRepository
 import com.axyz.upasthithguru.data.realmModule
 //import com.axyz.upasthithguru.data.RealmModule
 import io.realm.kotlin.Realm
+import io.realm.kotlin.ext.backlinks
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.ext.realmListOf
+import io.realm.kotlin.mongodb.ext.call
 import io.realm.kotlin.query.RealmQuery
 import io.realm.kotlin.query.RealmResults
 import io.realm.kotlin.types.EmbeddedRealmObject
@@ -14,6 +17,8 @@ import io.realm.kotlin.types.EmbeddedRealmObject
 import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
+import kotlinx.coroutines.runBlocking
+import org.mongodb.kbson.BsonDocument
 import org.mongodb.kbson.ObjectId
 import java.util.*
 import javax.inject.Inject
@@ -29,17 +34,16 @@ class Course() : RealmObject {
     var courseDepartment: String = ""
     var courseYear: String = ""
     var courseSemester: String = ""
-    var serviceIdForInstructor: String = ""
-//    val instructors: MutableList<Instructor> = mutableListOf()
-//    var enrolledStudentsData: MutableList<EnrolledStudent> = mutableListOf()
-//    var courseAttendance: MutableList<ClassAttendance> = mutableListOf()
-    var courseAttendances: RealmList<ClassAttendance> = realmListOf<ClassAttendance>()
-    var enrolledStudents: RealmList<EnrolledStudent> = realmListOf<EnrolledStudent>()
-//    var addresses: RealmList<Address> = realmListOf()
+    var createdByInstructor: String = ""
+    var courseAttendances: RealmList<ClassAttendance> = realmListOf()
+    var enrolledStudents: RealmList<EnrolledStudent> = realmListOf()
+//    val userCourses: RealmResults<UserRole> by backlinks (UserRole::courses)
+
 
     constructor(name:String,courseCode:String) : this() {
         this.name = name
         this.courseCode = courseCode
+        this.createdByInstructor = app.currentUser!!.id
     }
 }
 
@@ -109,16 +113,43 @@ class CourseRepository (){
     }
 
     fun insertCourse(course: Course) {
-        try {
-            val realm = realmModule.realm
-//            realm.subscriptions.waitForSynchronization()
-            realm.writeBlocking {
-                this.copyToRealm(course)
+        runBlocking {
+            try {
+                val realm = realmModule.realm
+                val functionResponse = app.currentUser?.functions
+                    ?.call<BsonDocument>("addCourseToUser",course._id)
+                Log.d("user", "user usha function :: ${functionResponse}")
+                realm.writeBlocking {
+                    this.copyToRealm(course)
+                }
+            } catch (e: Exception) {
+                Log.d("Database Error :: ", "Inserting Course Failed - $e")
             }
-        } catch (e: Exception) {
-            Log.d("Database Error :: ", "Inserting Course Failed - $e")
         }
     }
+
+//    {
+//        "%%user.custom_data.courses": {
+//        "$in": "_id"
+//    }
+//    }
+
+//    fun deleteCourse(id: ObjectId) {
+//        try {
+//            val realm = realmModule.realm
+//            realm.writeBlocking {
+//                val course: Course? =
+//                    this.query<Course>("id == $0", id).first().find()
+//                if (course != null) {
+//                    delete(course)
+//                } else {
+//                    Log.d("Database Error :: ", "Deleting Course Failed - Course NOT FOUND")
+//                }
+//            }
+//        } catch (e: Exception) {
+//            Log.d("Database Error :: ", "Deleting Student Failed - $e")
+//        }
+//    }
 
 //    fun updateCourse(
 //        courseId: String,
