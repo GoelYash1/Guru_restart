@@ -303,9 +303,9 @@ class StartAttendance : AppCompatActivity() {
                         val jsonObject = jsonString?.let { JSONObject(it) }
                         // do something with the JSON object
                         if (jsonObject != null) {
-                            Log.d(TAG,"------> Characteristic Read -> ${jsonObject.get("RollNo") as String}");
+                            Log.d(TAG,"------> Characteristic Read -> ${jsonObject.get("e") as String}");
                             // get the RollNo of the student
-                            val RollNo = addTimeToString(jsonObject.get("RollNo") as String)
+                            val RollNo = addTimeToString(jsonObject.get("e") as String)
 
                             // mark the attendance or store it in the record
                             CoroutineScope(Dispatchers.Main).launch {
@@ -416,7 +416,7 @@ class StartAttendance : AppCompatActivity() {
         ClassAttendanceManager().addStudentRecord(
 //            StudentRecord(
                 classAttendanceId,
-                "yashsahu@gmail.com",
+                studentRollNo,
                 "success",
 //            )
         )
