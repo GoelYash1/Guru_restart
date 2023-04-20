@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         }
         val click_login: Button = binding.clickLogin
         click_login.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            handleSignupFormSubmission()
         }
         val forgot_pass: TextView =binding.forgotPass
         forgot_pass.setOnClickListener {
@@ -98,7 +98,7 @@ class LoginActivity : AppCompatActivity() {
         emailEditText.error = null
         passwordEditText.error = null
 
-        d("Signup Submit ", "Signup $email $password")
+        d("Login Submit ", "Login ---  $email $password")
         val loginUser = LoginRequest(email, password)
         loginViewModel.login(email,password)
 
@@ -128,7 +128,7 @@ class LoginActivity : AppCompatActivity() {
             d("LoginActivity", "Success: $user")
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)
-//                finish()
+                finish()
             }
         })
     }

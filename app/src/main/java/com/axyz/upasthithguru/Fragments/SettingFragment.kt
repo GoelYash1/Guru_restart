@@ -12,6 +12,7 @@ import android.widget.RelativeLayout
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.activity.LoginActivity
 import com.axyz.upasthithguru.app
+import com.axyz.upasthithguru.data.realmModule.realm
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope.coroutineContext
 import kotlinx.coroutines.launch
@@ -22,15 +23,16 @@ class Setting : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-//        var signout_Btn = view?.findViewById<RelativeLayout>(R.id.signout_button)
-////            signout_Btn.se
-//            signout_Btn?.setOnClickListener {
-//                CoroutineScope(coroutineContext).launch {
-//                    app.currentUser?.logOut()
-//                    Log.d("User Logged Out", "User Logged Out")
-//                    startActivity(Intent(requireContext(), LoginActivity::class.java))
-//                }
-//            }
+        var signout_Btn = view?.findViewById<RelativeLayout>(R.id.signout_button)
+//            signout_Btn.se
+        signout_Btn?.setOnClickListener {
+            CoroutineScope(coroutineContext).launch {
+                realm.close()
+                app.currentUser?.logOut()
+                Log.d("User Logged Out", "User Logged Out")
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
+            }
+        }
 
         CoroutineScope(coroutineContext).launch {
             app.currentUser?.logOut()

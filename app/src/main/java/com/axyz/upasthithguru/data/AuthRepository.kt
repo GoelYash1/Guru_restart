@@ -1,7 +1,7 @@
 package com.axyz.upasthithguru.data
 
 import android.util.Log
-import com.axyz.upasthithguru.Realm.ClassAttendance
+//import com.axyz.upasthithguru.Realm.ClassAttendance
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.Realm.StudentRecord
 import com.axyz.upasthithguru.apidata.LoginRequest

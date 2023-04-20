@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.axyz.upasthithguru.Realm.ClassAttendance
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.Realm.EnrolledStudent
 import com.axyz.upasthithguru.Realm.StudentRecord
@@ -15,6 +14,7 @@ import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.mongodb.User
 import io.realm.kotlin.mongodb.exceptions.SyncException
+import io.realm.kotlin.mongodb.ext.customDataAsBsonDocument
 import io.realm.kotlin.mongodb.subscriptions
 import io.realm.kotlin.mongodb.sync.SubscriptionSetState
 import io.realm.kotlin.mongodb.sync.SyncConfiguration
@@ -104,12 +104,16 @@ object realmModule{
         currentUser = app.currentUser!!
         Log.d("INIT REALM ----- ","----------------------- YES ---------------- $currentUser")
         val config: SyncConfiguration
-        config = SyncConfiguration.Builder(currentUser, setOf(EnrolledStudent::class,Course::class, ClassAttendance::class,StudentRecord::class))
+        config = SyncConfiguration.Builder(currentUser, setOf(EnrolledStudent::class,Course::class,StudentRecord::class))
             .initialSubscriptions { realm ->
                 // Subscribe to the active subscriptionType - first time defaults to MINE
 //                if(isJustUp){
                     add(realm.query<Course>(),"Course")
-                    add(realm.query<ClassAttendance>(),"ClassAttendance")
+//                    val userCourses = currentUser.customDataAsBsonDocument()?.getArray("courses")
+//                    userCourses?.forEach{
+//                        add(realm.query<ClassAttendance>("courseIdCA == $0", it))
+//                    }
+//                    add(realm.query<ClassAttendance>(),"ClassAttendance")
                     add(realm.query<StudentRecord>(), "StudentRecord")
 //                    add(realm.query<UserRole>(), "UserRole")
 //                    add(realm.query<UserRole>("user_id == $0", currentUser.id), "UserRole")
@@ -160,7 +164,7 @@ object realmModule{
 //            SubscriptionType.USER_ROLE.name -> SubscriptionType.USER_ROLE
             SubscriptionType.COURSE.name -> SubscriptionType.COURSE
             SubscriptionType.STUDENT_RECORD.name -> SubscriptionType.STUDENT_RECORD
-            SubscriptionType.CLASS_ATTENDANCE.name -> SubscriptionType.CLASS_ATTENDANCE
+//            SubscriptionType.CLASS_ATTENDANCE.name -> SubscriptionType.CLASS_ATTENDANCE
             else -> throw IllegalArgumentException("Invalid Realm Sync subscription: '$name'")
         }
     }
@@ -172,8 +176,9 @@ object realmModule{
 //            SubscriptionType.USER_ROLE -> realm.query<UserRole>()
             SubscriptionType.COURSE -> realm.query<Course>()
             SubscriptionType.STUDENT_RECORD -> realm.query<StudentRecord>()
-            SubscriptionType.CLASS_ATTENDANCE -> realm.query<ClassAttendance>()
+//            SubscriptionType.CLASS_ATTENDANCE -> realm.query<ClassAttendance>()
         }
+    fun close() = realm.close()
 }
 
 enum class SubscriptionType {
@@ -181,7 +186,7 @@ enum class SubscriptionType {
 //    ALL ,
 //    USER_ROLE,
     COURSE,
-    CLASS_ATTENDANCE,
+//    CLASS_ATTENDANCE,
     STUDENT_RECORD,
 }
 

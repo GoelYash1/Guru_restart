@@ -23,15 +23,17 @@ class StudentsEnrolled : AppCompatActivity() {
         val passedId = intent.getByteArrayExtra("Course Id")?.let { BsonObjectId(it) }!!
 //        courseId = passedId
         enrollStudents.setOnClickListener {
-//            startActivity(Intent(this,EnrollStudentForm::class.java))
+            startActivity(Intent(this,EnrollStudentForm::class.java))
 //            EnrollStudentsManager().enrollStudent(passedId,"y@gmail.com","Yash")
 //            EnrollStudentsManager().getAllEnrolledStudent()
 //            CoroutineScope()
             CoroutineScope(Dispatchers.Main).launch {
-                ClassAttendanceManager().getAllStudentRecords()
+//                ClassAttendanceManager().getAllStudentRecords()
+                            val isenrolled = EnrollStudentsManager().enrollStudent(passedId)
+                Log.d("Enrolled Ho gya ::","${isenrolled}")
             }
 //            ClassAttendanceManager().getAllStudentRecords()
-            Log.d("Enrolled Students ::","${app.currentUser}")
+//            Log.d("Enrolled Students ::","${app.currentUser}")
 
         }
     }

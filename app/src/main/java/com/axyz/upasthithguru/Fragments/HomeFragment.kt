@@ -186,6 +186,7 @@ class Home : Fragment() {
                         "Course hai course hai ----> ${CourseRepository().getAllCourse()}"
                     )
 //                 Do something when the Realm data is synced
+                    courseListAdapter.notifyDataSetChanged()
                 } else {
                     // Do something when the Realm data is not synced yet
                     Log.d("Sync Update :: ", "------- Sync NOT-COMPLETED ------- ")

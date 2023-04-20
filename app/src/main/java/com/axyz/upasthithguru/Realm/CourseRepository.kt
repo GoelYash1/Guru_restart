@@ -35,15 +35,17 @@ class Course() : RealmObject {
     var courseYear: String = ""
     var courseSemester: String = ""
     var createdByInstructor: String = ""
-    var courseAttendances: RealmList<ClassAttendance> = realmListOf()
-    var enrolledStudents: RealmList<EnrolledStudent> = realmListOf()
+//    var courseAttendances: RealmList<ClassAttendance> = realmListOf()
+    var enrolledStudents: RealmList<ObjectId> = realmListOf()
+//    var enrolledStudents: RealmList<EnrolledStudent> = realmListOf()
 //    val userCourses: RealmResults<UserRole> by backlinks (UserRole::courses)
-
+    var totalNoOfClasses: Int = 0
 
     constructor(name:String,courseCode:String) : this() {
         this.name = name
         this.courseCode = courseCode
         this.createdByInstructor = app.currentUser!!.id
+        this.totalNoOfClasses = 0
     }
 }
 
@@ -66,18 +68,7 @@ class Course() : RealmObject {
 
 @Singleton
 class CourseRepository (){
-//    @Inject
-//    lateinit var realmSyncRepository: RealmSyncRepository
 
-//    val realm = realmModule.getDefaultInstance()
-
-//    var realmSyncRepository = RealmSyncRepository.getInstance(onSyncError)
-//    private val realmSyncRepository = RealmSyncRepository { session, error ->
-//        // onSyncError implementation here
-//    }
-
-
-//        fun getAllCourse(): Course {
     fun getAllCourse(): RealmResults<Course> {
 //        realmModule.getStatus();
         val realm = realmModule.realm
@@ -95,9 +86,7 @@ class CourseRepository (){
 //        }
     }
 
-//    init{
-//        HiltInjector.inject(this)
-//    }
+
     fun examTry() {
 //        realm.writeBlocking {
 //            val course = copyToRealm(Course())

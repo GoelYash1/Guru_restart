@@ -21,25 +21,30 @@ class EnrolledStudent : RealmObject {
     var invitationStatus: String="sent"
     var date: String = ""
     var studentId: String=""
-    val course: RealmResults<Course> by backlinks (Course::enrolledStudents)
+//    val course: RealmResults<Course> by backlinks (Course::enrolledStudents)
 }
 @Singleton
 class EnrollStudentsManager {
-    fun enrollStudent(_id: ObjectId, studentEmail: String, studentName: String){
+//    fun enrollStudent(_id: ObjectId, studentEmail: String, studentName: String){
+    fun enrollStudent(_id: ObjectId){
+
         val realm = realmModule.realm
         var studentToEnroll = EnrolledStudent()
         var doesStudentExist = false
         realm.writeBlocking {
             val course = this.query<Course>("_id == $0", _id ).first().find()
-            doesStudentExist = course?.enrolledStudents?.any { it.email == studentEmail } == true
-            if (doesStudentExist != true) {
-                studentToEnroll = EnrolledStudent().apply {
-                    name = studentName
-                    email = studentEmail
-                    date = Date().toString()
+//            doesStudentExist = course?.enrolledStudents?.any { it.email == studentEmail } == true
+//            if (doesStudentExist != true) {
+//                studentToEnroll = EnrolledStudent().apply {
+//                    name = studentName
+//                    email = studentEmail
+//                    date = Date().toString()
+//                }
+                val studend_id = app.currentUser?.id
+                if(!studend_id.isNullOrBlank()){
+                    course?.enrolledStudents?.add(ObjectId(studend_id))
                 }
-                course?.enrolledStudents?.add(studentToEnroll)
-            }
+//            }
         }
         if(doesStudentExist){
             Log.d("Error ::","Student Already Exits")

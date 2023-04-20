@@ -20,9 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.axyz.upasthithguru.*
 import com.axyz.upasthithguru.Realm.ClassAttendanceManager
-import com.axyz.upasthithguru.adapters.studentAttendanceListAdapter
 import com.axyz.upasthithguru.databinding.ScanForAttendenceBinding
-import com.axyz.upasthithguru.fragments.selectedCoursePassed
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +32,7 @@ import org.json.JSONObject
 import org.mongodb.kbson.ObjectId
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.properties.Delegates
 
 // TODO refactor the code and look at the stopAttendanceButton for more info
 class StartAttendance : AppCompatActivity() {
@@ -46,7 +45,7 @@ class StartAttendance : AppCompatActivity() {
     val classAttendanceManager = ClassAttendanceManager()
     val deviceSet = mutableListOf<DiscoveredBluetoothDevice>()
     val rollList = mutableListOf<String>()
-    lateinit var classAttendanceId :ObjectId
+    var classAttendanceId by Delegates.notNull<Int>()
     lateinit var studentsPresent: TextView
     @SuppressLint("MissingPermission")
     @RequiresApi(Build.VERSION_CODES.S)
@@ -119,7 +118,7 @@ class StartAttendance : AppCompatActivity() {
             // Redirect to another activity
             val intent = Intent(this, ViewStudentAttendance::class.java)
             intent.putExtra("Attendance Date",formattedDate)
-            intent.putExtra("Student Course Attendance Id", classAttendanceId.toByteArray())
+//            intent.putExtra("Student Course Attendance Id", classAttendanceId.toByteArray())
             startActivity(intent)
             finish()
         }
@@ -422,7 +421,7 @@ class StartAttendance : AppCompatActivity() {
         )
 
 //        classAttendanceManager.addStudentRecord(StudentRecord(emailid, true, "success", Date()))
-        Log.d(TAG,"${ClassAttendanceManager().getClassAttendanceRecord(classAttendanceId)?.attendanceRecord?.get(rollList.count()-1)?.emailId}------> Added Record to the Database")
+//        Log.d(TAG,"${ClassAttendanceManager().getClassAttendanceRecord(classAttendanceId)?.attendanceRecord?.get(rollList.count()-1)?.emailId}------> Added Record to the Database")
     }
 
     fun addTimeToString(s: String): String {
