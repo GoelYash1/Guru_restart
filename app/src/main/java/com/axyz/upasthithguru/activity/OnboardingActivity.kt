@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -72,9 +73,9 @@ class OnboardingActivity : AppCompatActivity() {
                 navigateToHomeActivity()
             }
         }
-//        findViewById<TextView>(R.id.textSkip).setOnClickListener {
-//            navigateToHomeActivity()
-////        }
+        findViewById<TextView>(R.id.textSkip).setOnClickListener {
+            navigateToHomeActivity()
+        }
 //        findViewById<MaterialButton>(R.id.btn_get_start).setOnClickListener {
 //            navigateToHomeActivity()
 //        }

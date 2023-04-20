@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.app
@@ -22,12 +23,12 @@ class EntryActivity : AppCompatActivity() {
         binding = ActivityEntryBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val btn_new_journey = findViewById<Button>(R.id.btn_new_journey)
+        val btn_new_journey = findViewById<AppCompatButton>(R.id.btn_new_journey)
         btn_new_journey.setOnClickListener {
             navigateToRegisterActivity()
         }
 
-        val btn_continue_journey = findViewById<Button>(R.id.btn_continue_journey)
+        val btn_continue_journey = findViewById<AppCompatButton>(R.id.btn_continue_journey)
         btn_continue_journey.setOnClickListener {
             navigateToLoginActivity()
         }

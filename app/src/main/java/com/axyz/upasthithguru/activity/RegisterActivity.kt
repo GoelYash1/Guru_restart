@@ -34,13 +34,13 @@ class RegisterActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.input_password)
         signupViewModel = ViewModelProvider(this)[SignupViewModel::class.java]
 
-        val alreadyhaveaccount = findViewById<TextView>(R.id.alreadyhaveaccount)
+        val alreadyhaveaccount = findViewById<TextView>(R.id.text_signIn)
 
         alreadyhaveaccount.setOnClickListener {
             navigateToLoginActivity()
         }
 
-        val click_register = findViewById<Button>(R.id.click_register)
+        val click_register = findViewById<Button>(R.id.btn_create)
         click_register.setOnClickListener {
             handleSignupFormSubmission()
         }

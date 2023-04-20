@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/onbg1"
-
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -20,11 +19,10 @@
         android:id="@+id/indicatorsContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="35dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
@@ -32,7 +30,7 @@
         android:id="@+id/image_next"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="545dp"
         android:contentDescription="OnBoarding"
         android:src="@drawable/swiperight"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,6 +39,20 @@
         app:layout_constraintTop_toTopOf="@+id/onboardingViewPager"
         />
 
+    <TextView
+        android:id="@+id/textSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:text="Skip"
+        android:textColor="@color/custom_color_bg"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/onboardingViewPager"
+        app:layout_constraintEnd_toEndOf="@id/image_next"
+        app:layout_constraintStart_toStartOf="@id/image_next"
+
+        app:layout_constraintTop_toBottomOf="@id/image_next" />
 
 
 
