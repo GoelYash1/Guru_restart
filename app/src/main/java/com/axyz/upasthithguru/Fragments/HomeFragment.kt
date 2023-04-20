@@ -113,7 +113,7 @@ class Home : Fragment() {
             }
         })
 
-        view.findViewById<ImageView>(R.id.settingProfileImageView).setOnClickListener{
+        view.findViewById<ImageView>(R.id.homeProfileImageView).setOnClickListener{
             val intent = Intent(this@Home.requireContext(), Profile::class.java)
             startActivity(intent)
         }
