@@ -4,6 +4,7 @@ import android.util.Log
 import com.axyz.upasthithguru.app
 //import com.axyz.upasthithguru.data.RealmSyncRepository
 import com.axyz.upasthithguru.data.realmModule
+import com.axyz.upasthithguru.data.realmModule.realm
 //import com.axyz.upasthithguru.data.RealmModule
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.backlinks
@@ -37,8 +38,7 @@ class Course() : RealmObject {
     var createdByInstructor: String = ""
 //    var courseAttendances: RealmList<ClassAttendance> = realmListOf()
     var enrolledStudents: RealmList<ObjectId> = realmListOf()
-//    var enrolledStudents: RealmList<EnrolledStudent> = realmListOf()
-//    val userCourses: RealmResults<UserRole> by backlinks (UserRole::courses)
+    var enrolledStudent: RealmList<String> = realmListOf()
     var totalNoOfClasses: Int = 0
 
     constructor(name:String,courseCode:String) : this() {
@@ -105,9 +105,9 @@ class CourseRepository (){
         runBlocking {
             try {
                 val realm = realmModule.realm
-                val functionResponse = app.currentUser?.functions
-                    ?.call<BsonDocument>("addCourseToUser",course._id)
-                Log.d("user", "user usha function :: ${functionResponse}")
+//                val functionResponse = app.currentUser?.functions
+//                    ?.call<BsonDocument>("addCourseToUser",course._id)
+//                Log.d("user", "user usha function :: ${functionResponse}")
                 realm.writeBlocking {
                     this.copyToRealm(course)
                 }
@@ -315,13 +315,13 @@ class CourseRepository (){
 //        }
 //    }
 //
-//    fun getCourse(id: String): Course? {
-//        return try {
-//            realm.query<Course>("id == $0", id).first().find()
-//        } catch (e: Exception) {
-//            Log.d("Database Error :: ", "Failed to Get Course - $e")
-//            null
-//        }
-//    }
+    fun getCourse(id: ObjectId): Course? {
+        return try {
+            realm.query<Course>("_id == $0", id).first().find()
+        } catch (e: Exception) {
+            Log.d("Database Error :: ", "Failed to Get Course - $e")
+            null
+        }
+    }
 //
 }

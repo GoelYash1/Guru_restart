@@ -4,9 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import com.axyz.upasthithg.Realm.StudentRecord
 import com.axyz.upasthithguru.Realm.Course
-import com.axyz.upasthithguru.Realm.EnrolledStudent
-import com.axyz.upasthithguru.Realm.StudentRecord
+//import com.axyz.upasthithguru.Realm.EnrolledStudent
+import com.axyz.upasthithguru.Realm.InvitationRecord
 import com.axyz.upasthithguru.app
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -94,44 +95,57 @@ import kotlin.time.Duration.Companion.seconds
 //}
 
 @Singleton
-object realmModule{
+object realmModule {
     val realm: Realm
     var currentUser: User
     private val _isSynced = MutableLiveData<Boolean>()
     val isSynced: LiveData<Boolean>
         get() = _isSynced
-    init{
+
+    init {
         currentUser = app.currentUser!!
-        Log.d("INIT REALM ----- ","----------------------- YES ---------------- $currentUser")
+        Log.d("INIT REALM ----- ", "----------------------- YES ---------------- $currentUser")
         val config: SyncConfiguration
-        config = SyncConfiguration.Builder(currentUser, setOf(EnrolledStudent::class,Course::class,StudentRecord::class))
-            .initialSubscriptions { realm ->
+        config = SyncConfiguration.Builder(
+            currentUser, setOf(InvitationRecord::class, Course::class, StudentRecord::class)
+        ).initialSubscriptions { realm ->
                 // Subscribe to the active subscriptionType - first time defaults to MINE
 //                if(isJustUp){
-                    add(realm.query<Course>(),"Course")
+                add(realm.query<Course>(), "Course")
 //                    val userCourses = currentUser.customDataAsBsonDocument()?.getArray("courses")
 //                    userCourses?.forEach{
 //                        add(realm.query<ClassAttendance>("courseIdCA == $0", it))
 //                    }
 //                    add(realm.query<ClassAttendance>(),"ClassAttendance")
-                    add(realm.query<StudentRecord>(), "StudentRecord")
+                add(realm.query<StudentRecord>(), "StudentRecord")
 //                    add(realm.query<UserRole>(), "UserRole")
 //                    add(realm.query<UserRole>("user_id == $0", currentUser.id), "UserRole")
-                    add(realm.query<EnrolledStudent>(), "EnrolledStudent")
-                    add(realm.query<Course>("createdByInstructor == $0", currentUser.id),"ReadWriteOnlyInstructorCreatedIt")
+                val teacherEmail = app.currentUser?.customDataAsBsonDocument()?.getValue("email")
+                    ?.asString()?.value.toString()
+
+                add(
+                    realm.query<InvitationRecord>("invitedByTeacherEmail == $0", teacherEmail),
+                    "InvitationRecord"
+                )
+                add(realm.query<InvitationRecord>(), "InvitationRecordALL")
+                add(
+                    realm.query<Course>("createdByInstructor == $0", currentUser.id),
+                    "ReadWriteOnlyInstructorCreatedIt"
+                )
+                add(
+                    realm.query<StudentRecord>("markedByTeacherId == $0", currentUser.id),
+                    "ReadWriteOnlyInstructor"
+                )
 //                    isJustUp=false
 //                }
 
                 val activeSubscriptionType = getActiveSubscriptionType(realm)
                 add(getQuery(realm, activeSubscriptionType), activeSubscriptionType.name)
-                Log.d("INIT REALM Subs ","Active Subs ${realm.subscriptions.state}")
-            }
-            .errorHandler { session: SyncSession, error: SyncException ->
+                Log.d("INIT REALM Subs ", "Active Subs ${realm.subscriptions.state}")
+            }.errorHandler { session: SyncSession, error: SyncException ->
 //                onSyncError.invoke(session, error)
-                Log.e("Sync Error ","${error.message}")
-            }
-            .waitForInitialRemoteData()
-            .build()
+                Log.e("Sync Error ", "${error.message}")
+            }.waitForInitialRemoteData().build()
         realm = Realm.open(config)
         // Mutable states must be updated on the UI thread
         CoroutineScope(Dispatchers.Main).launch {
@@ -152,6 +166,7 @@ object realmModule{
             _isSynced.postValue(true)
         }
     }
+
     fun getActiveSubscriptionType(realm: Realm?): SubscriptionType {
         val realmInstance = realm ?: this.realm
         val subscriptions = realmInstance.subscriptions
@@ -169,24 +184,27 @@ object realmModule{
         }
     }
 
-    private fun getQuery(realm: Realm, subscriptionType: SubscriptionType): RealmQuery<out RealmObject> =
-        when (subscriptionType) {
+    private fun getQuery(
+        realm: Realm, subscriptionType: SubscriptionType
+    ): RealmQuery<out RealmObject> = when (subscriptionType) {
 //            SubscriptionType.MINE -> realm.query("owner_id == $0", currentUser.id)
 //            SubscriptionType.ALL -> realm.query()
 //            SubscriptionType.USER_ROLE -> realm.query<UserRole>()
-            SubscriptionType.COURSE -> realm.query<Course>()
-            SubscriptionType.STUDENT_RECORD -> realm.query<StudentRecord>()
+        SubscriptionType.COURSE -> realm.query<Course>()
+        SubscriptionType.STUDENT_RECORD -> realm.query<StudentRecord>()
 //            SubscriptionType.CLASS_ATTENDANCE -> realm.query<ClassAttendance>()
-        }
+    }
+
     fun close() = realm.close()
 }
 
 enum class SubscriptionType {
-//    MINE,
+    //    MINE,
 //    ALL ,
 //    USER_ROLE,
     COURSE,
-//    CLASS_ATTENDANCE,
+
+    //    CLASS_ATTENDANCE,
     STUDENT_RECORD,
 }
 

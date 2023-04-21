@@ -18,8 +18,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.axyz.upasthithg.Realm.ClassAttendanceManager
 import com.axyz.upasthithguru.*
-import com.axyz.upasthithguru.Realm.ClassAttendanceManager
 import com.axyz.upasthithguru.databinding.ScanForAttendenceBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
@@ -47,13 +47,14 @@ class StartAttendance : AppCompatActivity() {
     val rollList = mutableListOf<String>()
     var classAttendanceId by Delegates.notNull<Int>()
     lateinit var studentsPresent: TextView
+    lateinit var passedId: ObjectId
     @SuppressLint("MissingPermission")
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ScanForAttendenceBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val passedId = intent.getByteArrayExtra("Class Attendance Id")?.let { ObjectId(it) }!!
+        passedId = intent.getByteArrayExtra("Class Attendance Id")?.let { ObjectId(it) }!!
         classAttendanceId = passedId?.let { ClassAttendanceManager().createAttendanceRecord(it)}!!
         Log.d(TAG,"Class Attendance Id -----------------> $classAttendanceId")
         val time: TextView = binding.startAttendanceeCurrentTime
@@ -409,15 +410,13 @@ class StartAttendance : AppCompatActivity() {
         studentsPresent = binding.startAttendancePresentStudents
         studentsPresent.text = "Present Students: " + rollList.count().toString() + "/ 80"
         Log.d("Roll Count ", rollList.count().toString())
-        val emailid =
-            getSharedPreferences("upasthithGuru", Context.MODE_PRIVATE).getString("email", "") ?: ""
+//        val emailid =
+//            getSharedPreferences("upasthithGuru", Context.MODE_PRIVATE).getString("email", "") ?: ""
 
         ClassAttendanceManager().addStudentRecord(
-//            StudentRecord(
+                  passedId,
                 classAttendanceId,
-                studentRollNo,
-                "success",
-//            )
+            "$studentRollNo@gmail.com",
         )
 
 //        classAttendanceManager.addStudentRecord(StudentRecord(emailid, true, "success", Date()))

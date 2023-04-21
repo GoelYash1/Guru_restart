@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.axyz.upasthithguru.Realm.ClassAttendanceManager
 //import com.axyz.upasthithguru.adapters.studentAttendanceListAdapter
 import com.axyz.upasthithguru.databinding.ActivityViewStudentAttendanceBinding
 import kotlinx.coroutines.CoroutineScope

@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.axyz.upasthithguru.R
-import com.axyz.upasthithguru.Realm.ClassAttendanceManager
 
 //class studentAttendanceListAdapter(private val classAttendance: ClassAttendance) :
 //    RecyclerView.Adapter<studentAttendanceListAdapter.ViewHolder>() {

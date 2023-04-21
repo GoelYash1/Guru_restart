@@ -16,6 +16,7 @@ import com.axyz.upasthithguru.data.realmModule.realm
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope.coroutineContext
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class Setting : Fragment() {
     override fun onCreateView(
@@ -23,21 +24,14 @@ class Setting : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var signout_Btn = view?.findViewById<RelativeLayout>(R.id.signout_button)
-//            signout_Btn.se
+        val signout_Btn = view?.findViewById<RelativeLayout>(R.id.signout_button)
         signout_Btn?.setOnClickListener {
-            CoroutineScope(coroutineContext).launch {
+            runBlocking{
                 realm.close()
                 app.currentUser?.logOut()
                 Log.d("User Logged Out", "User Logged Out")
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
             }
-        }
-
-        CoroutineScope(coroutineContext).launch {
-            app.currentUser?.logOut()
-            Log.d("User Logged Out", "User Logged Out")
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
         // Inflate the layout for this fragment

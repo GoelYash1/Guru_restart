@@ -16,8 +16,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.axyz.upasthithg.Realm.ClassAttendanceManager
 import com.axyz.upasthithguru.R
-import com.axyz.upasthithguru.Realm.ClassAttendanceManager
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.activity.Profile
 import com.axyz.upasthithguru.Realm.CourseRepository

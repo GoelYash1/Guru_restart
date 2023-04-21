@@ -1,4 +1,6 @@
-package com.axyz.upasthithguru.Realm
+package com.axyz.upasthithg.Realm
+
+import com.axyz.upasthithguru.Realm.Course
 
 import android.util.Log
 import com.axyz.upasthithguru.app
@@ -19,8 +21,9 @@ import javax.inject.Singleton
 class StudentRecord : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
-    var student_id: ObjectId = ObjectId()
-    var emailId: String =""
+    var markedByTeacherId: String = ""
+    var courseId: String=""
+    var studentEmailId: String =""
     var classNumber:Int = 0
     var isPresent: Boolean = false
     var timeOfAttendance: String=""
@@ -50,36 +53,29 @@ class ClassAttendanceManager {
     fun createAttendanceRecord(_id: ObjectId):Int {
         val realm = realmModule.realm
         var ttlClasses = 0;
+        Log.d("Incrementing","Incrementing the  Class No.")
         realm.writeBlocking {
             val course = this.query<Course>("_id == $0", _id ).first().find()
-            course?.apply {
-                this.totalNoOfClasses = this.totalNoOfClasses+1
-            }
-            ttlClasses= course?.totalNoOfClasses!!
-//            course?.courseAttendances?.add(classAttendance)
-//            classAttendance?.courseAttendances?.add(course)
-
+            course?.totalNoOfClasses = course?.totalNoOfClasses?.plus(1)!!
+            Log.d("Updated Course ::","${course?.totalNoOfClasses}")
         }
-//        classAttendance.backlinks(Course::courseAttendances)
-//        Log.d("Course Created ::","courese ${classAttendance._id}")
-//        return classAttendance._id
         return ttlClasses
     }
 
-    suspend fun addStudentRecord(classNo: Int, emailid: String, llogStatus:String) {
+    suspend fun addStudentRecord(_id: ObjectId,classNo: Int, emailid: String) {
         val realm = realmModule.realm
         realm.write{
-//            val course = this.query<Course>("_id == $0",_id).first().find()
+            val course = this.query<Course>("_id == $0",_id).first().find()
 //            val classAttendanceFound = this.query<ClassAttendance>("_id == $0",_id).first().find()
-            StudentRecord().apply {
-                student_id = app.currentUser?.id?.let { ObjectId(it) }!!
+            val student = StudentRecord().apply {
+                markedByTeacherId = course?.createdByInstructor.toString()
+                courseId = _id.toHexString()
                 classNumber = classNo
-                emailId = emailid
+                studentEmailId = emailid
                 isPresent = true
                 timeOfAttendance = Date().toString()
-//                classAttendanceFound?.attendanceRecord?.add(this)
-//                this.backlink(classAttendance)
             }
+            this.copyToRealm(student)
         }
     }
 
