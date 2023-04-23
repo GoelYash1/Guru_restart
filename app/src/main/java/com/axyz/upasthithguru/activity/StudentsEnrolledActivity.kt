@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import com.axyz.upasthithg.Realm.ClassAttendanceManager
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.EnrollStudentsManager
 import com.axyz.upasthithguru.Realm.InvitationRecord
@@ -77,9 +78,9 @@ class StudentsEnrolledActivity : AppCompatActivity() {
 //
 ////                Log.d("Enrolled Ho gya ::","${isenrolled}")
 //            }
-//            ClassAttendanceManager().getAllStudentRecords()
-//            Log.d("Enrolled Students ::","${app.currentUser}")
 
         }
+            val studends = ClassAttendanceManager().getAllStudentRecords(passedId.toHexString())
+            Log.d("Enrolled Students ::","${studends}")
     }
 }

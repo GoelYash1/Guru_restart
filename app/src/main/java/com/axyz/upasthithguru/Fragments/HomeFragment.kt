@@ -126,9 +126,9 @@ class Home : Fragment() {
 //                Log.d("Enrolled Students :: ---","${app.currentUser?.functions?.user?.customDataAsBsonDocument()}")
 //
 //            }
-            CoroutineScope(Dispatchers.Main).launch {
-                ClassAttendanceManager().getAllStudentRecords()
-            }
+//            CoroutineScope(Dispatchers.Main).launch {
+//                ClassAttendanceManager().getAllStudentRecords()
+//            }
             val intent = Intent(this@Home.requireContext(), AddNewCourse::class.java)
             startActivity(intent)
 //            var classAttendanceId = ClassAttendanceManager().createAttendanceRecord(courseList.first()._id)

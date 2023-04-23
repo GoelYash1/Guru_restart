@@ -3,6 +3,7 @@ package com.axyz.upasthithg.Realm
 import com.axyz.upasthithguru.Realm.Course
 
 import android.util.Log
+import com.axyz.upasthithguru.Realm.InvitationRecord
 import com.axyz.upasthithguru.app
 import com.axyz.upasthithguru.data.realmModule
 import io.realm.kotlin.ext.backlinks
@@ -85,9 +86,12 @@ class ClassAttendanceManager {
 //        return classAttendance
 //    }
 
-    suspend fun getAllStudentRecords(){
+    fun getAllStudentRecords(courseId:String): RealmResults<InvitationRecord> {
         val realm = realmModule.realm
-//        var enrolledStudents = realm.query<StudentRecord>().find()
+        var enrolledStudents = realm.query<InvitationRecord>("courseId == $0",courseId).find()
+//        var enrolledStudents = realm.query<InvitationRecord>("courseId == $0 AND status == $1",courseId,"accepted").find()
+
+        return enrolledStudents
 //        var users = realm.query<UserRole>().find()
 
 //        var enrolledStudents = realm.query<ClassAttendance>().find()
