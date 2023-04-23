@@ -1,25 +1,19 @@
 package com.axyz.upasthithguru.courses
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.CalendarView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.axyz.upasthithg.Realm.ClassAttendanceManager
 import com.axyz.upasthithg.Realm.StudentRecord
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.Realm.CourseRepository
-import com.axyz.upasthithguru.activity.StudentsEnrolled
+import com.axyz.upasthithguru.activity.StudentsEnrolledActivity
 import com.axyz.upasthithguru.data.realmModule.realm
 import com.axyz.upasthithguru.databinding.ActivityCourseInfoBinding
 import io.realm.kotlin.ext.query
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
 
@@ -59,7 +53,7 @@ class CourseInfo : AppCompatActivity() {
         // Calendar View
         attendanceCalendar = binding.courseInfoAttendanceCalendar
         enrolledStudents.setOnClickListener {
-            val intent = Intent(this,StudentsEnrolled::class.java)
+            val intent = Intent(this,StudentsEnrolledActivity::class.java)
             intent.putExtra("Course Id",courseId.toByteArray())
             startActivity(intent)
         }

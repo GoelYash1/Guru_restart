@@ -10,69 +10,98 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         >
-        <TextView
-            android:id="@+id/text_student_list"
-            android:layout_centerHorizontal="true"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/inviteNewStudent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circled_button"
+            android:backgroundTint="@color/custom_color_card"
+            android:text="Invite A New Student" />
+
+        <LinearLayout
+            android:id="@+id/inviteNewStudentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical"
+            android:background="#DCDCDC"
+            android:elevation="8dp"
+            android:layout_below="@id/inviteNewStudent"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/emailField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/sendInvitationButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Send Invitation"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circled_button"
+                android:backgroundTint="@color/custom_color_bg"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_student_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inviteNewStudentLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:text="Student List"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:textColor="@color/custom_color_bg"
-            android:layout_marginTop="36dp"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDStudentList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_above="@+id/btn_uploadStudentList"
             android:layout_below="@id/text_student_list"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
-            android:layout_alignParentBottom="true"
             android:background="@drawable/studentlist_recyclerview_bg"
             android:isScrollContainer="true"
-            android:paddingTop="22dp"
             android:paddingStart="15dp"
+            android:paddingTop="22dp"
             android:paddingEnd="15dp"
             android:paddingBottom="10dp"
             tools:listitem="@layout/item_student" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_uploadStudentList"
-            android:layout_width="154dp"
-            android:layout_height="35dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/rectangular_input_bg"
-            android:backgroundTint="@color/custom_color_bg"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:text="Upload Student List"
-            tools:ignore="TouchTargetSizeCheck"
-            />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_enrollStudents"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_toRightOf="@id/btn_uploadStudentList"
-            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="20dp"
-            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp"
             android:background="@drawable/rectangular_input_bg"
             android:backgroundTint="@color/custom_color_bg"
+            android:text="Upload Student List"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:text="Enroll Students"
-            tools:ignore="TouchTargetSizeCheck"
-            />
+            tools:ignore="TouchTargetSizeCheck" />
+
     </RelativeLayout>
 </FrameLayout>
