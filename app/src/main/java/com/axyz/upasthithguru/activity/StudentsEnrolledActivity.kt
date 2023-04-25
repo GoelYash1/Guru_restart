@@ -53,6 +53,7 @@ class StudentsEnrolledActivity : AppCompatActivity() {
                     else {
                         CoroutineScope(Dispatchers.Main).launch {
                             EnrollStudentsManager().sendEnrollInvitation(passedId, email.toString())
+                            Toast.makeText(applicationContext,"Invitation has been sent to $email",Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
