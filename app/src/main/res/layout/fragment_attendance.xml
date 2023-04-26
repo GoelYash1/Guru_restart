@@ -262,6 +262,7 @@
                 android:scrollbarAlwaysDrawHorizontalTrack="true"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:textColorHint="@color/custom_color_bg"
+                android:dropDownHeight="300dp"
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
