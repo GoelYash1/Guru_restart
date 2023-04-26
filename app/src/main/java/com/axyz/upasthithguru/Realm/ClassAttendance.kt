@@ -86,12 +86,55 @@ class ClassAttendanceManager {
 //        return classAttendance
 //    }
 
-    fun getAllStudentRecords(courseId:String): RealmResults<InvitationRecord> {
-        val realm = realmModule.realm
-        var enrolledStudents = realm.query<InvitationRecord>("courseId == $0",courseId).find()
+//    fun getAllStudentRecords(courseId:String): RealmResults<InvitationRecord> {
+        fun getAllStudentRecords(courseId:String): List<Map<String,Any>> {
+
+            val realm = realmModule.realm
+//        var enrolledStudents = realm.query<InvitationRecord>("courseId == $0",courseId).find()
+        val totalNoLecctures = realm.query<Course>("_id == $0",ObjectId(courseId)).first().find()?.totalNoOfClasses
+        Log.d("Total No of Lectures ::","$totalNoLecctures")
+        val attendanceOfClass = realm.query<StudentRecord>("courseId == $0",courseId).find()
+        Log.d("Attendance of Class ::","$attendanceOfClass")
+        val enrolledStudents = realm.query<InvitationRecord>("courseId == $0 AND status == $1",courseId,"accepted".toString()).find()
+        val studentAttendanceRecord :MutableMap<String,Int> = mutableMapOf()
+//        enrolledStudents.forEach{
+//            if( it.courseId == courseId){
+//                Log.d("Enrolled Students course Matched  ::","${it.studentEmailId}")
+//            }else{
+//                Log.d("Enrolled Students course Not Matched  ::","${it.studentEmailId}")
+//            }
+//        }
+        attendanceOfClass.forEach{student ->
+            if(student.isPresent){
+                if(studentAttendanceRecord.containsKey(student.studentEmailId)){
+                    studentAttendanceRecord[student.studentEmailId] = studentAttendanceRecord[student.studentEmailId]!!.plus(1)
+                }else{
+                    studentAttendanceRecord[student.studentEmailId] = 1
+                }
+            }
+        }
+//        [
+//            {
+//                "email": "y@gmail.com",
+//                "attendance": 2,
+//                "attendancePercentage": 50,
+//            },
+//            {
+//                "email": "y@gmail.com",
+//                "attendance": 2,
+//                "attendancePercentage": 50,
+//            },
+//        ]
+        val record = mutableListOf<Map<String,Any>>()
+        Log.d("Student Attendance Record ::","$studentAttendanceRecord")
+        studentAttendanceRecord.forEach{ (key,value) ->
+            val attendancePercentage = (value*100)/totalNoLecctures!!
+            val studentRecord = mapOf("email" to key,"attendance" to value,"attendancePercentage" to attendancePercentage)
+            record.add(studentRecord)
+        }
 //        var enrolledStudents = realm.query<InvitationRecord>("courseId == $0 AND status == $1",courseId,"accepted").find()
 
-        return enrolledStudents
+        return record
 //        var users = realm.query<UserRole>().find()
 
 //        var enrolledStudents = realm.query<ClassAttendance>().find()
