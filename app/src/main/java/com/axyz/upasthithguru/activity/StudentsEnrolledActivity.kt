@@ -1,21 +1,18 @@
 package com.axyz.upasthithguru.activity
 
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.axyz.upasthithg.Realm.ClassAttendanceManager
-import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.EnrollStudentsManager
-import com.axyz.upasthithguru.Realm.InvitationRecord
-import com.axyz.upasthithguru.data.realmModule
+import com.axyz.upasthithguru.adapters.StudentListAdapter
 import com.axyz.upasthithguru.databinding.ActivityStudentsEnrolledBinding
-import io.realm.kotlin.ext.query
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,13 +22,24 @@ class StudentsEnrolledActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStudentsEnrolledBinding
     private lateinit var inviteNewStudent: AppCompatButton
     private lateinit var inviteNewStudentForm: LinearLayout
+    private lateinit var studentListView: RecyclerView
+    private lateinit var studentList: List<Map<String,Any>>
+    private lateinit var studentListAdapter: StudentListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityStudentsEnrolledBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         inviteNewStudent = binding.inviteNewStudent
         inviteNewStudentForm = binding.inviteNewStudentLayout
+        studentListView = binding.rvStudentList
         val passedId = intent.getByteArrayExtra("Course Id")?.let { BsonObjectId(it) }!!
+
+        studentList = ClassAttendanceManager().getAllStudentRecords(passedId.toHexString())
+        Log.d("Student List-->", studentList.size.toString())
+        studentListAdapter = StudentListAdapter(studentList)
+        studentListView.layoutManager = LinearLayoutManager(applicationContext)
+        studentListView.adapter = studentListAdapter
+
         inviteNewStudent.setOnClickListener {
             if(inviteNewStudentForm.visibility == View.GONE)
             {
@@ -81,7 +89,5 @@ class StudentsEnrolledActivity : AppCompatActivity() {
 //            }
 
         }
-            val studends = ClassAttendanceManager().getAllStudentRecords(passedId.toHexString())
-            Log.d("Enrolled Students ::","${studends}")
     }
 }
