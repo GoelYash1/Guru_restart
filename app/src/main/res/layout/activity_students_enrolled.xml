@@ -73,7 +73,7 @@
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDStudentList"
+            android:id="@+id/rvStudentList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_above="@+id/btn_uploadStudentList"

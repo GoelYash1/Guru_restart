@@ -27,146 +27,209 @@
             android:textColor="@color/custom_color_bg"
             android:layout_marginTop="36dp"
             />
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-            android:id="@+id/departmentDropdownLayout"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@id/text_course_details"
-            app:boxStrokeWidth="2dp"
-            app:endIconTint="@color/custom_color_bg"
-            android:textColorHint="@color/custom_color_bg"
-            app:boxStrokeColor="@color/custom_color_bg"
-            app:counterTextColor="@color/custom_color_bg"
-            app:hintTextColor="@color/custom_color_bg"
-            app:placeholderTextColor="@color/custom_color_bg"
-            app:counterOverflowTextColor="@color/custom_color_bg"
-            android:background="@drawable/rectangular_input_bg"
-            >
-            <AutoCompleteTextView
-                android:id="@+id/departmentDropDownView"
-                android:layout_width="match_parent"
-                android:background="@drawable/drop_down_bg"
-                android:layout_height="wrap_content"
-                android:isScrollContainer="true"
-                android:hint="Department"
-                android:textStyle="bold"
-                tools:ignore="TouchTargetSizeCheck"
-                android:paddingTop="10dp"
-                android:inputType="none"
-                android:maxLines="1"
-                android:textColor="@color/custom_color_bg"
-                android:textColorHint="@color/custom_color_bg"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <EditText
-            android:id="@+id/courseName"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_below="@id/departmentDropdownLayout"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/rectangular_input_bg"
-            android:hint="Course Name"
-            android:textColor="@color/custom_color_bg"
-            android:textSize="16sp"
-            android:elegantTextHeight="true"
-            android:inputType="text"
-            android:paddingLeft="17dp"
-            tools:ignore="TouchTargetSizeCheck"
-            />
-        <EditText
-            android:id="@+id/courseCode"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_below="@id/courseName"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/rectangular_input_bg"
-            android:hint="Course Code"
-            android:textColor="@color/custom_color_bg"
-            android:textSize="16sp"
-            android:elegantTextHeight="true"
-            android:inputType="text"
-            android:paddingLeft="17dp"
-            tools:ignore="TouchTargetSizeCheck"
-            />
-        <EditText
-            android:id="@+id/courseYear"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_below="@id/courseCode"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/rectangular_input_bg"
-            android:hint="Year"
-            android:textColor="@color/custom_color_bg"
-            android:textSize="16sp"
-            android:elegantTextHeight="true"
-            android:inputType="text"
-            android:paddingLeft="17dp"
-            tools:ignore="TouchTargetSizeCheck"
-            />
-        <EditText
-            android:id="@+id/courseSemester"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_below="@id/courseYear"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/rectangular_input_bg"
-            android:hint="Semester"
-            android:textColor="@color/custom_color_bg"
-            android:textSize="16sp"
-            android:elegantTextHeight="true"
-            android:inputType="text"
-            android:paddingLeft="17dp"
-            tools:ignore="TouchTargetSizeCheck"
-            />
-        <EditText
-            android:id="@+id/courseCredits"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_below="@id/courseSemester"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/rectangular_input_bg"
-            android:hint="Credits"
-            android:textColor="@color/custom_color_bg"
-            android:textSize="16sp"
-            android:elegantTextHeight="true"
-            android:inputType="text"
-            android:paddingLeft="17dp"
-            tools:ignore="TouchTargetSizeCheck"
-            />
-        <EditText
-            android:id="@+id/courseDescription"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@id/courseCredits"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/rectangular_input_bg"
-            android:hint="Descritpion"
-            android:textColor="@color/custom_color_bg"
-            android:textSize="16sp"
-            android:elegantTextHeight="true"
-            android:inputType="textMultiLine"
 
-            android:paddingStart="17dp"
-            android:paddingEnd="17dp"
-            tools:ignore="TouchTargetSizeCheck"
-            />
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_add"
+            android:layout_below="@id/text_course_details">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/courseNameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:boxStrokeColor="@color/custom_color_bg"
+                    app:counterOverflowTextColor="@color/custom_color_bg"
+                    app:counterTextColor="@color/custom_color_bg"
+                    app:endIconTint="@color/custom_color_bg"
+                    app:hintTextColor="@color/custom_color_bg"
+                    app:placeholderTextColor="@color/custom_color_bg">
+
+                    <EditText
+                        android:id="@+id/courseName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectangular_input_bg"
+                        android:elegantTextHeight="true"
+                        android:hint="Course Name"
+                        android:inputType="text"
+                        android:textColor="@color/custom_color_bg"
+                        android:textSize="16sp"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/courseCodeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:boxStrokeColor="@color/custom_color_bg"
+                    app:counterOverflowTextColor="@color/custom_color_bg"
+                    app:counterTextColor="@color/custom_color_bg"
+                    app:endIconTint="@color/custom_color_bg"
+                    app:hintTextColor="@color/custom_color_bg"
+                    app:placeholderTextColor="@color/custom_color_bg">
+
+                    <EditText
+                        android:id="@+id/courseCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectangular_input_bg"
+                        android:elegantTextHeight="true"
+                        android:hint="Course Code"
+                        android:inputType="text"
+                        android:paddingLeft="17dp"
+                        android:textColor="@color/custom_color_bg"
+                        android:textSize="16sp"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/departmentSpinnerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="15dp"
+                    android:background="@drawable/circled_button"
+                    android:backgroundTint="@color/custom_color_card"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_weight="2"
+                        android:gravity="start|center_vertical"
+                        android:text="Department"
+                        android:textColor="@color/custom_color_bg"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/departmentDropDownView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:entries="@array/department_options"
+                        android:minHeight="48dp"
+                        android:textAlignment="textEnd"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/courseYearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxStrokeColor="@color/custom_color_bg"
+                    app:counterOverflowTextColor="@color/custom_color_bg"
+                    app:counterTextColor="@color/custom_color_bg"
+                    app:endIconTint="@color/custom_color_bg"
+                    app:hintTextColor="@color/custom_color_bg"
+                    app:placeholderTextColor="@color/custom_color_bg">
+
+                    <EditText
+                        android:id="@+id/courseYear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectangular_input_bg"
+                        android:elegantTextHeight="true"
+                        android:hint="Year"
+                        android:inputType="text"
+                        android:paddingLeft="17dp"
+                        android:textColor="@color/custom_color_bg"
+                        android:textSize="16sp"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/courseSemesterLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:boxStrokeColor="@color/custom_color_bg"
+                    app:counterOverflowTextColor="@color/custom_color_bg"
+                    app:counterTextColor="@color/custom_color_bg"
+                    app:endIconTint="@color/custom_color_bg"
+                    app:hintTextColor="@color/custom_color_bg"
+                    app:placeholderTextColor="@color/custom_color_bg">
+
+                    <EditText
+                        android:id="@+id/courseSemester"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/courseYearLayout"
+                        android:background="@drawable/rectangular_input_bg"
+                        android:elegantTextHeight="true"
+                        android:hint="Semester"
+                        android:inputType="text"
+                        android:paddingLeft="17dp"
+                        android:textColor="@color/custom_color_bg"
+                        android:textSize="16sp"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/courseCreditsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:boxStrokeColor="@color/custom_color_bg"
+                    app:counterOverflowTextColor="@color/custom_color_bg"
+                    app:counterTextColor="@color/custom_color_bg"
+                    app:endIconTint="@color/custom_color_bg"
+                    app:hintTextColor="@color/custom_color_bg"
+                    app:placeholderTextColor="@color/custom_color_bg">
+
+                    <EditText
+                        android:id="@+id/courseCredits"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectangular_input_bg"
+                        android:elegantTextHeight="true"
+                        android:hint="Credits"
+                        android:inputType="text"
+                        android:paddingLeft="17dp"
+                        android:textColor="@color/custom_color_bg"
+                        android:textSize="16sp"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <EditText
+                    android:layout_marginTop="15dp"
+                    android:id="@+id/courseDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/circled_button"
+                    android:backgroundTint="@color/custom_color_card"
+                    android:hint="Enter course description"
+                    android:padding="8dp"
+                    android:gravity="top"
+                    android:minHeight="48dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </ScrollView>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_below="@id/courseDescription"
-            android:layout_marginTop="25dp"
-            android:text="Add"
-            android:background="@drawable/circled_button"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/custom_color_bg"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_margin="25dp"
+            android:background="@drawable/circled_button"
+            android:backgroundTint="@color/custom_color_bg"
+            android:text="Add"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="20sp"
-            tools:ignore="TouchTargetSizeCheck"
-            />
+            tools:ignore="TouchTargetSizeCheck" />
     </RelativeLayout>
 
 

@@ -2,10 +2,7 @@ package com.axyz.upasthithguru.courses
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.AppCompatButton
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.Course
@@ -16,7 +13,7 @@ class AddNewCourse : AppCompatActivity() {
     private lateinit var etName: EditText
     private lateinit var etCode: EditText
     private lateinit var etCredits: EditText
-//    private lateinit var spDepartment: Spinner
+    private lateinit var spDepartment: Spinner
     private lateinit var etDescription: EditText
     private lateinit var etYear: EditText
     private lateinit var etSemester: EditText
@@ -28,26 +25,17 @@ class AddNewCourse : AppCompatActivity() {
         etName = findViewById(R.id.courseName)
         etCode = findViewById(R.id.courseCode)
         etCredits = findViewById(R.id.courseCredits)
-//        spDepartment = findViewById(R.id.sp_department)
+        spDepartment = findViewById(R.id.departmentDropDownView)
         etDescription = findViewById(R.id.courseDescription)
         etYear = findViewById(R.id.courseYear)
         etSemester = findViewById(R.id.courseSemester)
         btnSave = findViewById(R.id.btn_add)
-
-
-        etName.setText("SDN")
-        etCode.setText("CS-103")
-        etCredits.setText("2")
-        etDescription.setText("Software Defined Networking")
-        etYear.setText("2022")
-        etSemester.setText("2")
-
-
+        // create an ArrayAdapter using the string array and a default spinner layout
         btnSave.setOnClickListener {
             val name = etName.text.toString().trim()
             val code = etCode.text.toString().trim()
             val credits = etCredits.text.toString().trim()
-//            val department = spDepartment.selectedItem.toString().trim()
+            val department = spDepartment.selectedItem.toString().trim()
             val year = etYear.text.toString().trim()
             val semester = etSemester.text.toString().trim()
             val description = etDescription.text.toString().trim()

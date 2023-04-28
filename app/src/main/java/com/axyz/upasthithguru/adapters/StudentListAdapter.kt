@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.axyz.upasthithguru.R
-import com.axyz.upasthithguru.Realm.InvitationRecord
 
-class StudentListAdapter(var studentListOfCourse: MutableList<InvitationRecord>): RecyclerView.Adapter<StudentListAdapter.ViewHolder>(){
+class StudentListAdapter(var studentListOfCourse: List<Map<String, Any>>): RecyclerView.Adapter<StudentListAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val studentEmail = itemView.findViewById<TextView>(R.id.item_StudentName)
@@ -22,7 +21,7 @@ class StudentListAdapter(var studentListOfCourse: MutableList<InvitationRecord>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.studentEmail.text = studentListOfCourse[position].studentEmailId
+        holder.studentEmail.text = studentListOfCourse[position]["email"] as String
     }
 
     override fun getItemCount(): Int {
