@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import com.axyz.upasthithguru.R
-import com.axyz.upasthithguru.UpdatePasswordActivity
 
 class VerifyPassChangeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

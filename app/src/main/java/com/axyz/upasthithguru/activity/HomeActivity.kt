@@ -1,7 +1,7 @@
 package com.axyz.upasthithguru.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.fragments.Attendance

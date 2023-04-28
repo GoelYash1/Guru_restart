@@ -2,13 +2,17 @@ package com.axyz.upasthithguru.activity
 
 import android.app.Dialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.d
-import android.view.LayoutInflater
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.axyz.upasthithguru.*
+import com.axyz.upasthithguru.ForgotPasswordActivity
+import com.axyz.upasthithguru.MainActivity
+import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.apidata.LoginRequest
 import com.axyz.upasthithguru.databinding.ActivityLoginBinding
 import com.axyz.upasthithguru.other.EventObserver

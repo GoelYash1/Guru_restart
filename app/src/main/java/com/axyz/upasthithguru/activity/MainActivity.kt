@@ -1,14 +1,10 @@
 package com.axyz.upasthithguru
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import com.axyz.upasthithguru.Realm.CourseRepository
+import androidx.appcompat.app.AppCompatActivity
 import com.axyz.upasthithguru.activity.HomeActivity
 import com.axyz.upasthithguru.activity.OnboardingActivity
-import com.axyz.upasthithguru.other.CheckLogin
 import dagger.hilt.android.AndroidEntryPoint
 import io.realm.kotlin.mongodb.User
 import kotlinx.serialization.Serializable

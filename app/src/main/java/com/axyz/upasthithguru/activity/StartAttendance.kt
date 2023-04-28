@@ -6,7 +6,6 @@ import android.app.Activity
 import android.bluetooth.*
 import android.bluetooth.le.*
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.*

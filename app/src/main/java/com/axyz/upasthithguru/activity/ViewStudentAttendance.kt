@@ -1,19 +1,18 @@
 package com.axyz.upasthithguru.activity
 
+//import com.axyz.upasthithguru.adapters.studentAttendanceListAdapter
 import android.content.ContentValues.TAG
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//import com.axyz.upasthithguru.adapters.studentAttendanceListAdapter
 import com.axyz.upasthithguru.databinding.ActivityViewStudentAttendanceBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.mongodb.kbson.ObjectId
 
 //import com.axyz.upasthithguru.adapters.AttendanceAdapter
