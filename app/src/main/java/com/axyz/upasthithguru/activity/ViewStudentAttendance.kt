@@ -32,7 +32,7 @@ class ViewStudentAttendance : AppCompatActivity() {
         binding = ActivityViewStudentAttendanceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        courseId = intent.getByteArrayExtra("Student Course Attendance Id")?.let { ObjectId(it) }!!
+//        courseId = intent.getByteArrayExtra("Student Course Attendance Id")?.let { ObjectId(it) }!!
         date = binding.viewAttendanceDate
         date.text = intent.getStringExtra("Attendance Date").toString()
         studentCount = binding.viewStudentNumberOfStudents

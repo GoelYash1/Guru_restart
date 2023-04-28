@@ -114,7 +114,7 @@ class LoginActivity : AppCompatActivity() {
             }
         ) { user ->
             hideLoading()
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "User has Signed in", Toast.LENGTH_SHORT).show()
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)
                 finish()
