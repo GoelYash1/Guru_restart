@@ -11,6 +11,7 @@ import com.axyz.upasthithg.Realm.StudentRecord
 import com.axyz.upasthithguru.Realm.Course
 import com.axyz.upasthithguru.Realm.CourseRepository
 import com.axyz.upasthithguru.activity.StudentsEnrolledActivity
+import com.axyz.upasthithguru.activity.ViewStudentAttendance
 import com.axyz.upasthithguru.data.realmModule.realm
 import com.axyz.upasthithguru.databinding.ActivityCourseInfoBinding
 import io.realm.kotlin.ext.query
@@ -52,6 +53,20 @@ class CourseInfo : AppCompatActivity() {
 
         // Calendar View
         attendanceCalendar = binding.courseInfoAttendanceCalendar
+        attendanceCalendar.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            // Construct the date string from the selected year, month, and day
+            val dateString = "$year-${month + 1}-$dayOfMonth"
+
+            // Create an Intent to launch the new activity
+            val intent = Intent(this, ViewStudentAttendance::class.java)
+
+            // Add the selected date as an extra to the Intent
+            intent.putExtra("Attendance Date", dateString)
+            intent.putExtra("Student Course Attendance Id",passedId.toByteArray())
+            // Start the new activity
+            startActivity(intent)
+        }
+
         enrolledStudents.setOnClickListener {
             val intent = Intent(this,StudentsEnrolledActivity::class.java)
             intent.putExtra("Course Id",courseId.toByteArray())
