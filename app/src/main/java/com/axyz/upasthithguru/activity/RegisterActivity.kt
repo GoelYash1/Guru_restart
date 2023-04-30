@@ -1,22 +1,19 @@
 package com.axyz.upasthithguru.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.axyz.upasthithguru.MainActivity
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.apidata.SignupRequest
-import com.axyz.upasthithguru.other.CheckLogin
 import com.axyz.upasthithguru.other.EventObserver
 import com.axyz.upasthithguru.viewModels.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import io.realm.kotlin.Realm
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {

@@ -1,18 +1,11 @@
 package com.axyz.upasthithguru.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.lifecycle.Observer
 import com.axyz.upasthithguru.R
-import com.axyz.upasthithguru.app
 import com.axyz.upasthithguru.databinding.ActivityEntryBinding
-
-import io.realm.kotlin.mongodb.User
-import okhttp3.internal.wait
 
 //import com.axyz.upasthithguru.databinding.ActivityMainBinding
 

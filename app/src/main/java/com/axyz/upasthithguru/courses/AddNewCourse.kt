@@ -1,8 +1,10 @@
 package com.axyz.upasthithguru.courses
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.Course
