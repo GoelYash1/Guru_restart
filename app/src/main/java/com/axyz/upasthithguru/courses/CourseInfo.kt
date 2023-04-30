@@ -17,6 +17,8 @@ import com.axyz.upasthithguru.databinding.ActivityCourseInfoBinding
 import io.realm.kotlin.ext.query
 import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CourseInfo : AppCompatActivity() {
     private lateinit var courseId:ObjectId
@@ -57,15 +59,21 @@ class CourseInfo : AppCompatActivity() {
             // Construct the date string from the selected year, month, and day
             val dateString = "$year-${month + 1}-$dayOfMonth"
 
+            // Format the date string using SimpleDateFormat
+            val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val formattedDateString = dateFormatter.format(dateFormatter.parse(dateString))
+
             // Create an Intent to launch the new activity
             val intent = Intent(this, ViewStudentAttendance::class.java)
 
             // Add the selected date as an extra to the Intent
-            intent.putExtra("Attendance Date", dateString)
-            intent.putExtra("Student Course Attendance Id",passedId.toByteArray())
+            intent.putExtra("Attendance Date", formattedDateString)
+            intent.putExtra("Student Course Attendance Id", passedId.toByteArray())
+
             // Start the new activity
             startActivity(intent)
         }
+
 
         enrolledStudents.setOnClickListener {
             val intent = Intent(this,StudentsEnrolledActivity::class.java)
