@@ -17,7 +17,7 @@ import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
 import org.mongodb.kbson.ObjectId
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 import javax.inject.Singleton
 
 class StudentRecord : RealmObject {
@@ -117,10 +117,11 @@ class ClassAttendanceManager {
             val record = mutableListOf<Map<String,Any>>()
             Log.d("Student Attendance Record ::","$studentAttendanceRecord")
             studentAttendanceRecord.forEach{ (key,value) ->
-                var attendancePercentage = 0
-                if(totalNoLecctures!=0)
-                {
+                var attendancePercentage : Int
+                if(totalNoLecctures != 0){
                     attendancePercentage = (value*100)/totalNoLecctures!!
+                }else{
+                    attendancePercentage = (value*100)/1
                 }
                 val studentRecord = mapOf("email" to key,"attendance" to value,"attendancePercentage" to attendancePercentage)
                 record.add(studentRecord)
@@ -177,6 +178,62 @@ class ClassAttendanceManager {
         }
         Log.d("Filtered List ::","${filteredList[0].timeOfAttendance}")
         return filteredList
+    }
+
+    fun getAttendancePercentageAndClassInfoOfMonth(courseId: String, targetMonthYear: String): List<StudentRecord> {
+        val realm = realmModule.realm
+        val totalNoLectures = realm.query<Course>("_id == $0", ObjectId(courseId)).first().find()?.totalNoOfClasses
+        Log.d("Total No of Lectures ::", "$totalNoLectures")
+        val attendanceOfClass = realm.query<StudentRecord>("courseId == $0", courseId).find()
+        Log.d("Attendance of Class ::", "$attendanceOfClass")
+
+        // Filter the attendance records for the target month and year yyyy-MM
+        val filteredListOfMonth = attendanceOfClass.filter {
+            val dateFormat = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy")
+            val date = dateFormat.parse(it.timeOfAttendance)
+            val cal = Calendar.getInstance()
+            cal.time = date
+            val recordMonthYear = "${cal.get(Calendar.YEAR)}-${cal.get(Calendar.MONTH) + 1}"
+            recordMonthYear == targetMonthYear
+        }
+        val record = mutableMapOf<String, MutableList<MutableMap<String, Any>>>()
+        var currDate = 1
+        var fullCurrentDate = targetMonthYear+"-"+currDate.toString()
+        filteredListOfMonth.forEach(){
+            val dateFormat = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy")
+            val date = dateFormat.parse(it.timeOfAttendance)
+            val dateStr = SimpleDateFormat("yyyy-MM-dd").format(date)
+            if (record.containsKey(dateStr)) {
+                val nestedMap = mutableMapOf<String, Any>("classNumber" to it.classNumber, "percentage" to 50.2)
+                record[dateStr]?.add(nestedMap)
+            } else {
+                val nestedList = mutableListOf<MutableMap<String, Any>>(mutableMapOf("classNumber" to it.classNumber, "percentage" to 45.6))
+                record[dateStr] = nestedList
+            }
+        }
+        for ((date, list) in record) {
+            println("$date:")
+            for (nestedMap in list) {
+                println("\t$nestedMap")
+            }
+        }
+//        {
+//            "2021-04-01": [
+//                {
+//                    "classNumber": 2,
+//                    "percentage": 50.2,
+//                },
+//            ],
+//            "2021-04-01": [
+//                {
+//                    "classNumber": 2,
+//                    "percentage": 50.2,
+//                },
+//            ],
+//        }
+
+        Log.d("Filtered List ::", "${filteredListOfMonth.size} records")
+        return filteredListOfMonth
     }
 
 
