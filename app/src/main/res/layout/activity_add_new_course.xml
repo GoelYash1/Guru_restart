@@ -45,6 +45,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    app:boxStrokeWidth="0dp"
+                    android:textColorHint="@color/edit_input"
                     app:boxStrokeColor="@color/custom_color_bg"
                     app:counterOverflowTextColor="@color/custom_color_bg"
                     app:counterTextColor="@color/custom_color_bg"
@@ -71,6 +73,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    app:boxStrokeWidth="0dp"
+                    android:textColorHint="@color/edit_input"
                     app:boxStrokeColor="@color/custom_color_bg"
                     app:counterOverflowTextColor="@color/custom_color_bg"
                     app:counterTextColor="@color/custom_color_bg"
@@ -84,6 +88,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/rectangular_input_bg"
                         android:elegantTextHeight="true"
+
                         android:hint="Course Code"
                         android:inputType="text"
                         android:paddingLeft="17dp"
@@ -97,6 +102,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="15dp"
+                    android:paddingLeft="12dp"
+
                     android:background="@drawable/circled_button"
                     android:backgroundTint="@color/custom_color_card"
                     android:orientation="horizontal">
@@ -110,13 +117,15 @@
                         android:text="Department"
                         android:textColor="@color/custom_color_bg"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                         />
 
                     <Spinner
                         android:id="@+id/departmentDropDownView"
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:foregroundTint="@color/custom_color_bg"
+                        android:backgroundTint="@color/custom_color_bg"
                         android:entries="@array/department_options"
                         android:minHeight="48dp"
                         android:textAlignment="textEnd"
@@ -127,10 +136,12 @@
                     android:id="@+id/courseYearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColorHint="@color/edit_input"
                     app:boxStrokeColor="@color/custom_color_bg"
                     app:counterOverflowTextColor="@color/custom_color_bg"
                     app:counterTextColor="@color/custom_color_bg"
                     app:endIconTint="@color/custom_color_bg"
+                    app:boxStrokeWidth="0dp"
                     app:hintTextColor="@color/custom_color_bg"
                     app:placeholderTextColor="@color/custom_color_bg">
 
@@ -153,6 +164,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    app:boxStrokeWidth="0dp"
+                    android:textColorHint="@color/edit_input"
                     app:boxStrokeColor="@color/custom_color_bg"
                     app:counterOverflowTextColor="@color/custom_color_bg"
                     app:counterTextColor="@color/custom_color_bg"
@@ -180,6 +193,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    app:boxStrokeWidth="0dp"
+                    android:textColorHint="@color/edit_input"
                     app:boxStrokeColor="@color/custom_color_bg"
                     app:counterOverflowTextColor="@color/custom_color_bg"
                     app:counterTextColor="@color/custom_color_bg"
@@ -194,6 +209,7 @@
                         android:background="@drawable/rectangular_input_bg"
                         android:elegantTextHeight="true"
                         android:hint="Credits"
+
                         android:inputType="text"
                         android:paddingLeft="17dp"
                         android:textColor="@color/custom_color_bg"
@@ -205,11 +221,16 @@
                     android:layout_marginTop="15dp"
                     android:id="@+id/courseDescription"
                     android:layout_width="match_parent"
+                    android:paddingLeft="17dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="17dp"
+                    android:paddingBottom="10dp"
                     android:layout_height="100dp"
+                    android:textColorHint="@color/edit_input"
+                    android:textColor="@color/custom_color_bg"
                     android:background="@drawable/circled_button"
                     android:backgroundTint="@color/custom_color_card"
                     android:hint="Enter course description"
-                    android:padding="8dp"
                     android:gravity="top"
                     android:minHeight="48dp"
                     android:textSize="16sp" />
@@ -218,7 +239,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
+            android:layout_width="75dp"
             android:layout_height="35dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"

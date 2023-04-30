@@ -11,6 +11,7 @@
 
     <!--Custom Colors-->
     <color name="Red">#FF7474</color>
+    <color name="CourseName">#4F4B4B</color>
     <color name="edit_input">#bfbfbf</color>
     <color name="grey">#808080</color>
     <color name="custom_present_bg">#EBFFED</color>

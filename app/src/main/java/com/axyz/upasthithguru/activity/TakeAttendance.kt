@@ -44,10 +44,6 @@ class TakeAttendance : AppCompatActivity() {
         val date: TextView = binding.takeAttendanceCurrentDayAndDate
         date.text = formattedDate
 
-        val backButton: Button = binding.takeAttendanceBackButton
-        backButton.setOnClickListener {
-            finish()
-        }
         val generatedPinText:TextView = binding.generatedPinTextView
         val generatePinFAB: FloatingActionButton = binding.generatePinButton
         val attendanceState: TextView = binding.takeAttendanceState

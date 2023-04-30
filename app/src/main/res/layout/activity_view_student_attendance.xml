@@ -26,10 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:padding="6dp"
+        android:padding="4dp"
         android:text="Attendance Sheet"
         android:textColor="@color/custom_color_bg"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:padding="6dp"
+        android:padding="4dp"
+        android:textColor="@color/custom_color_bg"
         android:text="5 May 2023"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -51,66 +52,77 @@
         android:id="@+id/viewStudentPresentStudents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
         android:padding="6dp"
         android:text="Present Students"
         android:textColor="#5CC04C"
         android:textSize="18sp"
+        android:layout_marginRight="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewAttendanceDate" />
 
     <LinearLayout
         android:id="@+id/viewStudentAbsentStudents"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_margin="20dp"
         android:background="@drawable/circled_button"
         android:backgroundTint="#FED7D7"
         android:orientation="horizontal"
-        android:padding="5dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
         app:layout_constraintEnd_toStartOf="@+id/viewStudentAddStudents"
+        app:layout_constraintStart_toEndOf="@+id/viewStudentPresentStudents"
         app:layout_constraintTop_toBottomOf="@+id/viewAttendanceDate">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="1dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="3dp"
             android:src="@drawable/ic_absent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
             android:padding="2dp"
             android:text="Absent"
             android:textColor="#B91010"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/viewStudentAddStudents"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="28dp"
         android:layout_margin="20dp"
         android:background="@drawable/circled_button"
         android:backgroundTint="@color/custom_color_bg"
         android:orientation="horizontal"
-        android:padding="5dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewAttendanceDate">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="1dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="7dp"
             android:src="@drawable/addsquare" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="2dp"
+            android:paddingVertical="2dp"
+            android:paddingEnd="4dp"
             android:text="Add"
+            android:layout_marginTop="2dp"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

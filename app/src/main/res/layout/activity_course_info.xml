@@ -206,6 +206,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/calendar_card_view"
+            android:layout_marginBottom="5dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:gravity="center_horizontal"
@@ -228,7 +229,7 @@
 
             <CalendarView
                 android:id="@+id/courseInfoAttendanceCalendar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/enrolled_students"
                 android:layout_alignParentStart="true"
