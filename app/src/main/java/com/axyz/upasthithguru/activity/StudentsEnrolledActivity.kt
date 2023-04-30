@@ -35,6 +35,8 @@ class StudentsEnrolledActivity : AppCompatActivity() {
         val passedId = intent.getByteArrayExtra("Course Id")?.let { BsonObjectId(it) }!!
 
         studentList = ClassAttendanceManager().getAllStudentRecords(passedId.toHexString())
+        ClassAttendanceManager().getAllInvitedStudentRecords(passedId.toHexString())
+
         Log.d("Student List-->", studentList.size.toString())
         studentListAdapter = StudentListAdapter(studentList)
         studentListView.layoutManager = LinearLayoutManager(applicationContext)
