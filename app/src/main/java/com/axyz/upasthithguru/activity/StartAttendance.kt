@@ -69,10 +69,11 @@ class StartAttendance : AppCompatActivity() {
         time.text = formattedTime
 
         // Create a date formatter with the desired date format
-        val dateFormatter = SimpleDateFormat("EEEE, MMM d", Locale.getDefault())
+        val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
         // Format the current date with the formatter and set it to the TextView
         val formattedDate = dateFormatter.format(currentTime)
+        Log.d(TAG,"Formatted Date $formattedDate")
         val date: TextView = binding.startAttendanceCurrentDayAndDate
         date.text = formattedDate
         // pinTextView
@@ -118,7 +119,8 @@ class StartAttendance : AppCompatActivity() {
             // Redirect to another activity
             val intent = Intent(this, ViewStudentAttendance::class.java)
             intent.putExtra("Attendance Date",formattedDate)
-//            intent.putExtra("Student Course Attendance Id", classAttendanceId.toByteArray())
+            intent.putExtra("Student Course Attendance Id", passedId.toByteArray())
+            intent.putExtra("Class Number",classAttendanceId.toString())
             startActivity(intent)
             finish()
         }

@@ -117,7 +117,11 @@ class ClassAttendanceManager {
             val record = mutableListOf<Map<String,Any>>()
             Log.d("Student Attendance Record ::","$studentAttendanceRecord")
             studentAttendanceRecord.forEach{ (key,value) ->
-                val attendancePercentage = (value*100)/totalNoLecctures!!
+                var attendancePercentage = 0
+                if(totalNoLecctures!=0)
+                {
+                    attendancePercentage = (value*100)/totalNoLecctures!!
+                }
                 val studentRecord = mapOf("email" to key,"attendance" to value,"attendancePercentage" to attendancePercentage)
                 record.add(studentRecord)
             }
