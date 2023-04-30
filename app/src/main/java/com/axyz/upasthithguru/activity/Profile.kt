@@ -1,11 +1,9 @@
 package com.axyz.upasthithguru.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.Realm.CourseRepository
 import com.axyz.upasthithguru.adapters.CourseListAdapter
 import com.axyz.upasthithguru.databinding.ActivityProfileBinding

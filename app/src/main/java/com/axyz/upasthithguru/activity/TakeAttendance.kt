@@ -2,25 +2,16 @@ package com.axyz.upasthithguru.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.marginTop
-import androidx.core.view.setMargins
 import com.axyz.upasthithguru.PermissionUtils
-import com.axyz.upasthithguru.R
 import com.axyz.upasthithguru.databinding.ActivityTakeAttendanceBinding
 import com.axyz.upasthithguru.permissionDialogShown
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.mongodb.kbson.ObjectId
-import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 

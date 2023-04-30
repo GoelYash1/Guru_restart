@@ -1,7 +1,7 @@
 package com.axyz.upasthithguru.courses
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.axyz.upasthithguru.R
 
 class EditCourse : AppCompatActivity() {

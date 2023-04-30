@@ -1,10 +1,8 @@
 package com.axyz.upasthithguru.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.axyz.upasthithguru.R
-import com.axyz.upasthithguru.Realm.CourseRepository
-import java.util.*
 
 // Shows the Attendance record for a specific Date
 class ViewStudentAttendanceDate : AppCompatActivity() {
