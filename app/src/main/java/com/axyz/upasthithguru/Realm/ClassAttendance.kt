@@ -69,15 +69,20 @@ class ClassAttendanceManager {
         realm.write{
             val course = this.query<Course>("_id == $0",_id).first().find()
 //            val classAttendanceFound = this.query<ClassAttendance>("_id == $0",_id).first().find()
-            val student = StudentRecord().apply {
-                markedByTeacherId = course?.createdByInstructor.toString()
-                courseId = _id.toHexString()
-                classNumber = classNo
-                studentEmailId = emailid
-                isPresent = true
-                timeOfAttendance = Date().toString()
+            val searchStudent = this.query<StudentRecord>("courseId == $0 AND classNumber == $1 AND studentEmailId == $2",_id.toHexString(),classNo,emailid).first().find()
+            if(searchStudent?.studentEmailId != emailid){
+                val student = StudentRecord().apply {
+                    markedByTeacherId = course?.createdByInstructor.toString()
+                    courseId = _id.toHexString()
+                    classNumber = classNo
+                    studentEmailId = emailid
+                    isPresent = true
+                    timeOfAttendance = Date().toString()
+                }
+                this.copyToRealm(student)
+            }else{
+                Log.d("ATTENDANCE UPDATE","ALready marked for the student with id $emailid")
             }
-            this.copyToRealm(student)
         }
     }
 
