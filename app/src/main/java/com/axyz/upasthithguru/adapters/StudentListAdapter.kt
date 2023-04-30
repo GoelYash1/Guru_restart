@@ -22,6 +22,7 @@ class StudentListAdapter(var studentListOfCourse: List<Map<String, Any>>): Recyc
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.studentEmail.text = studentListOfCourse[position]["email"] as String
+        holder.attendancePercentage.text = studentListOfCourse[position]["attendancePercentage"].toString() +"%"
     }
 
     override fun getItemCount(): Int {

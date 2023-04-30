@@ -21,6 +21,7 @@ import io.realm.kotlin.types.annotations.PrimaryKey
 import kotlinx.coroutines.runBlocking
 import org.mongodb.kbson.BsonDocument
 import org.mongodb.kbson.ObjectId
+import java.time.Year
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -41,9 +42,14 @@ class Course() : RealmObject {
     var enrolledStudent: RealmList<String> = realmListOf()
     var totalNoOfClasses: Int = 0
 
-    constructor(name:String,courseCode:String) : this() {
+    constructor(name:String,courseCode:String,courseDepartment: String,courseYear: String, courseSemester:String,courseCredits:String,courseDescription:String) : this() {
         this.name = name
         this.courseCode = courseCode
+        this.courseDepartment = courseDepartment
+        this.courseCredits = courseCredits
+        this.courseDescription = courseDescription
+        this.courseYear = courseYear
+        this.courseSemester = courseSemester
         this.createdByInstructor = app.currentUser!!.id
         this.totalNoOfClasses = 0
     }

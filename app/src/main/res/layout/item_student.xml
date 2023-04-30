@@ -48,10 +48,11 @@
     <TextView
         android:id="@+id/item_attendance_percentage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/divider"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/item_StudentName"
-        android:gravity="center"
         android:layout_marginHorizontal="10dp"
+        android:layout_toStartOf="@+id/imageView"
+        android:gravity="center"
         android:text="76%" />
 </RelativeLayout>
