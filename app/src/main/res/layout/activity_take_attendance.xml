@@ -7,34 +7,27 @@
     android:background="@color/white"
     tools:context=".activity.TakeAttendance">
 
-    <Button
-        android:id="@+id/takeAttendanceBackButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/ic_left"
-        android:drawableTint="@color/custom_colorPrimaryDark"
-        android:text="Back"
-        android:textColor="@color/custom_colorPrimaryDark"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="25dp"
+        android:textSize="16sp"
+        android:paddingStart="5dp"
+        android:textColor="@color/grey"
         android:text="Course Details"
-        app:layout_constraintStart_toStartOf="@+id/takeAttendanceBackButton"
-        app:layout_constraintTop_toBottomOf="@+id/takeAttendanceBackButton" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
         android:backgroundTint="@color/custom_color_card"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
@@ -45,17 +38,19 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:padding="12dp"
+            >
 
             <TextView
                 android:id="@+id/takeAttendanceCourse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="8dp"
+                android:paddingBottom="5dp"
                 android:text="Course: SDN"
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textColor="@color/CourseName"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -63,12 +58,12 @@
             <TextView
                 android:id="@+id/takeAttendanceInstructor"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:padding="5dp"
-                android:textColor="@color/black"
+                android:padding="1dp"
+                android:textSize="12sp"
+                android:textColor="@color/CourseName"
                 android:text="Instructor: Dr Abhishek Verma"
                 app:layout_constraintEnd_toEndOf="@id/takeAttendanceCourse"
                 app:layout_constraintStart_toStartOf="@id/takeAttendanceCourse"
@@ -77,12 +72,14 @@
             <TextView
                 android:id="@+id/startAttendanceRStudentsTextView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:padding="5dp"
+                android:layout_marginBottom="6dp"
+                android:padding="1dp"
+                android:textSize="12sp"
                 android:text="Registered Students: 80"
-                android:textColor="@color/black"
+                android:textColor="@color/CourseName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/takeAttendanceInstructor"
                 app:layout_constraintStart_toStartOf="@id/takeAttendanceInstructor"
@@ -148,8 +145,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="52dp"
             android:elevation="20dp"
+            android:textColor="@color/white"
             android:text="Generate Pin"
             android:textSize="24sp"
             android:textStyle="bold" />
